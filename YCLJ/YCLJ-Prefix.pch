@@ -1,0 +1,69 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+/**是否是unity3D 模式  不是的话注释掉即可*/
+//#define isU3D
+//
+//#ifndef PrefixHeader_pch
+//#define PrefixHeader_pch
+//
+//#endif /* PrefixHeader_pch */
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Availability.h>
+    #import <Foundation/Foundation.h>
+    #import "YCLJ_Header.h"
+
+#define APP_DELEGATE      [UIApplication sharedApplication].delegate
+
+// 动态获取设备参数SCREEN_WIDTH
+#define SCREEN_WIDTH      [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT     [UIScreen mainScreen].bounds.size.height
+#define SCREEN_HEIGHT_OFFSET    64
+#define SCREEN_SCALE      [UIScreen mainScreen].scale
+#define HFrame(width)     (SCREEN_WIDTH/375) * width
+
+// system info
+#define CURRENT_OS_VERSION  [[[UIDevice currentDevice] systemVersion] floatValue]
+
+#pragma mark - font
+#define Font(fontSize)      [UIFont fontWithName:@"HelveticaNeue-Light" size:fontSize]
+#define FontBold(fontSize)      [UIFont fontWithName:@"HelveticaNeue-Bold" size:fontSize]
+#define FontSystem(fontSize)      [UIFont systemFontOfSize:fontSize]
+#define FontSystemBold(fontSize)  [UIFont boldSystemFontOfSize:fontSize]
+
+#endif
+
+//#include "Preprocessor.h"
+//#include "UnityTrampolineConfigure.h"
+//#include "UnityInterface.h"
+
+#ifndef __OBJC__
+#if USE_IL2CPP_PCH
+#include "il2cpp_precompiled_header.h"
+#endif
+#endif
+
+#ifndef TARGET_IPHONE_SIMULATOR
+#define TARGET_IPHONE_SIMULATOR 0
+#endif
+
+#define printf_console printf
+
+// debug
+#ifdef DEBUG
+//#    define DMLog(...)    NSLog(@"%s", __PRETTY_FUNCTION__); NSLog(__VA_ARGS__)
+#    define DLog(...)     NSLog(__VA_ARGS__)
+#else
+//#    define DMLog(...)
+#    define DLog(...)
+#endif
+

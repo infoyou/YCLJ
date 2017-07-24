@@ -1,0 +1,6 @@
+framework module lfsqSDK {
+  umbrella header "lfsqSDK.h"
+
+  export *
+  module * { export * }
+}
