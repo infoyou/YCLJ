@@ -24,12 +24,12 @@
 
 #define APP_DELEGATE      [UIApplication sharedApplication].delegate
 
-// 动态获取设备参数SCREEN_WIDTH
-#define SCREEN_WIDTH      [UIScreen mainScreen].bounds.size.width
-#define SCREEN_HEIGHT     [UIScreen mainScreen].bounds.size.height
+// 动态获取设备参数YC_SCREEN_WIDTH
+#define YC_SCREEN_WIDTH      [UIScreen mainScreen].bounds.size.width
+#define YC_SCREEN_HEIGHT     [UIScreen mainScreen].bounds.size.height
 #define SCREEN_HEIGHT_OFFSET    64
 #define SCREEN_SCALE      [UIScreen mainScreen].scale
-#define HFrame(width)     (SCREEN_WIDTH/375) * width
+#define HFrame(width)     (YC_SCREEN_WIDTH/375) * width
 
 // system info
 #define CURRENT_OS_VERSION  [[[UIDevice currentDevice] systemVersion] floatValue]

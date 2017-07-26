@@ -204,7 +204,7 @@
 {
     UserModel *userModel = [_userArray objectAtIndex:section];
     
-    UIView *sectionBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, CELL_SECTION_H)];
+    UIView *sectionBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, YC_SCREEN_WIDTH, CELL_SECTION_H)];
     sectionBgView.backgroundColor = [UIColor whiteColor];
     
     NSInteger fontSize = 15;
@@ -212,14 +212,14 @@
     
     // name
     CGFloat nameY = 20;
-    UILabel *labName = [[UILabel alloc] initWithFrame:CGRectMake(17, nameY, SCREEN_WIDTH/6, 20)];
+    UILabel *labName = [[UILabel alloc] initWithFrame:CGRectMake(17, nameY, YC_SCREEN_WIDTH/6, 20)];
     labName.text = userModel.name;
     labName.font = FontBold(fontSize);
     labName.textColor = HEX_COLOR(@"0x333333");
     [sectionBgView addSubview:labName];
     
     // mobile
-    CGFloat mobileX = SCREEN_WIDTH/6;
+    CGFloat mobileX = YC_SCREEN_WIDTH/6;
     
     UIImageView *imgMobile = [[UIImageView alloc] init];
     imgMobile.image = GetImageByName(@"ycMobile");
@@ -228,7 +228,7 @@
     imgMobile.frame = CGRectMake(mobileX - 20 - offsetW, nameY, 20, 20);
     [sectionBgView addSubview:imgMobile];
     
-    UILabel *labMobile = [[UILabel alloc] initWithFrame:CGRectMake(mobileX, nameY, SCREEN_WIDTH/5, 20)];
+    UILabel *labMobile = [[UILabel alloc] initWithFrame:CGRectMake(mobileX, nameY, YC_SCREEN_WIDTH/5, 20)];
     labMobile.text = userModel.mobile;
     labMobile.font = Font(fontSize);
     labMobile.textColor = HEX_COLOR(@"0x666666");
@@ -243,14 +243,14 @@
     imgAddress.frame = CGRectMake(addressX - 20 - offsetW, addressY, 20, 20);
     [sectionBgView addSubview:imgAddress];
 
-    UILabel *labHouse = [[UILabel alloc] initWithFrame:CGRectMake(addressX, addressY, SCREEN_WIDTH/2-40, 20)];
+    UILabel *labHouse = [[UILabel alloc] initWithFrame:CGRectMake(addressX, addressY, YC_SCREEN_WIDTH/2-40, 20)];
     labHouse.text = userModel.address;
     labHouse.font = Font(fontSize);
     labHouse.textColor = HEX_COLOR(@"0x666666");
     [sectionBgView addSubview:labHouse];
 
     // area
-    CGFloat areaX = SCREEN_WIDTH/2 + 20;
+    CGFloat areaX = YC_SCREEN_WIDTH/2 + 20;
     
     UIImageView *imgArea = [[UIImageView alloc] init];
     imgArea.image = GetImageByName(@"ycArea");
@@ -264,7 +264,7 @@
     [sectionBgView addSubview:labArea];
     
     // share
-    CGFloat shareX = SCREEN_WIDTH - 40;
+    CGFloat shareX = YC_SCREEN_WIDTH - 40;
     CGFloat shareY = 40;
     CGFloat shareW = 20;
     CGFloat shareH = 20;
@@ -281,7 +281,7 @@
     
     // 发送业主
     CGFloat sendW = 90;
-    CGFloat sendX = SCREEN_WIDTH - sendW - 72;
+    CGFloat sendX = YC_SCREEN_WIDTH - sendW - 72;
     CGFloat sendY = 37;
     UIButton *btnSend = [UIButton buttonWithType:UIButtonTypeCustom];
     btnSend.frame = CGRectMake(sendX, sendY, 90, 28);
@@ -296,7 +296,7 @@
     [sectionBgView addSubview:btnSend];
     
     // line
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, CELL_SECTION_H - 0.5, SCREEN_WIDTH, 0.5)];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, CELL_SECTION_H - 0.5, YC_SCREEN_WIDTH, 0.5)];
     lineView.backgroundColor = HEX_COLOR(@"0xE8E8E8");
     [sectionBgView addSubview:lineView];
     

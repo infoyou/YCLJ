@@ -30,12 +30,12 @@
     self.Bagview=[[UIView alloc] init];
     UIColor *color = [UIColor whiteColor];
     self.backgroundColor = [color colorWithAlphaComponent:0.1];
-    self.Bagview.frame=CGRectMake(0, 0, SCREEN_WIDTH, 0);
+    self.Bagview.frame=CGRectMake(0, 0, YC_SCREEN_WIDTH, 0);
     [self addSubview:self.Bagview];
     //------- 内容区域 -------//
     self.Contarea=[[UIView alloc] init];
     self.Contarea.backgroundColor=[UIColor colorWithHexString:@"#FFCBD8"];
-    self.Contarea.frame=CGRectMake(0, 0, SCREEN_WIDTH, disHeight);
+    self.Contarea.frame=CGRectMake(0, 0, YC_SCREEN_WIDTH, disHeight);
     [self.Bagview addSubview:self.Contarea];
     //------- 警告图标 ------//
     self.Warningicon=[[UIImageView alloc] init];
@@ -44,7 +44,7 @@
     [self.Contarea addSubview:self.Warningicon];
     //------- 内容区域 -------//
     self.Contentext=[[UILabel alloc] init];
-    self.Contentext.frame=CGRectMake(CGRectGetMaxX(self.Warningicon.frame)+10, 0, SCREEN_WIDTH-(disWidth+disWidth), disHeight);
+    self.Contentext.frame=CGRectMake(CGRectGetMaxX(self.Warningicon.frame)+10, 0, YC_SCREEN_WIDTH-(disWidth+disWidth), disHeight);
     self.Contentext.numberOfLines=0;
     self.Contentext.font=[UIFont systemFontOfSize:Textadaptation(14)];
     [self.Contarea addSubview:self.Contentext];
@@ -79,8 +79,8 @@
 {
     [UIView animateWithDuration:0.6 animations:^{
         //动画执行时
-        self.Bagview.frame=CGRectMake(0, 0, SCREEN_WIDTH, disHeight);
-        self.Contarea.frame=CGRectMake(0, 64, SCREEN_WIDTH, disHeight);
+        self.Bagview.frame=CGRectMake(0, 0, YC_SCREEN_WIDTH, disHeight);
+        self.Contarea.frame=CGRectMake(0, 64, YC_SCREEN_WIDTH, disHeight);
     } completion:^(BOOL finished) {
 
         //动画结束后
@@ -108,8 +108,8 @@
 {
     [UIView animateWithDuration:0.5 animations:^{
         //动画执行时
-        self.Bagview.frame=CGRectMake(0, 0, SCREEN_WIDTH, 0);
-        self.Contarea.frame=CGRectMake(0, 0, SCREEN_WIDTH, 0);
+        self.Bagview.frame=CGRectMake(0, 0, YC_SCREEN_WIDTH, 0);
+        self.Contarea.frame=CGRectMake(0, 0, YC_SCREEN_WIDTH, 0);
     } completion:^(BOOL finished) {
         //动画结束后
         [self removeFromSuperview];

@@ -82,9 +82,9 @@
 - (void)drawCellFrame
 {
     
-    labTitle.frame = CGRectMake(20, 14, SCREEN_WIDTH/3, 22);
-    labDate.frame = CGRectMake(SCREEN_WIDTH/2-20, 14, SCREEN_WIDTH/3, 22);
-    viSplitLine.frame = CGRectMake(0, kCell_Height-0.5, SCREEN_WIDTH, 0.5f);
+    labTitle.frame = CGRectMake(20, 14, YC_SCREEN_WIDTH/3, 22);
+    labDate.frame = CGRectMake(YC_SCREEN_WIDTH/2-20, 14, YC_SCREEN_WIDTH/3, 22);
+    viSplitLine.frame = CGRectMake(0, kCell_Height-0.5, YC_SCREEN_WIDTH, 0.5f);
 }
 
 - (void)initCellData

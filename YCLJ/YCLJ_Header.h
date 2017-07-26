@@ -20,13 +20,13 @@
 #define CURRENT_OS_VERSION  [[[UIDevice currentDevice] systemVersion] floatValue]
 
 //宽高适配
-#define kBaseLine(a) (CGFloat)a * SCREEN_WIDTH / 375.0
+#define kBaseLine(a) (CGFloat)a * YC_SCREEN_WIDTH / 375.0
 //文字大小适配
-#define Textadaptation(a) (NSInteger)a * (SCREEN_WIDTH / 375.0)
+#define Textadaptation(a) (NSInteger)a * (YC_SCREEN_WIDTH / 375.0)
 
-// 动态获取设备参数SCREEN_WIDTH
-#define SCREEN_WIDTH      [UIScreen mainScreen].bounds.size.width
-#define SCREEN_HEIGHT     [UIScreen mainScreen].bounds.size.height
+// 动态获取设备参数YC_SCREEN_WIDTH
+#define YC_SCREEN_WIDTH      [UIScreen mainScreen].bounds.size.width
+#define YC_SCREEN_HEIGHT     [UIScreen mainScreen].bounds.size.height
 #define SCREEN_HEIGHT_OFFSET    64
 #define SCREEN_SCALE      [UIScreen mainScreen].scale
 
