@@ -45,9 +45,14 @@
 		741CFE9D1F205F2900E6B34C /* UIColor+ColorChange.h in Headers */ = {isa = PBXBuildFile; fileRef = 741CFE991F205F2900E6B34C /* UIColor+ColorChange.h */; };
 		741CFE9E1F205F2900E6B34C /* UIColor+ColorChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 741CFE9A1F205F2900E6B34C /* UIColor+ColorChange.m */; };
 		741CFED31F2080AD00E6B34C /* LFDrawManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 741CFED21F2080AD00E6B34C /* LFDrawManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7477F1081F286A92006DF409 /* YCLJNewUserViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7477F1051F286A92006DF409 /* YCLJNewUserViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7477F1091F286A92006DF409 /* YCLJNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7477F1061F286A92006DF409 /* YCLJNewUserViewController.m */; };
-		7477F10A1F286A92006DF409 /* YCLJNewUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7477F1071F286A92006DF409 /* YCLJNewUserViewController.xib */; };
+		74545A3F1F29F6D4002EE1CE /* YCHouseTypeChoiceView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74545A3B1F29F6D4002EE1CE /* YCHouseTypeChoiceView.h */; };
+		74545A401F29F6D4002EE1CE /* YCHouseTypeChoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74545A3C1F29F6D4002EE1CE /* YCHouseTypeChoiceView.m */; };
+		74545A411F29F6D4002EE1CE /* YCHouseCityChoiceView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74545A3D1F29F6D4002EE1CE /* YCHouseCityChoiceView.h */; };
+		74545A421F29F6D4002EE1CE /* YCHouseCityChoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74545A3E1F29F6D4002EE1CE /* YCHouseCityChoiceView.m */; };
+		74545A451F29F6FE002EE1CE /* YCLJNewUserViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74545A431F29F6FE002EE1CE /* YCLJNewUserViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74545A461F29F6FE002EE1CE /* YCLJNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74545A441F29F6FE002EE1CE /* YCLJNewUserViewController.m */; };
+		74545A521F29F805002EE1CE /* houseCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74545A4E1F29F805002EE1CE /* houseCity.plist */; };
+		74545A531F29F805002EE1CE /* houseType.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74545A4F1F29F805002EE1CE /* houseType.plist */; };
 		74A68C671F220F4200DC37BA /* LFDrawSDKAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A68C631F220F4200DC37BA /* LFDrawSDKAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74A68C681F220F4200DC37BA /* LFHouseInfoModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A68C641F220F4200DC37BA /* LFHouseInfoModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74A68C691F220F4200DC37BA /* lfsqSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A68C651F220F4200DC37BA /* lfsqSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -141,9 +146,14 @@
 		741CFE991F205F2900E6B34C /* UIColor+ColorChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorChange.h"; sourceTree = "<group>"; };
 		741CFE9A1F205F2900E6B34C /* UIColor+ColorChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorChange.m"; sourceTree = "<group>"; };
 		741CFED21F2080AD00E6B34C /* LFDrawManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LFDrawManager.h; path = lfsqSDK.framework/Headers/LFDrawManager.h; sourceTree = "<group>"; };
-		7477F1051F286A92006DF409 /* YCLJNewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCLJNewUserViewController.h; sourceTree = "<group>"; };
-		7477F1061F286A92006DF409 /* YCLJNewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCLJNewUserViewController.m; sourceTree = "<group>"; };
-		7477F1071F286A92006DF409 /* YCLJNewUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YCLJNewUserViewController.xib; sourceTree = "<group>"; };
+		74545A3B1F29F6D4002EE1CE /* YCHouseTypeChoiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCHouseTypeChoiceView.h; sourceTree = "<group>"; };
+		74545A3C1F29F6D4002EE1CE /* YCHouseTypeChoiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCHouseTypeChoiceView.m; sourceTree = "<group>"; };
+		74545A3D1F29F6D4002EE1CE /* YCHouseCityChoiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCHouseCityChoiceView.h; sourceTree = "<group>"; };
+		74545A3E1F29F6D4002EE1CE /* YCHouseCityChoiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCHouseCityChoiceView.m; sourceTree = "<group>"; };
+		74545A431F29F6FE002EE1CE /* YCLJNewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCLJNewUserViewController.h; sourceTree = "<group>"; };
+		74545A441F29F6FE002EE1CE /* YCLJNewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCLJNewUserViewController.m; sourceTree = "<group>"; };
+		74545A4E1F29F805002EE1CE /* houseCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = houseCity.plist; sourceTree = "<group>"; };
+		74545A4F1F29F805002EE1CE /* houseType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = houseType.plist; sourceTree = "<group>"; };
 		74A68C621F220F4200DC37BA /* LFDrawManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LFDrawManager.h; path = lfsqSDK.framework/Headers/LFDrawManager.h; sourceTree = "<group>"; };
 		74A68C631F220F4200DC37BA /* LFDrawSDKAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LFDrawSDKAPI.h; path = lfsqSDK.framework/Headers/LFDrawSDKAPI.h; sourceTree = "<group>"; };
 		74A68C641F220F4200DC37BA /* LFHouseInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LFHouseInfoModel.h; path = lfsqSDK.framework/Headers/LFHouseInfoModel.h; sourceTree = "<group>"; };
@@ -152,7 +162,7 @@
 		74C8F5361F25D7B500FA261C /* lfsqSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lfsqSDK.framework; sourceTree = "<group>"; };
 		74E405FF1F26ECAB00C01A1E /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		74E406001F26ECAB00C01A1E /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
-		74E406011F26ECAB00C01A1E /* DXFTemplate_shape.dxf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DXFTemplate_shape.dxf; sourceTree = "<group>"; };
+		74E406011F26ECAB00C01A1E /* DXFTemplate_shape.dxf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = DXFTemplate_shape.dxf; path = YCLJ/DXFTemplate_shape.dxf; sourceTree = "<group>"; };
 		74E406091F274F9500C01A1E /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJRefresh.h; path = Pods/MJRefresh/MJRefresh/MJRefresh.h; sourceTree = "<group>"; };
 		74E4060A1F274F9500C01A1E /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJRefreshAutoFooter.h; path = Pods/MJRefresh/MJRefresh/Base/MJRefreshAutoFooter.h; sourceTree = "<group>"; };
 		74E4060B1F274F9500C01A1E /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MJRefreshAutoFooter.m; path = Pods/MJRefresh/MJRefresh/Base/MJRefreshAutoFooter.m; sourceTree = "<group>"; };
@@ -212,6 +222,9 @@
 		74117ADC1F204E7F00911D09 = {
 			isa = PBXGroup;
 			children = (
+				74545A4E1F29F805002EE1CE /* houseCity.plist */,
+				74545A4F1F29F805002EE1CE /* houseType.plist */,
+				74E406011F26ECAB00C01A1E /* DXFTemplate_shape.dxf */,
 				74C8F5361F25D7B500FA261C /* lfsqSDK.framework */,
 				74A68C621F220F4200DC37BA /* LFDrawManager.h */,
 				74A68C631F220F4200DC37BA /* LFDrawSDKAPI.h */,
@@ -240,7 +253,6 @@
 			children = (
 				74E405FF1F26ECAB00C01A1E /* FMDatabase.m */,
 				74E406001F26ECAB00C01A1E /* FMResultSet.m */,
-				74E406011F26ECAB00C01A1E /* DXFTemplate_shape.dxf */,
 				74EDECE91F208B88006492AB /* YCLJ.h */,
 				741CFE961F205F1C00E6B34C /* NetWorkPrompt */,
 				741CFE8A1F205E9900E6B34C /* BaseTableViewCell.h */,
@@ -254,6 +266,10 @@
 				741CFE7D1F205E4C00E6B34C /* User */,
 				741CFE711F205DF300E6B34C /* Solution */,
 				74117AFA1F20582700911D09 /* YCLJ_Header.h */,
+				74545A3B1F29F6D4002EE1CE /* YCHouseTypeChoiceView.h */,
+				74545A3C1F29F6D4002EE1CE /* YCHouseTypeChoiceView.m */,
+				74545A3D1F29F6D4002EE1CE /* YCHouseCityChoiceView.h */,
+				74545A3E1F29F6D4002EE1CE /* YCHouseCityChoiceView.m */,
 				74117AF11F204FA400911D09 /* CommonUtils.h */,
 				74117AF21F204FA500911D09 /* CommonUtils.m */,
 				74117AFC1F20585200911D09 /* ZTHttpTool.h */,
@@ -331,9 +347,8 @@
 		7477F1021F28696C006DF409 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7477F1051F286A92006DF409 /* YCLJNewUserViewController.h */,
-				7477F1061F286A92006DF409 /* YCLJNewUserViewController.m */,
-				7477F1071F286A92006DF409 /* YCLJNewUserViewController.xib */,
+				74545A431F29F6FE002EE1CE /* YCLJNewUserViewController.h */,
+				74545A441F29F6FE002EE1CE /* YCLJNewUserViewController.m */,
 				741CFE801F205E5900E6B34C /* YCLJUserListViewController.h */,
 				741CFE811F205E5900E6B34C /* YCLJUserListViewController.m */,
 			);
@@ -434,20 +449,21 @@
 				74A68C691F220F4200DC37BA /* lfsqSDK.h in Headers */,
 				74A68C6A1F220F4200DC37BA /* PhotoManager.h in Headers */,
 				74E406471F274F9500C01A1E /* MJRefreshGifHeader.h in Headers */,
-				7477F1081F286A92006DF409 /* YCLJNewUserViewController.h in Headers */,
+				74545A451F29F6FE002EE1CE /* YCLJNewUserViewController.h in Headers */,
+				741CFE771F205E1600E6B34C /* YCLJHouseListViewController.h in Headers */,
 				74E406551F274F9500C01A1E /* UIView+MJExtension.h in Headers */,
 				74EDECEA1F208B88006492AB /* YCLJ.h in Headers */,
+				741CFE841F205E5900E6B34C /* YCLJUserListViewController.h in Headers */,
 				74117AF31F204FA500911D09 /* CommonUtils.h in Headers */,
 				74E406411F274F9500C01A1E /* MJRefreshComponent.h in Headers */,
 				74E406371F274F9500C01A1E /* MJRefreshAutoStateFooter.h in Headers */,
+				74545A3F1F29F6D4002EE1CE /* YCHouseTypeChoiceView.h in Headers */,
 				74E406311F274F9500C01A1E /* MJRefreshAutoFooter.h in Headers */,
 				74117AFB1F20582700911D09 /* YCLJ_Header.h in Headers */,
 				74E4063B1F274F9500C01A1E /* MJRefreshBackGifFooter.h in Headers */,
 				741CFE941F205E9900E6B34C /* RootViewController.h in Headers */,
-				741CFE771F205E1600E6B34C /* YCLJHouseListViewController.h in Headers */,
 				74E406531F274F9500C01A1E /* UIScrollView+MJRefresh.h in Headers */,
 				741CFE921F205E9900E6B34C /* BaseTableViewController.h in Headers */,
-				741CFE841F205E5900E6B34C /* YCLJUserListViewController.h in Headers */,
 				741CFE631F205D9F00E6B34C /* HouseFmdbTool.h in Headers */,
 				74E4064F1F274F9500C01A1E /* NSBundle+MJRefresh.h in Headers */,
 				74E406301F274F9500C01A1E /* MJRefresh.h in Headers */,
@@ -471,6 +487,7 @@
 				741CFE6F1F205DE900E6B34C /* HouseObject.h in Headers */,
 				74E406511F274F9500C01A1E /* UIScrollView+MJExtension.h in Headers */,
 				74E406451F274F9500C01A1E /* MJRefreshFooter.h in Headers */,
+				74545A411F29F6D4002EE1CE /* YCHouseCityChoiceView.h in Headers */,
 				74E406331F274F9500C01A1E /* MJRefreshAutoGifFooter.h in Headers */,
 				74E406351F274F9500C01A1E /* MJRefreshAutoNormalFooter.h in Headers */,
 				74117B051F2058B400911D09 /* YCLJ-Prefix.pch in Headers */,
@@ -538,8 +555,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74545A521F29F805002EE1CE /* houseCity.plist in Resources */,
+				74545A531F29F805002EE1CE /* houseType.plist in Resources */,
 				74E406041F26ECAB00C01A1E /* DXFTemplate_shape.dxf in Resources */,
-				7477F10A1F286A92006DF409 /* YCLJNewUserViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,6 +601,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74545A461F29F6FE002EE1CE /* YCLJNewUserViewController.m in Sources */,
 				74EDECF11F208F41006492AB /* LFDrawManager.h in Sources */,
 				74E406521F274F9500C01A1E /* UIScrollView+MJExtension.m in Sources */,
 				74E406341F274F9500C01A1E /* MJRefreshAutoGifFooter.m in Sources */,
@@ -591,7 +610,6 @@
 				741CFE831F205E5900E6B34C /* UserListCell.m in Sources */,
 				74E406021F26ECAB00C01A1E /* FMDatabase.m in Sources */,
 				741CFE891F205E7700E6B34C /* YCLJAppManager.m in Sources */,
-				7477F1091F286A92006DF409 /* YCLJNewUserViewController.m in Sources */,
 				741CFE6E1F205DE900E6B34C /* HouseModel.m in Sources */,
 				74E406421F274F9500C01A1E /* MJRefreshComponent.m in Sources */,
 				74E406541F274F9500C01A1E /* UIScrollView+MJRefresh.m in Sources */,
@@ -600,6 +618,8 @@
 				74117B031F20586600911D09 /* UploadParamModel.m in Sources */,
 				74E4064C1F274F9500C01A1E /* MJRefreshNormalHeader.m in Sources */,
 				74E406031F26ECAB00C01A1E /* FMResultSet.m in Sources */,
+				74545A421F29F6D4002EE1CE /* YCHouseCityChoiceView.m in Sources */,
+				74545A401F29F6D4002EE1CE /* YCHouseTypeChoiceView.m in Sources */,
 				741CFE6C1F205DE900E6B34C /* UserModel.m in Sources */,
 				741CFE641F205D9F00E6B34C /* HouseFmdbTool.m in Sources */,
 				74117AFF1F20585200911D09 /* ZTHttpTool.m in Sources */,
