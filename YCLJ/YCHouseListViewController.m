@@ -259,7 +259,7 @@
     [sectionBgView addSubview:imgArea];
 
     UILabel *labArea = [[UILabel alloc] init];
-    labArea.text = [NSString stringWithFormat:@"面积 %@", userModel.area];
+    labArea.text = [NSString stringWithFormat:@"面积: %@㎡", userModel.area];
     labArea.font = Font(fontSize);
     labArea.textColor = HEX_COLOR(@"0x666666");
     CGFloat labAreaW = [YCCommonUtils calcuViewWidth:labArea.text font:labArea.font];
