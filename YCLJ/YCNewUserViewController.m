@@ -1,21 +1,25 @@
 //
-//  YCLJNewUserViewController.m
+//  YCNewUserViewController.m
 //  YCLJ
 //
 //  Created by Adam on 2017/7/26.
 //  Copyright © 2017年 YunChuang. All rights reserved.
 //
 
-#import "YCLJNewUserViewController.h"
+#import "YCNewUserViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "YCHouseCityChoiceView.h"
-#import "YCHouseTypeChoiceView.h"
+#import "YCHouseParmChoiceView.h"
+#import "UserModel.h"
+#import "HouseFmdbTool.h"
+#import "YCAppManager.h"
+#import "YCHouseListViewController.h"
 
 #define YCLJ_BTN_CITY           @"所在地区 (必填)"
 #define YCLJ_BTN_TYPE           @"房屋类型 (必填)"
 #define YCLJ_BTN_STYLE          @"房屋属性 (必填)"
 
-@interface YCLJNewUserViewController () <UITextFieldDelegate>
+@interface YCNewUserViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField *txtName;
 @property (nonatomic, strong) UITextField *txtMobile;
@@ -25,9 +29,12 @@
 @property (nonatomic, strong) UIButton *btnType;
 @property (nonatomic, strong) UITextField *txtAddress;
 
+@property (nonatomic, copy) NSString *strStyleValue;
+@property (nonatomic, copy) NSString *strTypeValue;
+
 @end
 
-@implementation YCLJNewUserViewController
+@implementation YCNewUserViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -51,6 +58,29 @@
 
 - (void)doSave:(id)sender
 {
+    if ([self checkValue]) {
+        // 存储本地数据库
+        NSMutableDictionary *userDict = [NSMutableDictionary dictionary];
+        [userDict setObject:_txtName.text forKey:@"name"];
+        [userDict setObject:_txtMobile.text forKey:@"mobile"];
+        [userDict setObject:_txtAddress.text forKey:@"address"];
+        [userDict setObject:_txtArea.text forKey:@"area"];
+        
+        [userDict setObject:_strStyleValue forKey:@"style"];
+        [userDict setObject:_strTypeValue forKey:@"type"];
+        [userDict setObject:_btnCity.currentTitle forKey:@"city"];
+        
+        UserModel *userModel = [UserModel newWithDict:userDict];
+        
+        [YCAppManager instance].userId = [HouseFmdbTool insertUserModel:userModel];
+        [[YCAppManager instance] saveHouseData];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        /** 户型列表 */
+        YCHouseListViewController *solutionListVC = [[YCHouseListViewController alloc] init];
+        [self.navigationController pushViewController:solutionListVC animated:YES];
+    }
+    
     DLog(@"name %@", _txtName.text);
     DLog(@"mobile %@", _txtMobile.text);
     DLog(@"city %@", _btnCity.currentTitle);
@@ -68,13 +98,36 @@
     [self.view addSubview:view];
 }
 
+- (void)selectStyle
+{
+    YCHouseParmChoiceView * view = [[YCHouseParmChoiceView alloc] initWithFrame:self.view.frame];
+    [view loadData:@"houseStyle" strTitle:@"请选择房屋属性"];
+    
+    view.selectedBlock = ^(NSString * type, NSString * typeValue){
+        
+        NSString *strType = [NSString stringWithFormat:@"%@", type];
+        [_btnStyle setTitle:strType forState:UIControlStateNormal];
+        [_btnStyle setTitleColor:HEX_COLOR(@"0x333333") forState:UIControlStateNormal];
+        
+        _strStyleValue = typeValue;
+    };
+    
+    [self.view addSubview:view];
+}
+
 - (void)selectType {
     
-    YCHouseTypeChoiceView * view = [[YCHouseTypeChoiceView alloc] initWithFrame:self.view.frame];
-    view.selectedBlock = ^(NSString * type){
+    YCHouseParmChoiceView * view = [[YCHouseParmChoiceView alloc] initWithFrame:self.view.frame];
+    [view loadData:@"houseType" strTitle:@"请选择房屋类型"];
+    
+    view.selectedBlock = ^(NSString * type, NSString * typeValue){
+        
         NSString *strType = [NSString stringWithFormat:@"%@", type];
+        
         [_btnType setTitle:strType forState:UIControlStateNormal];
         [_btnType setTitleColor:HEX_COLOR(@"0x333333") forState:UIControlStateNormal];
+        
+        _strTypeValue = typeValue;
     };
     
     [self.view addSubview:view];
@@ -111,6 +164,7 @@
         _txtMobile = [[UITextField alloc] init];
         _txtMobile.frame = mobileF;
         _txtMobile.placeholder = @"手机号 (必填)";
+        _txtMobile.keyboardType = UIKeyboardTypeNumberPad;
         [self changeTxtStyle:_txtMobile];
     }
     
@@ -123,6 +177,7 @@
         _txtArea = [[UITextField alloc] init];
         _txtArea.frame = areaF;
         _txtArea.placeholder = @"建筑面积 (必填)";
+        _txtArea.keyboardType = UIKeyboardTypeDecimalPad;
         [self changeTxtStyle:_txtArea];
     }
     
@@ -161,7 +216,7 @@
         _btnStyle = [UIButton buttonWithType:UIButtonTypeCustom];
         _btnStyle.frame = styleF;
         [_btnStyle setTitle:YCLJ_BTN_STYLE forState:UIControlStateNormal];
-        [_btnStyle addTarget:self action:@selector(selectCity) forControlEvents:UIControlEventTouchUpInside];
+        [_btnStyle addTarget:self action:@selector(selectStyle) forControlEvents:UIControlEventTouchUpInside];
         [self changeBtnStyle:_btnStyle];
     }
     
@@ -244,15 +299,22 @@
 
 - (BOOL)checkValue
 {
-    if (_txtName.text.length == 0 || [_txtName.text isEqualToString:@""]) {
+    if (_txtName.text.length == 0 ||
+        [_txtName.text isEqualToString:@""]) {
         
         ShowAlertWithOneButton(self, @"提示", @"姓名为空", @"OK");
         return NO;
     }
     
-    if (_txtMobile.text.length == 0 || [_txtMobile.text isEqualToString:@""]) {
+    if (_txtName.text.length > 100) {
         
-        ShowAlertWithOneButton(self, @"提示", @"手机号为空", @"OK");
+        ShowAlertWithOneButton(self, @"提示", @"姓名输入太长了", @"OK");
+        return NO;
+    }
+    
+    if (_txtMobile.text.length != 11) {
+        
+        ShowAlertWithOneButton(self, @"提示", @"请输入11位手机号码", @"OK");
         return NO;
     }
     
@@ -289,29 +351,5 @@
     
     return YES;
 }
-
-/*
-- (void)btnOK:(id)sender {
-    
-    if ([self checkValue]) {
-        
-        NSMutableDictionary *userDict = [NSMutableDictionary dictionary];
-        [userDict setObject:_popTxtName.text forKey:@"name"];
-        [userDict setObject:_popTxtContact.text forKey:@"mobile"];
-        [userDict setObject:_popTxtHouse.text forKey:@"address"];
-        [userDict setObject:_popTxtArea.text forKey:@"area"];
-        
-        UserModel *userModel = [UserModel newWithDict:userDict];
-        
-        _userId = [HouseFmdbTool insertUserModel:userModel];
-        
-        [self transHouseData];
-        
-    } else {
-        
-        NSLog(@"请输入户型名称");
-    }
-}
-*/
 
 @end

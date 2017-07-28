@@ -20,7 +20,7 @@
     #import <UIKit/UIKit.h>
     #import <Availability.h>
     #import <Foundation/Foundation.h>
-    #import "YCLJ_Header.h"
+    #import "YCHeader.h"
 
 #define APP_DELEGATE      [UIApplication sharedApplication].delegate
 

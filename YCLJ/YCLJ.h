@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-#import <YCLJ/YCLJ_Header.h>
-#import <YCLJ/CommonUtils.h>
+#import <YCLJ/YCHeader.h>
+#import <YCLJ/YCCommonUtils.h>
 #import <YCLJ/ZTHttpTool.h>
 #import <YCLJ/UploadParamModel.h>
-#import <YCLJ/YCLJAppManager.h>
-#import <YCLJ/YCLJHouseListViewController.h>
-#import <YCLJ/YCLJUserListViewController.h>
+#import <YCLJ/YCAppManager.h>
+#import <YCLJ/YCNewUserViewController.h>
+#import <YCLJ/YCHouseListViewController.h>
+#import <YCLJ/YCUserListViewController.h>
 #import <YCLJ/HouseFmdbTool.h>
 #import <YCLJ/HouseModel.h>
 #import <YCLJ/UserModel.h>

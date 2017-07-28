@@ -94,7 +94,7 @@
     labTitle.text = [NSString stringWithFormat:@"%@ %@",_userModel.name, _userModel.address];
     
     // 2, date
-    labDate.text = [CommonUtils curDateString];
+    labDate.text = [YCCommonUtils curDateString];
     
 }
 

@@ -1,12 +1,12 @@
 
-#import "YCHouseTypeChoiceView.h"
+#import "YCHouseParmChoiceView.h"
 
 #define PICKERHEIGHT 216
 #define BGHEIGHT     256
 
 #define KEY_WINDOW_HEIGHT [UIApplication sharedApplication].keyWindow.frame.size.height
 
-@interface YCHouseTypeChoiceView () <UIPickerViewDelegate,UIPickerViewDataSource>
+@interface YCHouseParmChoiceView () <UIPickerViewDelegate,UIPickerViewDataSource>
 
 /**
  pickerView
@@ -36,9 +36,14 @@
 
 
 /**
- 类型
+ 类型显示内容
  */
 @property(nonatomic, strong) NSArray * typeArray;
+
+/**
+ 类型值
+ */
+@property(nonatomic, strong) NSArray * typeValueArray;
 
 /**
  所有数据
@@ -51,10 +56,14 @@
 @property(nonatomic, assign) NSInteger selected;
 
 @property(nonatomic, copy) NSString * strType;
+@property(nonatomic, copy) NSString * strTypeValue;
+
+@property (nonatomic, copy) NSString *plistResource;
+@property (nonatomic, copy) NSString *strTitle;
 
 @end
 
-@implementation YCHouseTypeChoiceView
+@implementation YCHouseParmChoiceView
 
 #pragma mark -- lazy
 
@@ -64,7 +73,8 @@
         _titleLab = [[UILabel alloc] init];
         _titleLab.frame = CGRectMake(150, 5, YC_SCREEN_WIDTH - 150 * 2, BGHEIGHT - PICKERHEIGHT - 10);
         _titleLab.textAlignment = NSTextAlignmentCenter;
-        _titleLab.text = @"请选择房屋类型";
+        _titleLab.font = Font(15);
+        _titleLab.text = _strTitle;
         _titleLab.textColor = HEX_COLOR(@"0x333333");
     }
     
@@ -141,38 +151,59 @@
     return _typeArray;
 }
 
+- (NSArray *)typeValueArray
+{
+    if (!_typeValueArray) {
+        _typeValueArray = [NSArray array];
+    }
+    return _typeValueArray;
+}
+
+- (void)loadData:(NSString *)plistResource strTitle:(NSString *)strTitle
+{
+    _plistResource = plistResource;
+    _strTitle = strTitle;
+
+    [self loadDatas];
+}
+
 #pragma mark -- init
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
         self.selected = 0;
         
-        [self initSuViews];
-        [self loadDatas];
+        [self initSubViews];
     }
+    
     return self;
 }
 
 #pragma mark -- 从plist里面读数据
 - (void)loadDatas
 {
-    NSString * path = [[NSBundle mainBundle] pathForResource:@"houseType" ofType:@"plist"];
+    NSString * path = [[NSBundle mainBundle] pathForResource:_plistResource ofType:@"plist"];
     self.dataSource = [NSArray arrayWithContentsOfFile:path];
     
     NSMutableArray * tempArray = [NSMutableArray array];
+    NSMutableArray * tempValueArray = [NSMutableArray array];
+    
     for (NSDictionary * tempDic in self.dataSource) {
         
         for (int i = 0; i < tempDic.allKeys.count; i ++) {
             [tempArray addObject:tempDic.allKeys[i]];
+            [tempValueArray addObject:tempDic.allValues[i]];
         }
     }
     // 类型
     self.typeArray = [tempArray copy];
     self.strType = self.typeArray[0];
+    self.typeValueArray = [tempValueArray copy];
+    self.strTypeValue = self.typeValueArray[0];
 }
 
 #pragma mark -- loadSubViews
-- (void)initSuViews
+- (void)initSubViews
 {
     [self addSubview:self.bgView];
     [self.bgView addSubview:self.toolBar];
@@ -233,6 +264,7 @@
         
         self.selected = row;
         self.strType = self.typeArray[row];
+        self.strTypeValue = self.typeValueArray[row];
     }
 }
 
@@ -257,7 +289,7 @@
     [self hidePickerView];
     
     if (self.selectedBlock != nil) {
-        self.selectedBlock(self.strType);
+        self.selectedBlock(self.strType, self.strTypeValue);
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  YCLJUserListViewController.h
+//  YCUserListViewController.h
 //  YCLJSDK
 //
 //  Created by Adam on 2017/6/27.
@@ -8,6 +8,6 @@
 
 #import "BaseTableViewController.h"
 
-@interface YCLJUserListViewController : BaseTableViewController
+@interface YCUserListViewController : BaseTableViewController
 
 @end

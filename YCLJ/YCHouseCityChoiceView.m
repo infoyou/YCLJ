@@ -87,6 +87,7 @@
         _titleLab.frame = CGRectMake(150, 5, YC_SCREEN_WIDTH - 150 * 2, BGHEIGHT - PICKERHEIGHT - 10);
         _titleLab.textAlignment = NSTextAlignmentCenter;
         _titleLab.text = @"请选择地区";
+        _titleLab.font = Font(15);
         _titleLab.textColor = HEX_COLOR(@"0x333333");
     }
     
@@ -185,7 +186,7 @@
     if (self = [super initWithFrame:frame]) {
         self.selected = 0;
         
-        [self initSuViews];
+        [self initSubViews];
         [self loadDatas];
     }
     return self;
@@ -243,7 +244,7 @@
 
 
 #pragma mark -- loadSubViews
-- (void)initSuViews
+- (void)initSubViews
 {
     [self addSubview:self.bgView];
     [self.bgView addSubview:self.toolBar];

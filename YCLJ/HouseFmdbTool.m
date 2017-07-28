@@ -3,7 +3,7 @@
 #import "FMDB.h"
 #import "HouseModel.h"
 #import "UserModel.h"
-#import "CommonUtils.h"
+#import "YCCommonUtils.h"
 
 #define HOUSE_SQLITE_NAME       @"YCLJ.sqlite"
 
@@ -29,7 +29,7 @@ static FMDatabase *_fmdb;
 
 + (NSString *)insertUserModel:(UserModel *)model {
     
-    NSString *currentTime = [CommonUtils currentTimeInterval];
+    NSString *currentTime = [YCCommonUtils currentTimeInterval];
     
     NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO User(id, name, mobile, address, area) VALUES ('%@', '%@', '%@', '%@', '%@');", currentTime, model.name, model.mobile, model.address, model.area];
     
@@ -42,9 +42,9 @@ static FMDatabase *_fmdb;
 
 + (BOOL)insertSolutionModel:(HouseModel *)model userId:(NSString *)userId {
     
-    NSString *currentTime = [CommonUtils currentTimeInterval];
+    NSString *currentTime = [YCCommonUtils currentTimeInterval];
     
-    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Solution(id, userId, houseId, houseNo, filePath, creatDate, updateDate, type, isUpload, isDelete) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%zd', '%zd', '%zd');", [CommonUtils currentTimeInterval], userId, model.houseId, model.no, model.zipFpath, currentTime, @"", model.type, model.isUpload, model.isDelete];
+    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Solution(id, userId, houseId, houseNo, filePath, creatDate, updateDate, type, isUpload, isDelete) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%zd', '%zd', '%zd');", [YCCommonUtils currentTimeInterval], userId, model.houseId, model.no, model.zipFpath, currentTime, @"", model.type, model.isUpload, model.isDelete];
     
     return [_fmdb executeUpdate:insertSql];
 }

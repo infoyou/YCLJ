@@ -1,12 +1,12 @@
 //
-//  YCLJ_Header.h
+//  YCHeader.h
 //  Pods
 //
 //  Created by Adam on 2017/6/15.
 //
 //
 
-#import "CommonUtils.h"
+#import "YCCommonUtils.h"
 
 #ifndef YCLJ_Header_h
 #define YCLJ_Header_h
@@ -43,7 +43,7 @@
 #define VIEW_BG_COLOR                @"0xeeeded"
 #define CELL_BG_COLOR                @"0xffffff"
 
-#define HEX_COLOR(__STR)    [CommonUtils colorWithHexString:__STR]
+#define HEX_COLOR(__STR)    [YCCommonUtils colorWithHexString:__STR]
 #define TRANSPARENT_COLOR   [UIColor clearColor]
 #define TRANSPARENT_COLOR   [UIColor clearColor]
 

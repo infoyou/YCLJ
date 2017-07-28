@@ -1,25 +1,26 @@
 //
-//  YCLJHouseListViewController.m
+//  YCHouseListViewController.m
 //  Pods
 //
 //  Created by Adam on 2017/6/16.
 //
 //
 
-#import "YCLJHouseListViewController.h"
+#import "YCHouseListViewController.h"
 #import "HouseObject.h"
 #import "HouseListCell.h"
+#import "ZTHttpTool.h"
+#import "Nonetwork.h"
+
 #import "LFDrawManager.h"
-#import "YCLJAppManager.h"
+#import "YCAppManager.h"
+
 #import "UserModel.h"
 #import "HouseFmdbTool.h"
-#import "ZTHttpTool.h"
-
-#import "Nonetwork.h"
 
 #define CELL_SECTION_H   90.f
 
-@interface YCLJHouseListViewController () <HouseListCellDelegate>
+@interface YCHouseListViewController () <HouseListCellDelegate>
 
 @property (nonatomic, strong) NSArray *userArray;
 @property (nonatomic, strong) NSDictionary *userSolutionCountDict;
@@ -28,11 +29,14 @@
 @property (nonatomic) NSInteger userCount;
 @end
 
-@implementation YCLJHouseListViewController
+@implementation YCHouseListViewController
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    // 上传数据到服务器
+    [[YCAppManager instance] transHouseData];
     
     [self loadSolutionFromDB];
 }
@@ -82,7 +86,7 @@
     [dataDict setObject:@"0" forKey:@"start_index"];
     [dataDict setObject:@"10" forKey:@"count"];
     
-    NSMutableDictionary *paramDict = [CommonUtils getParamDict:dataDict];
+    NSMutableDictionary *paramDict = [YCCommonUtils getParamDict:dataDict];
     
     NSString *urlStr = [NSString stringWithFormat:@"%@/leju/plan/list/", YCLJ_HOST_URL];
     [ZTHttpTool post:urlStr
@@ -223,8 +227,6 @@
     
     UIImageView *imgMobile = [[UIImageView alloc] init];
     imgMobile.image = GetImageByName(@"ycMobile");
-    DLog(@"ycMobile.png = %@", [CommonUtils bundle]);
-    
     imgMobile.frame = CGRectMake(mobileX - 20 - offsetW, nameY, 20, 20);
     [sectionBgView addSubview:imgMobile];
     
@@ -251,16 +253,17 @@
 
     // area
     CGFloat areaX = YC_SCREEN_WIDTH/2 + 20;
-    
     UIImageView *imgArea = [[UIImageView alloc] init];
     imgArea.image = GetImageByName(@"ycArea");
     imgArea.frame = CGRectMake(areaX - 20 - offsetW, addressY, 20, 20);
     [sectionBgView addSubview:imgArea];
 
-    UILabel *labArea = [[UILabel alloc] initWithFrame:CGRectMake(areaX, addressY, 40, 20)];
-    labArea.text = userModel.area;
+    UILabel *labArea = [[UILabel alloc] init];
+    labArea.text = [NSString stringWithFormat:@"面积 %@", userModel.area];
     labArea.font = Font(fontSize);
     labArea.textColor = HEX_COLOR(@"0x666666");
+    CGFloat labAreaW = [YCCommonUtils calcuViewWidth:labArea.text font:labArea.font];
+    labArea.frame = CGRectMake(areaX, addressY, labAreaW, 20);
     [sectionBgView addSubview:labArea];
     
     // share
@@ -349,7 +352,7 @@
     HouseObject *houseObject = [self getCellHouseObject:indexPath.section
                                                     row:indexPath.row];;
     NSString *houseId = houseObject.houseModel.houseId;
-    [YCLJAppManager instance].houseId = houseId;//缓存houseId
+    [YCAppManager instance].houseId = houseId;//缓存houseId
     [LFDrawManager initDrawVCWithHouseID:houseId];
 }
 
@@ -382,10 +385,10 @@
     NSString *targetPath = [NSString stringWithFormat:@"%@_1", sourcePath];
     
     // copy file
-    [CommonUtils doCopyFile:sourcePath targetPath:targetPath houseId:orginHouseId];
+    [YCCommonUtils doCopyFile:sourcePath targetPath:targetPath houseId:orginHouseId];
     
     NSString *zipFpath = [NSString stringWithFormat:@"%@.zip", targetPath];
-    [CommonUtils zipFileDir:zipFpath sourcePath:targetPath];
+    [YCCommonUtils zipFileDir:zipFpath sourcePath:targetPath];
     
     // copy db
     houseModel.isUpload = 0;

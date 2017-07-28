@@ -1,23 +1,16 @@
 //
-//  CommonUtils.m
+//  YCCommonUtils.m
 //  Pods
 //
 //  Created by Adam on 2017/6/15.
 //
 //
 
-#import "CommonUtils.h"
+#import "YCCommonUtils.h"
 #import <UIKit/UIDevice.h>
 #import "SSZipArchive.h"
 
-@implementation CommonUtils
-
-+ (NSBundle *)bundle {
-    
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-
-    return bundle;
-}
+@implementation YCCommonUtils
 
 + (NSString *)currentTimeInterval {
     
@@ -44,7 +37,7 @@
     
     if (dataDict != nil) {
         
-        [dataDict setObject:[CommonUtils currentTimeInterval] forKey:@"time"];
+        [dataDict setObject:[YCCommonUtils currentTimeInterval] forKey:@"time"];
     }
     
     NSMutableDictionary *commonDict = [NSMutableDictionary dictionary];
@@ -213,7 +206,7 @@
     // 当前应用软件版本  比如：1.0.1
     NSString *appCurVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     NSLog(@"当前应用软件版本:%@",appCurVersion);
-    // 当前应用版本号码   int类型
+    // 当前应用版本号码 int类型
     NSString *appCurVersionNum = [infoDictionary objectForKey:@"CFBundleVersion"];
     NSLog(@"当前应用版本号码：%@",appCurVersionNum);
     

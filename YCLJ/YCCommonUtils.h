@@ -1,5 +1,5 @@
 //
-//  CommonUtils.h
+//  YCCommonUtils.h
 //  Pods
 //
 //  Created by Adam on 2017/6/15.
@@ -7,12 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YCLJ_Header.h"
+#import "YCHeader.h"
 #import <UIKit/UIKit.h>
 
-@interface CommonUtils : NSObject
-
-+ (NSBundle *)bundle;
+@interface YCCommonUtils : NSObject
 
 + (NSString *)currentTimeInterval;
 + (NSString *)curDateString;

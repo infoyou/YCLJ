@@ -46,7 +46,7 @@
     _btnDeleteF =  CGRectMake(imgDelX-10, imgDelY-10, imgDelW + 20, imgDelH + 20);
     
     // 4, copy solution
-    CGFloat solutionW = [CommonUtils calcuViewWidth:@"生成拆改图" font:kHouse_Copy_Font];
+    CGFloat solutionW = [YCCommonUtils calcuViewWidth:@"生成拆改图" font:kHouse_Copy_Font];
     CGFloat solutionX = YC_SCREEN_WIDTH - solutionW - 20;
     CGFloat solutionY = titleY;
     CGFloat solutionH = 22;

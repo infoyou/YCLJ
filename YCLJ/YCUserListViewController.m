@@ -1,15 +1,15 @@
 
-#import "YCLJUserListViewController.h"
+#import "YCUserListViewController.h"
 #import "UserListCell.h"
 #import "UserModel.h"
 #import "HouseFmdbTool.h"
 #import "ZTHttpTool.h"
 
-@interface YCLJUserListViewController ()
+@interface YCUserListViewController ()
 
 @end
 
-@implementation YCLJUserListViewController
+@implementation YCUserListViewController
 
 - (void)viewDidLoad {
     
@@ -41,7 +41,7 @@
     [dataDict setObject:@"0" forKey:@"start_index"];
     [dataDict setObject:@"10" forKey:@"count"];
     
-    NSMutableDictionary *paramDict = [CommonUtils getParamDict:dataDict];
+    NSMutableDictionary *paramDict = [YCCommonUtils getParamDict:dataDict];
     
     NSString *urlStr = [NSString stringWithFormat:@"%@/leju/plan/list/", YCLJ_HOST_URL];
     [ZTHttpTool post:urlStr

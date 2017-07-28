@@ -1,5 +1,5 @@
 //
-//  YCLJNewUserViewController.h
+//  YCNewUserViewController.h
 //  YCLJ
 //
 //  Created by Adam on 2017/7/26.
@@ -8,6 +8,6 @@
 
 #import "RootViewController.h"
 
-@interface YCLJNewUserViewController : RootViewController
+@interface YCNewUserViewController : RootViewController
     
 @end
