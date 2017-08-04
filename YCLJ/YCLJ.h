@@ -1,6 +1,5 @@
 //
 //  YCLJ.h
-//  YC
 //
 //  Created by Adam on 2017/8/4.
 //  Copyright © 2017年 YunChuang. All rights reserved.
