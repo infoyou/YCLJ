@@ -36,27 +36,6 @@ static FMDatabase *_fmdb;
 + (BOOL)queryWorkerData:(NSString *)mobile {
     
     NSString *querySql = [NSString stringWithFormat:@"SELECT * FROM Worker where mobile = '%@'", mobile];
-<<<<<<< HEAD:YCLJ/Util/HouseFmdbTool.m
-    
-    FMResultSet *set = [_fmdb executeQuery:querySql];
-    BOOL isExist = NO;
-    
-    while ([set next]) {
-        
-        isExist = YES;
-    }
-    
-    return isExist;
-}
-
-+ (NSString *)insertWorker:(NSString *)workMobile
-                    workId:(NSString *)workId
-{
-    
-    NSString *currentTime = [ZTCommonUtils currentTimeInterval];
-    
-    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Worker(id, mobile, work_id) VALUES ('%@', '%@', '%@');", currentTime, workMobile, workId];
-=======
     
     FMResultSet *set = [_fmdb executeQuery:querySql];
     BOOL isExist = NO;
@@ -90,22 +69,6 @@ static FMDatabase *_fmdb;
     NSString *currentTime = [ZTCommonUtils currentTimeInterval];
     
     NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Owner(id, name, mobile, address, area, city, type, style) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');", currentTime, model.name, model.mobile, model.address, model.area, model.city, model.type, model.style];
->>>>>>> da543efd5e68fd89fb8225b3702424f946e501a0:YCLJ/Util/HouseFmdbTool.m
-    
-    if ([_fmdb executeUpdate:insertSql]) {
-        return currentTime;
-    }
-    
-    return nil;
-}
-
-<<<<<<< HEAD:YCLJ/Util/HouseFmdbTool.m
-#pragma mark - 业主
-+ (NSString *)insertOwnerModel:(YCOwnerModel *)model {
-    
-    NSString *currentTime = [ZTCommonUtils currentTimeInterval];
-    
-    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Owner(id, name, mobile, address, area, city, type, style) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');", currentTime, model.name, model.mobile, model.address, model.area, model.city, model.type, model.style];
     
     if ([_fmdb executeUpdate:insertSql]) {
         return currentTime;
@@ -119,13 +82,6 @@ static FMDatabase *_fmdb;
     
     NSString *currentTime = [ZTCommonUtils currentTimeInterval];
     
-=======
-#pragma mark - 户型方案
-+ (BOOL)insertSolutionModel:(YCHouseModel *)model userId:(NSString *)userId {
-    
-    NSString *currentTime = [ZTCommonUtils currentTimeInterval];
-    
->>>>>>> da543efd5e68fd89fb8225b3702424f946e501a0:YCLJ/Util/HouseFmdbTool.m
     NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Solution(id, userId, houseId, solutionId, filePath, creatDate, updateDate, type, isUpload, isDelete) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%zd', '%zd', '%zd');", [ZTCommonUtils currentTimeInterval], userId, model.houseId, model.no, model.zipFpath, currentTime, @"", model.type, model.isUpload, model.isDelete];
     
     return [_fmdb executeUpdate:insertSql];

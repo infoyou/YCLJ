@@ -18,6 +18,7 @@
 #import <HouseFmdbTool.h>
 #import <YCHouseModel.h>
 #import <YCOwnerModel.h>
+#import <YCPopViewExtension.h>
 
 //! Project version number for YC.
 FOUNDATION_EXPORT double YCVersionNumber;
