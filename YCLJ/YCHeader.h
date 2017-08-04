@@ -6,7 +6,9 @@
 //
 //
 
-#import "YCCommonUtils.h"
+#import "ZTCommonUtils.h"
+#import "HouseFmdbTool.h"
+#import "StringCategory.h"
 
 #ifndef YCLJ_Header_h
 #define YCLJ_Header_h
@@ -14,7 +16,10 @@
 #define SUCCESS_DATA                        10000
 #define NO_MORE_DATA                        1001
 
-#define YCLJ_HOST_URL           @"http://leju.jiandanhome.com"
+#define YC_HOST_URL           @"http://leju.jiandanhome.com"
+
+#define LJ_HOST_URL           @"http://testwww.7gz.com"
+#define LJ_SUCCESS_DATA                      0
 
 // system info
 #define CURRENT_OS_VERSION  [[[UIDevice currentDevice] systemVersion] floatValue]
@@ -43,7 +48,7 @@
 #define VIEW_BG_COLOR                @"0xeeeded"
 #define CELL_BG_COLOR                @"0xffffff"
 
-#define HEX_COLOR(__STR)    [YCCommonUtils colorWithHexString:__STR]
+#define HEX_COLOR(__STR)    [ZTCommonUtils colorWithHexString:__STR]
 #define TRANSPARENT_COLOR   [UIColor clearColor]
 #define TRANSPARENT_COLOR   [UIColor clearColor]
 

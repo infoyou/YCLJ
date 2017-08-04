@@ -8,34 +8,78 @@
 
 /* Begin PBXBuildFile section */
 		4189F48961F017C406B952A1 /* libPods-YCLJ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A31E24CF965375A4118BBA /* libPods-YCLJ.a */; };
-		74117AFE1F20585200911D09 /* ZTHttpTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 74117AFC1F20585200911D09 /* ZTHttpTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74117AFF1F20585200911D09 /* ZTHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 74117AFD1F20585200911D09 /* ZTHttpTool.m */; };
-		74117B021F20586600911D09 /* UploadParamModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 74117B001F20586600911D09 /* UploadParamModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74117B031F20586600911D09 /* UploadParamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 74117B011F20586600911D09 /* UploadParamModel.m */; };
-		74117B051F2058B400911D09 /* YCLJ-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 74117B041F2058B400911D09 /* YCLJ-Prefix.pch */; };
-		741CFE631F205D9F00E6B34C /* HouseFmdbTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 741CFE611F205D9F00E6B34C /* HouseFmdbTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		741CFE641F205D9F00E6B34C /* HouseFmdbTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 741CFE621F205D9F00E6B34C /* HouseFmdbTool.m */; };
-		741CFE6B1F205DE900E6B34C /* UserModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 741CFE651F205DE900E6B34C /* UserModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		741CFE6C1F205DE900E6B34C /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 741CFE661F205DE900E6B34C /* UserModel.m */; };
-		741CFE6D1F205DE900E6B34C /* HouseModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 741CFE671F205DE900E6B34C /* HouseModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		741CFE6E1F205DE900E6B34C /* HouseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 741CFE681F205DE900E6B34C /* HouseModel.m */; };
-		741CFE6F1F205DE900E6B34C /* HouseObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 741CFE691F205DE900E6B34C /* HouseObject.h */; };
-		741CFE701F205DE900E6B34C /* HouseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 741CFE6A1F205DE900E6B34C /* HouseObject.m */; };
-		741CFE7B1F205E2100E6B34C /* HouseListCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 741CFE791F205E2000E6B34C /* HouseListCell.h */; };
-		741CFE7C1F205E2100E6B34C /* HouseListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 741CFE7A1F205E2000E6B34C /* HouseListCell.m */; };
-		741CFE821F205E5900E6B34C /* UserListCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 741CFE7E1F205E5900E6B34C /* UserListCell.h */; };
-		741CFE831F205E5900E6B34C /* UserListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 741CFE7F1F205E5900E6B34C /* UserListCell.m */; };
-		741CFE891F205E7700E6B34C /* YCLJAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 741CFE871F205E7700E6B34C /* YCLJAppManager.m */; };
-		741CFE901F205E9900E6B34C /* BaseTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 741CFE8A1F205E9900E6B34C /* BaseTableViewCell.h */; };
-		741CFE911F205E9900E6B34C /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 741CFE8B1F205E9900E6B34C /* BaseTableViewCell.m */; };
-		741CFE921F205E9900E6B34C /* BaseTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 741CFE8C1F205E9900E6B34C /* BaseTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		741CFE931F205E9900E6B34C /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741CFE8D1F205E9900E6B34C /* BaseTableViewController.m */; };
-		741CFE941F205E9900E6B34C /* RootViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 741CFE8E1F205E9900E6B34C /* RootViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		741CFE951F205E9900E6B34C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741CFE8F1F205E9900E6B34C /* RootViewController.m */; };
-		741CFE9B1F205F2900E6B34C /* Nonetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 741CFE971F205F2900E6B34C /* Nonetwork.h */; };
-		741CFE9C1F205F2900E6B34C /* Nonetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 741CFE981F205F2900E6B34C /* Nonetwork.m */; };
-		741CFE9D1F205F2900E6B34C /* UIColor+ColorChange.h in Headers */ = {isa = PBXBuildFile; fileRef = 741CFE991F205F2900E6B34C /* UIColor+ColorChange.h */; };
-		741CFE9E1F205F2900E6B34C /* UIColor+ColorChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 741CFE9A1F205F2900E6B34C /* UIColor+ColorChange.m */; };
+		74149A9B1F344B3B00671036 /* lfsqSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74149A9A1F344B3B00671036 /* lfsqSDK.framework */; };
+		74149BAE1F34675000671036 /* DXFTemplate_shape.dxf in Resources */ = {isa = PBXBuildFile; fileRef = 74149B711F34675000671036 /* DXFTemplate_shape.dxf */; };
+		74149BAF1F34675000671036 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74149B721F34675000671036 /* Info.plist */; };
+		74149BB01F34675000671036 /* YCAlertViewExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B741F34675000671036 /* YCAlertViewExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BB11F34675000671036 /* YCAlertViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B751F34675000671036 /* YCAlertViewExtension.m */; };
+		74149BB21F34675000671036 /* YCAppManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B761F34675000671036 /* YCAppManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BB31F34675000671036 /* YCAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B771F34675000671036 /* YCAppManager.m */; };
+		74149BB41F34675000671036 /* YCHouseCityChoiceView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B781F34675000671036 /* YCHouseCityChoiceView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BB51F34675000671036 /* YCHouseCityChoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B791F34675000671036 /* YCHouseCityChoiceView.m */; };
+		74149BB61F34675000671036 /* YCHouseParmChoiceView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B7A1F34675000671036 /* YCHouseParmChoiceView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BB71F34675000671036 /* YCHouseParmChoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B7B1F34675000671036 /* YCHouseParmChoiceView.m */; };
+		74149BB81F34675000671036 /* YCPopViewExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B7C1F34675000671036 /* YCPopViewExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BB91F34675000671036 /* YCPopViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B7D1F34675000671036 /* YCPopViewExtension.m */; };
+		74149BBA1F34675000671036 /* MJRefreshAutoNormalFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B7E1F34675000671036 /* MJRefreshAutoNormalFooter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BBB1F34675000671036 /* MJRefreshAutoNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B7F1F34675000671036 /* MJRefreshAutoNormalFooter.m */; };
+		74149BBC1F34675000671036 /* MJRefreshNormalHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B801F34675000671036 /* MJRefreshNormalHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BBD1F34675000671036 /* MJRefreshNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B811F34675000671036 /* MJRefreshNormalHeader.m */; };
+		74149BBE1F34675000671036 /* YCHouseListCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B831F34675000671036 /* YCHouseListCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BBF1F34675000671036 /* YCHouseListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B841F34675000671036 /* YCHouseListCell.m */; };
+		74149BC01F34675000671036 /* YCHouseListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B851F34675000671036 /* YCHouseListViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BC11F34675000671036 /* YCHouseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B861F34675000671036 /* YCHouseListViewController.m */; };
+		74149BC21F34675000671036 /* YCHouseModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B871F34675000671036 /* YCHouseModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BC31F34675000671036 /* YCHouseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B881F34675000671036 /* YCHouseModel.m */; };
+		74149BC41F34675000671036 /* YCHouseObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B891F34675000671036 /* YCHouseObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BC51F34675000671036 /* YCHouseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B8A1F34675000671036 /* YCHouseObject.m */; };
+		74149BC61F34675000671036 /* YCHouseOwnerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B8B1F34675000671036 /* YCHouseOwnerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BC71F34675000671036 /* YCHouseOwnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B8C1F34675000671036 /* YCHouseOwnerView.m */; };
+		74149BC81F34675000671036 /* YCOwnerModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B8D1F34675000671036 /* YCOwnerModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BC91F34675000671036 /* YCOwnerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B8E1F34675000671036 /* YCOwnerModel.m */; };
+		74149BCA1F34675000671036 /* YCNewUserViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B901F34675000671036 /* YCNewUserViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BCB1F34675000671036 /* YCNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B911F34675000671036 /* YCNewUserViewController.m */; };
+		74149BCC1F34675000671036 /* YCUserListCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B921F34675000671036 /* YCUserListCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BCD1F34675000671036 /* YCUserListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B931F34675000671036 /* YCUserListCell.m */; };
+		74149BCE1F34675000671036 /* YCUserListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B941F34675000671036 /* YCUserListViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BCF1F34675000671036 /* YCUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B951F34675000671036 /* YCUserListViewController.m */; };
+		74149BD21F34675000671036 /* HouseFmdbTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B991F34675000671036 /* HouseFmdbTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BD31F34675000671036 /* HouseFmdbTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B9A1F34675000671036 /* HouseFmdbTool.m */; };
+		74149BD41F34675000671036 /* Nonetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B9B1F34675000671036 /* Nonetwork.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BD51F34675000671036 /* Nonetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B9C1F34675000671036 /* Nonetwork.m */; };
+		74149BD61F34675000671036 /* StringCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B9D1F34675000671036 /* StringCategory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BD71F34675100671036 /* StringCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B9E1F34675000671036 /* StringCategory.m */; };
+		74149BD81F34675100671036 /* ZTBaseTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B9F1F34675000671036 /* ZTBaseTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BD91F34675100671036 /* ZTBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149BA01F34675000671036 /* ZTBaseTableViewCell.m */; };
+		74149BDA1F34675100671036 /* ZTBaseTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149BA11F34675000671036 /* ZTBaseTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BDB1F34675100671036 /* ZTBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149BA21F34675000671036 /* ZTBaseTableViewController.m */; };
+		74149BDC1F34675100671036 /* ZTCommonUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149BA31F34675000671036 /* ZTCommonUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BDD1F34675100671036 /* ZTCommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149BA41F34675000671036 /* ZTCommonUtils.m */; };
+		74149BDE1F34675100671036 /* ZTHttpTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149BA51F34675000671036 /* ZTHttpTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BDF1F34675100671036 /* ZTHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149BA61F34675000671036 /* ZTHttpTool.m */; };
+		74149BE01F34675100671036 /* ZTRootViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149BA71F34675000671036 /* ZTRootViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BE11F34675100671036 /* ZTRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149BA81F34675000671036 /* ZTRootViewController.m */; };
+		74149BE21F34675100671036 /* ZTUploadParamModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149BA91F34675000671036 /* ZTUploadParamModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BE31F34675100671036 /* ZTUploadParamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149BAA1F34675000671036 /* ZTUploadParamModel.m */; };
+		74149BE41F34675100671036 /* YCHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149BAB1F34675000671036 /* YCHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BE51F34675100671036 /* YCLJ-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 74149BAC1F34675000671036 /* YCLJ-Prefix.pch */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BE61F34675100671036 /* YCLJ.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149BAD1F34675000671036 /* YCLJ.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149BFF1F346BE400671036 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149BFE1F346BE400671036 /* FMDatabase.m */; };
+		74149C011F346BF100671036 /* FMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149C001F346BF100671036 /* FMDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74149C151F346C9E00671036 /* FMDB.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149C041F346C9E00671036 /* FMDB.h */; };
+		74149C161F346C9E00671036 /* FMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149C051F346C9E00671036 /* FMDatabase.h */; };
+		74149C171F346C9E00671036 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149C061F346C9E00671036 /* FMDatabase.m */; };
+		74149C181F346C9E00671036 /* FMDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149C071F346C9E00671036 /* FMDatabaseAdditions.h */; };
+		74149C191F346C9E00671036 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149C081F346C9E00671036 /* FMDatabaseAdditions.m */; };
+		74149C1A1F346C9E00671036 /* FMDatabasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149C091F346C9E00671036 /* FMDatabasePool.h */; };
+		74149C1B1F346C9E00671036 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149C0A1F346C9E00671036 /* FMDatabasePool.m */; };
+		74149C1C1F346C9E00671036 /* FMDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149C0B1F346C9E00671036 /* FMDatabaseQueue.h */; };
+		74149C1D1F346C9E00671036 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149C0C1F346C9E00671036 /* FMDatabaseQueue.m */; };
+		74149C1E1F346C9E00671036 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149C0D1F346C9E00671036 /* FMResultSet.h */; };
+		74149C1F1F346C9E00671036 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149C0E1F346C9E00671036 /* FMResultSet.m */; };
+		74149C201F346C9E00671036 /* FMDB.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 74149C101F346C9E00671036 /* FMDB.xcconfig */; };
+		74149C211F346C9E00671036 /* FMDB-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149C111F346C9E00671036 /* FMDB-dummy.m */; };
+		74149C221F346C9E00671036 /* FMDB-prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 74149C121F346C9E00671036 /* FMDB-prefix.pch */; };
 		741CFED31F2080AD00E6B34C /* LFDrawManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 741CFED21F2080AD00E6B34C /* LFDrawManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74545A521F29F805002EE1CE /* houseCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74545A4E1F29F805002EE1CE /* houseCity.plist */; };
 		74545A531F29F805002EE1CE /* houseType.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74545A4F1F29F805002EE1CE /* houseType.plist */; };
@@ -43,103 +87,125 @@
 		74A68C681F220F4200DC37BA /* LFHouseInfoModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A68C641F220F4200DC37BA /* LFHouseInfoModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74A68C691F220F4200DC37BA /* lfsqSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A68C651F220F4200DC37BA /* lfsqSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74A68C6A1F220F4200DC37BA /* PhotoManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A68C661F220F4200DC37BA /* PhotoManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74C8F5371F25D7B500FA261C /* lfsqSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C8F5361F25D7B500FA261C /* lfsqSDK.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		74E406021F26ECAB00C01A1E /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E405FF1F26ECAB00C01A1E /* FMDatabase.m */; };
-		74E406031F26ECAB00C01A1E /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E406001F26ECAB00C01A1E /* FMResultSet.m */; };
 		74E406041F26ECAB00C01A1E /* DXFTemplate_shape.dxf in Resources */ = {isa = PBXBuildFile; fileRef = 74E406011F26ECAB00C01A1E /* DXFTemplate_shape.dxf */; };
-		74E406301F274F9500C01A1E /* MJRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406091F274F9500C01A1E /* MJRefresh.h */; };
-		74E406311F274F9500C01A1E /* MJRefreshAutoFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4060A1F274F9500C01A1E /* MJRefreshAutoFooter.h */; };
+		74E406301F274F9500C01A1E /* MJRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406091F274F9500C01A1E /* MJRefresh.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74E406311F274F9500C01A1E /* MJRefreshAutoFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4060A1F274F9500C01A1E /* MJRefreshAutoFooter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E406321F274F9500C01A1E /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E4060B1F274F9500C01A1E /* MJRefreshAutoFooter.m */; };
-		74E406331F274F9500C01A1E /* MJRefreshAutoGifFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4060C1F274F9500C01A1E /* MJRefreshAutoGifFooter.h */; };
+		74E406331F274F9500C01A1E /* MJRefreshAutoGifFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4060C1F274F9500C01A1E /* MJRefreshAutoGifFooter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E406341F274F9500C01A1E /* MJRefreshAutoGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E4060D1F274F9500C01A1E /* MJRefreshAutoGifFooter.m */; };
-		74E406351F274F9500C01A1E /* MJRefreshAutoNormalFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4060E1F274F9500C01A1E /* MJRefreshAutoNormalFooter.h */; };
+		74E406351F274F9500C01A1E /* MJRefreshAutoNormalFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4060E1F274F9500C01A1E /* MJRefreshAutoNormalFooter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E406361F274F9500C01A1E /* MJRefreshAutoNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E4060F1F274F9500C01A1E /* MJRefreshAutoNormalFooter.m */; };
-		74E406371F274F9500C01A1E /* MJRefreshAutoStateFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406101F274F9500C01A1E /* MJRefreshAutoStateFooter.h */; };
+		74E406371F274F9500C01A1E /* MJRefreshAutoStateFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406101F274F9500C01A1E /* MJRefreshAutoStateFooter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E406381F274F9500C01A1E /* MJRefreshAutoStateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E406111F274F9500C01A1E /* MJRefreshAutoStateFooter.m */; };
-		74E406391F274F9500C01A1E /* MJRefreshBackFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406121F274F9500C01A1E /* MJRefreshBackFooter.h */; };
+		74E406391F274F9500C01A1E /* MJRefreshBackFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406121F274F9500C01A1E /* MJRefreshBackFooter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E4063A1F274F9500C01A1E /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E406131F274F9500C01A1E /* MJRefreshBackFooter.m */; };
-		74E4063B1F274F9500C01A1E /* MJRefreshBackGifFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406141F274F9500C01A1E /* MJRefreshBackGifFooter.h */; };
+		74E4063B1F274F9500C01A1E /* MJRefreshBackGifFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406141F274F9500C01A1E /* MJRefreshBackGifFooter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E4063C1F274F9500C01A1E /* MJRefreshBackGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E406151F274F9500C01A1E /* MJRefreshBackGifFooter.m */; };
-		74E4063D1F274F9500C01A1E /* MJRefreshBackNormalFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406161F274F9500C01A1E /* MJRefreshBackNormalFooter.h */; };
+		74E4063D1F274F9500C01A1E /* MJRefreshBackNormalFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406161F274F9500C01A1E /* MJRefreshBackNormalFooter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E4063E1F274F9500C01A1E /* MJRefreshBackNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E406171F274F9500C01A1E /* MJRefreshBackNormalFooter.m */; };
-		74E4063F1F274F9500C01A1E /* MJRefreshBackStateFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406181F274F9500C01A1E /* MJRefreshBackStateFooter.h */; };
+		74E4063F1F274F9500C01A1E /* MJRefreshBackStateFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406181F274F9500C01A1E /* MJRefreshBackStateFooter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E406401F274F9500C01A1E /* MJRefreshBackStateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E406191F274F9500C01A1E /* MJRefreshBackStateFooter.m */; };
-		74E406411F274F9500C01A1E /* MJRefreshComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4061A1F274F9500C01A1E /* MJRefreshComponent.h */; };
+		74E406411F274F9500C01A1E /* MJRefreshComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4061A1F274F9500C01A1E /* MJRefreshComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E406421F274F9500C01A1E /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E4061B1F274F9500C01A1E /* MJRefreshComponent.m */; };
-		74E406431F274F9500C01A1E /* MJRefreshConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4061C1F274F9500C01A1E /* MJRefreshConst.h */; };
+		74E406431F274F9500C01A1E /* MJRefreshConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4061C1F274F9500C01A1E /* MJRefreshConst.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E406441F274F9500C01A1E /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E4061D1F274F9500C01A1E /* MJRefreshConst.m */; };
-		74E406451F274F9500C01A1E /* MJRefreshFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4061E1F274F9500C01A1E /* MJRefreshFooter.h */; };
+		74E406451F274F9500C01A1E /* MJRefreshFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4061E1F274F9500C01A1E /* MJRefreshFooter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E406461F274F9500C01A1E /* MJRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E4061F1F274F9500C01A1E /* MJRefreshFooter.m */; };
-		74E406471F274F9500C01A1E /* MJRefreshGifHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406201F274F9500C01A1E /* MJRefreshGifHeader.h */; };
+		74E406471F274F9500C01A1E /* MJRefreshGifHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406201F274F9500C01A1E /* MJRefreshGifHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E406481F274F9500C01A1E /* MJRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E406211F274F9500C01A1E /* MJRefreshGifHeader.m */; };
-		74E406491F274F9500C01A1E /* MJRefreshHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406221F274F9500C01A1E /* MJRefreshHeader.h */; };
+		74E406491F274F9500C01A1E /* MJRefreshHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406221F274F9500C01A1E /* MJRefreshHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E4064A1F274F9500C01A1E /* MJRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E406231F274F9500C01A1E /* MJRefreshHeader.m */; };
-		74E4064B1F274F9500C01A1E /* MJRefreshNormalHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406241F274F9500C01A1E /* MJRefreshNormalHeader.h */; };
+		74E4064B1F274F9500C01A1E /* MJRefreshNormalHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406241F274F9500C01A1E /* MJRefreshNormalHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E4064C1F274F9500C01A1E /* MJRefreshNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E406251F274F9500C01A1E /* MJRefreshNormalHeader.m */; };
-		74E4064D1F274F9500C01A1E /* MJRefreshStateHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406261F274F9500C01A1E /* MJRefreshStateHeader.h */; };
+		74E4064D1F274F9500C01A1E /* MJRefreshStateHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406261F274F9500C01A1E /* MJRefreshStateHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E4064E1F274F9500C01A1E /* MJRefreshStateHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E406271F274F9500C01A1E /* MJRefreshStateHeader.m */; };
-		74E4064F1F274F9500C01A1E /* NSBundle+MJRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406281F274F9500C01A1E /* NSBundle+MJRefresh.h */; };
+		74E4064F1F274F9500C01A1E /* NSBundle+MJRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E406281F274F9500C01A1E /* NSBundle+MJRefresh.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E406501F274F9500C01A1E /* NSBundle+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E406291F274F9500C01A1E /* NSBundle+MJRefresh.m */; };
-		74E406511F274F9500C01A1E /* UIScrollView+MJExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4062A1F274F9500C01A1E /* UIScrollView+MJExtension.h */; };
+		74E406511F274F9500C01A1E /* UIScrollView+MJExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4062A1F274F9500C01A1E /* UIScrollView+MJExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E406521F274F9500C01A1E /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E4062B1F274F9500C01A1E /* UIScrollView+MJExtension.m */; };
-		74E406531F274F9500C01A1E /* UIScrollView+MJRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4062C1F274F9500C01A1E /* UIScrollView+MJRefresh.h */; };
+		74E406531F274F9500C01A1E /* UIScrollView+MJRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4062C1F274F9500C01A1E /* UIScrollView+MJRefresh.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E406541F274F9500C01A1E /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E4062D1F274F9500C01A1E /* UIScrollView+MJRefresh.m */; };
-		74E406551F274F9500C01A1E /* UIView+MJExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4062E1F274F9500C01A1E /* UIView+MJExtension.h */; };
+		74E406551F274F9500C01A1E /* UIView+MJExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4062E1F274F9500C01A1E /* UIView+MJExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E406561F274F9500C01A1E /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E4062F1F274F9500C01A1E /* UIView+MJExtension.m */; };
-		74EA9AD81F2B3EBB006916C3 /* YCHouseParmChoiceView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EA9AD41F2B3EBB006916C3 /* YCHouseParmChoiceView.h */; };
-		74EA9AD91F2B3EBB006916C3 /* YCHouseParmChoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EA9AD51F2B3EBB006916C3 /* YCHouseParmChoiceView.m */; };
-		74EA9ADA1F2B3EBB006916C3 /* YCHouseCityChoiceView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EA9AD61F2B3EBB006916C3 /* YCHouseCityChoiceView.h */; };
-		74EA9ADB1F2B3EBB006916C3 /* YCHouseCityChoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EA9AD71F2B3EBB006916C3 /* YCHouseCityChoiceView.m */; };
-		74EA9AE01F2B3EE7006916C3 /* YCNewUserViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EA9ADC1F2B3EE7006916C3 /* YCNewUserViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74EA9AE11F2B3EE7006916C3 /* YCNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EA9ADD1F2B3EE7006916C3 /* YCNewUserViewController.m */; };
-		74EA9AE21F2B3EE7006916C3 /* YCUserListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EA9ADE1F2B3EE7006916C3 /* YCUserListViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74EA9AE31F2B3EE7006916C3 /* YCUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EA9ADF1F2B3EE7006916C3 /* YCUserListViewController.m */; };
-		74EA9AE61F2B3F02006916C3 /* YCHouseListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EA9AE41F2B3F02006916C3 /* YCHouseListViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74EA9AE71F2B3F02006916C3 /* YCHouseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EA9AE51F2B3F02006916C3 /* YCHouseListViewController.m */; };
-		74EA9AEA1F2B3F25006916C3 /* YCAppManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EA9AE81F2B3F25006916C3 /* YCAppManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74EA9AEB1F2B3F25006916C3 /* YCAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EA9AE91F2B3F25006916C3 /* YCAppManager.m */; };
-		74EA9AED1F2B3F3C006916C3 /* YCHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EA9AEC1F2B3F3C006916C3 /* YCHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74EA9AF01F2B3F73006916C3 /* YCCommonUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EA9AEE1F2B3F73006916C3 /* YCCommonUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74EA9AF11F2B3F73006916C3 /* YCCommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EA9AEF1F2B3F73006916C3 /* YCCommonUtils.m */; };
 		74EA9AF31F2B405B006916C3 /* houseStyle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74EA9AF21F2B405B006916C3 /* houseStyle.plist */; };
-		74EDECEA1F208B88006492AB /* YCLJ.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EDECE91F208B88006492AB /* YCLJ.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74EDECF11F208F41006492AB /* LFDrawManager.h in Sources */ = {isa = PBXBuildFile; fileRef = 741CFED21F2080AD00E6B34C /* LFDrawManager.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		06210651EC74D832FDD66DF0 /* Pods-YCLJ.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YCLJ.release.xcconfig"; path = "Pods/Target Support Files/Pods-YCLJ/Pods-YCLJ.release.xcconfig"; sourceTree = "<group>"; };
 		65A31E24CF965375A4118BBA /* libPods-YCLJ.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YCLJ.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74117AE61F204E7F00911D09 /* YCLJ.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YCLJ.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		74117AEA1F204E7F00911D09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		74117AFC1F20585200911D09 /* ZTHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTHttpTool.h; sourceTree = "<group>"; };
-		74117AFD1F20585200911D09 /* ZTHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTHttpTool.m; sourceTree = "<group>"; };
-		74117B001F20586600911D09 /* UploadParamModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadParamModel.h; sourceTree = "<group>"; };
-		74117B011F20586600911D09 /* UploadParamModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadParamModel.m; sourceTree = "<group>"; };
-		74117B041F2058B400911D09 /* YCLJ-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YCLJ-Prefix.pch"; sourceTree = "<group>"; };
-		741CFE611F205D9F00E6B34C /* HouseFmdbTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseFmdbTool.h; sourceTree = "<group>"; };
-		741CFE621F205D9F00E6B34C /* HouseFmdbTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseFmdbTool.m; sourceTree = "<group>"; };
-		741CFE651F205DE900E6B34C /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
-		741CFE661F205DE900E6B34C /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
-		741CFE671F205DE900E6B34C /* HouseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseModel.h; sourceTree = "<group>"; };
-		741CFE681F205DE900E6B34C /* HouseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseModel.m; sourceTree = "<group>"; };
-		741CFE691F205DE900E6B34C /* HouseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseObject.h; sourceTree = "<group>"; };
-		741CFE6A1F205DE900E6B34C /* HouseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseObject.m; sourceTree = "<group>"; };
-		741CFE791F205E2000E6B34C /* HouseListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseListCell.h; sourceTree = "<group>"; };
-		741CFE7A1F205E2000E6B34C /* HouseListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseListCell.m; sourceTree = "<group>"; };
-		741CFE7E1F205E5900E6B34C /* UserListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserListCell.h; sourceTree = "<group>"; };
-		741CFE7F1F205E5900E6B34C /* UserListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserListCell.m; sourceTree = "<group>"; };
-		741CFE861F205E7700E6B34C /* YCLJAppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCLJAppManager.h; sourceTree = "<group>"; };
-		741CFE871F205E7700E6B34C /* YCLJAppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCLJAppManager.m; sourceTree = "<group>"; };
-		741CFE8A1F205E9900E6B34C /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
-		741CFE8B1F205E9900E6B34C /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
-		741CFE8C1F205E9900E6B34C /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
-		741CFE8D1F205E9900E6B34C /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
-		741CFE8E1F205E9900E6B34C /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		741CFE8F1F205E9900E6B34C /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		741CFE971F205F2900E6B34C /* Nonetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nonetwork.h; sourceTree = "<group>"; };
-		741CFE981F205F2900E6B34C /* Nonetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Nonetwork.m; sourceTree = "<group>"; };
-		741CFE991F205F2900E6B34C /* UIColor+ColorChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorChange.h"; sourceTree = "<group>"; };
-		741CFE9A1F205F2900E6B34C /* UIColor+ColorChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorChange.m"; sourceTree = "<group>"; };
+		74149A9A1F344B3B00671036 /* lfsqSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lfsqSDK.framework; sourceTree = "<group>"; };
+		74149B711F34675000671036 /* DXFTemplate_shape.dxf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DXFTemplate_shape.dxf; sourceTree = "<group>"; };
+		74149B721F34675000671036 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74149B741F34675000671036 /* YCAlertViewExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCAlertViewExtension.h; sourceTree = "<group>"; };
+		74149B751F34675000671036 /* YCAlertViewExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCAlertViewExtension.m; sourceTree = "<group>"; };
+		74149B761F34675000671036 /* YCAppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCAppManager.h; sourceTree = "<group>"; };
+		74149B771F34675000671036 /* YCAppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCAppManager.m; sourceTree = "<group>"; };
+		74149B781F34675000671036 /* YCHouseCityChoiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCHouseCityChoiceView.h; sourceTree = "<group>"; };
+		74149B791F34675000671036 /* YCHouseCityChoiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCHouseCityChoiceView.m; sourceTree = "<group>"; };
+		74149B7A1F34675000671036 /* YCHouseParmChoiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCHouseParmChoiceView.h; sourceTree = "<group>"; };
+		74149B7B1F34675000671036 /* YCHouseParmChoiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCHouseParmChoiceView.m; sourceTree = "<group>"; };
+		74149B7C1F34675000671036 /* YCPopViewExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCPopViewExtension.h; sourceTree = "<group>"; };
+		74149B7D1F34675000671036 /* YCPopViewExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCPopViewExtension.m; sourceTree = "<group>"; };
+		74149B7E1F34675000671036 /* MJRefreshAutoNormalFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoNormalFooter.h; sourceTree = "<group>"; };
+		74149B7F1F34675000671036 /* MJRefreshAutoNormalFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoNormalFooter.m; sourceTree = "<group>"; };
+		74149B801F34675000671036 /* MJRefreshNormalHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshNormalHeader.h; sourceTree = "<group>"; };
+		74149B811F34675000671036 /* MJRefreshNormalHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshNormalHeader.m; sourceTree = "<group>"; };
+		74149B831F34675000671036 /* YCHouseListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCHouseListCell.h; sourceTree = "<group>"; };
+		74149B841F34675000671036 /* YCHouseListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCHouseListCell.m; sourceTree = "<group>"; };
+		74149B851F34675000671036 /* YCHouseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCHouseListViewController.h; sourceTree = "<group>"; };
+		74149B861F34675000671036 /* YCHouseListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCHouseListViewController.m; sourceTree = "<group>"; };
+		74149B871F34675000671036 /* YCHouseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCHouseModel.h; sourceTree = "<group>"; };
+		74149B881F34675000671036 /* YCHouseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCHouseModel.m; sourceTree = "<group>"; };
+		74149B891F34675000671036 /* YCHouseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCHouseObject.h; sourceTree = "<group>"; };
+		74149B8A1F34675000671036 /* YCHouseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCHouseObject.m; sourceTree = "<group>"; };
+		74149B8B1F34675000671036 /* YCHouseOwnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCHouseOwnerView.h; sourceTree = "<group>"; };
+		74149B8C1F34675000671036 /* YCHouseOwnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCHouseOwnerView.m; sourceTree = "<group>"; };
+		74149B8D1F34675000671036 /* YCOwnerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCOwnerModel.h; sourceTree = "<group>"; };
+		74149B8E1F34675000671036 /* YCOwnerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCOwnerModel.m; sourceTree = "<group>"; };
+		74149B901F34675000671036 /* YCNewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCNewUserViewController.h; sourceTree = "<group>"; };
+		74149B911F34675000671036 /* YCNewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCNewUserViewController.m; sourceTree = "<group>"; };
+		74149B921F34675000671036 /* YCUserListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCUserListCell.h; sourceTree = "<group>"; };
+		74149B931F34675000671036 /* YCUserListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCUserListCell.m; sourceTree = "<group>"; };
+		74149B941F34675000671036 /* YCUserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCUserListViewController.h; sourceTree = "<group>"; };
+		74149B951F34675000671036 /* YCUserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCUserListViewController.m; sourceTree = "<group>"; };
+		74149B991F34675000671036 /* HouseFmdbTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseFmdbTool.h; sourceTree = "<group>"; };
+		74149B9A1F34675000671036 /* HouseFmdbTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseFmdbTool.m; sourceTree = "<group>"; };
+		74149B9B1F34675000671036 /* Nonetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nonetwork.h; sourceTree = "<group>"; };
+		74149B9C1F34675000671036 /* Nonetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Nonetwork.m; sourceTree = "<group>"; };
+		74149B9D1F34675000671036 /* StringCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringCategory.h; sourceTree = "<group>"; };
+		74149B9E1F34675000671036 /* StringCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringCategory.m; sourceTree = "<group>"; };
+		74149B9F1F34675000671036 /* ZTBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTBaseTableViewCell.h; sourceTree = "<group>"; };
+		74149BA01F34675000671036 /* ZTBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTBaseTableViewCell.m; sourceTree = "<group>"; };
+		74149BA11F34675000671036 /* ZTBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTBaseTableViewController.h; sourceTree = "<group>"; };
+		74149BA21F34675000671036 /* ZTBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTBaseTableViewController.m; sourceTree = "<group>"; };
+		74149BA31F34675000671036 /* ZTCommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTCommonUtils.h; sourceTree = "<group>"; };
+		74149BA41F34675000671036 /* ZTCommonUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTCommonUtils.m; sourceTree = "<group>"; };
+		74149BA51F34675000671036 /* ZTHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTHttpTool.h; sourceTree = "<group>"; };
+		74149BA61F34675000671036 /* ZTHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTHttpTool.m; sourceTree = "<group>"; };
+		74149BA71F34675000671036 /* ZTRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTRootViewController.h; sourceTree = "<group>"; };
+		74149BA81F34675000671036 /* ZTRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTRootViewController.m; sourceTree = "<group>"; };
+		74149BA91F34675000671036 /* ZTUploadParamModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTUploadParamModel.h; sourceTree = "<group>"; };
+		74149BAA1F34675000671036 /* ZTUploadParamModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTUploadParamModel.m; sourceTree = "<group>"; };
+		74149BAB1F34675000671036 /* YCHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCHeader.h; sourceTree = "<group>"; };
+		74149BAC1F34675000671036 /* YCLJ-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YCLJ-Prefix.pch"; sourceTree = "<group>"; };
+		74149BAD1F34675000671036 /* YCLJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCLJ.h; sourceTree = "<group>"; };
+		74149BFE1F346BE400671036 /* FMDatabase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = Pods/FMDB/src/fmdb/FMDatabase.m; sourceTree = "<group>"; };
+		74149C001F346BF100671036 /* FMDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = Pods/FMDB/src/fmdb/FMDatabase.h; sourceTree = "<group>"; };
+		74149C041F346C9E00671036 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = src/fmdb/FMDB.h; sourceTree = "<group>"; };
+		74149C051F346C9E00671036 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = src/fmdb/FMDatabase.h; sourceTree = "<group>"; };
+		74149C061F346C9E00671036 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = src/fmdb/FMDatabase.m; sourceTree = "<group>"; };
+		74149C071F346C9E00671036 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = src/fmdb/FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		74149C081F346C9E00671036 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = src/fmdb/FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		74149C091F346C9E00671036 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = src/fmdb/FMDatabasePool.h; sourceTree = "<group>"; };
+		74149C0A1F346C9E00671036 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabasePool.m; path = src/fmdb/FMDatabasePool.m; sourceTree = "<group>"; };
+		74149C0B1F346C9E00671036 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = src/fmdb/FMDatabaseQueue.h; sourceTree = "<group>"; };
+		74149C0C1F346C9E00671036 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseQueue.m; path = src/fmdb/FMDatabaseQueue.m; sourceTree = "<group>"; };
+		74149C0D1F346C9E00671036 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = src/fmdb/FMResultSet.h; sourceTree = "<group>"; };
+		74149C0E1F346C9E00671036 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = src/fmdb/FMResultSet.m; sourceTree = "<group>"; };
+		74149C101F346C9E00671036 /* FMDB.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = FMDB.xcconfig; sourceTree = "<group>"; };
+		74149C111F346C9E00671036 /* FMDB-dummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMDB-dummy.m"; sourceTree = "<group>"; };
+		74149C121F346C9E00671036 /* FMDB-prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDB-prefix.pch"; sourceTree = "<group>"; };
 		741CFED21F2080AD00E6B34C /* LFDrawManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LFDrawManager.h; path = lfsqSDK.framework/Headers/LFDrawManager.h; sourceTree = "<group>"; };
 		74545A4E1F29F805002EE1CE /* houseCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = houseCity.plist; sourceTree = "<group>"; };
 		74545A4F1F29F805002EE1CE /* houseType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = houseType.plist; sourceTree = "<group>"; };
@@ -148,9 +214,6 @@
 		74A68C641F220F4200DC37BA /* LFHouseInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LFHouseInfoModel.h; path = lfsqSDK.framework/Headers/LFHouseInfoModel.h; sourceTree = "<group>"; };
 		74A68C651F220F4200DC37BA /* lfsqSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = lfsqSDK.h; path = lfsqSDK.framework/Headers/lfsqSDK.h; sourceTree = "<group>"; };
 		74A68C661F220F4200DC37BA /* PhotoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PhotoManager.h; path = lfsqSDK.framework/Headers/PhotoManager.h; sourceTree = "<group>"; };
-		74C8F5361F25D7B500FA261C /* lfsqSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lfsqSDK.framework; sourceTree = "<group>"; };
-		74E405FF1F26ECAB00C01A1E /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
-		74E406001F26ECAB00C01A1E /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		74E406011F26ECAB00C01A1E /* DXFTemplate_shape.dxf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = DXFTemplate_shape.dxf; path = YCLJ/DXFTemplate_shape.dxf; sourceTree = "<group>"; };
 		74E406091F274F9500C01A1E /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJRefresh.h; path = Pods/MJRefresh/MJRefresh/MJRefresh.h; sourceTree = "<group>"; };
 		74E4060A1F274F9500C01A1E /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJRefreshAutoFooter.h; path = Pods/MJRefresh/MJRefresh/Base/MJRefreshAutoFooter.h; sourceTree = "<group>"; };
@@ -191,23 +254,7 @@
 		74E4062D1F274F9500C01A1E /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+MJRefresh.m"; path = "Pods/MJRefresh/MJRefresh/UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		74E4062E1F274F9500C01A1E /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+MJExtension.h"; path = "Pods/MJRefresh/MJRefresh/UIView+MJExtension.h"; sourceTree = "<group>"; };
 		74E4062F1F274F9500C01A1E /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+MJExtension.m"; path = "Pods/MJRefresh/MJRefresh/UIView+MJExtension.m"; sourceTree = "<group>"; };
-		74EA9AD41F2B3EBB006916C3 /* YCHouseParmChoiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCHouseParmChoiceView.h; sourceTree = "<group>"; };
-		74EA9AD51F2B3EBB006916C3 /* YCHouseParmChoiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCHouseParmChoiceView.m; sourceTree = "<group>"; };
-		74EA9AD61F2B3EBB006916C3 /* YCHouseCityChoiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCHouseCityChoiceView.h; sourceTree = "<group>"; };
-		74EA9AD71F2B3EBB006916C3 /* YCHouseCityChoiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCHouseCityChoiceView.m; sourceTree = "<group>"; };
-		74EA9ADC1F2B3EE7006916C3 /* YCNewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCNewUserViewController.h; sourceTree = "<group>"; };
-		74EA9ADD1F2B3EE7006916C3 /* YCNewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCNewUserViewController.m; sourceTree = "<group>"; };
-		74EA9ADE1F2B3EE7006916C3 /* YCUserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCUserListViewController.h; sourceTree = "<group>"; };
-		74EA9ADF1F2B3EE7006916C3 /* YCUserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCUserListViewController.m; sourceTree = "<group>"; };
-		74EA9AE41F2B3F02006916C3 /* YCHouseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCHouseListViewController.h; sourceTree = "<group>"; };
-		74EA9AE51F2B3F02006916C3 /* YCHouseListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCHouseListViewController.m; sourceTree = "<group>"; };
-		74EA9AE81F2B3F25006916C3 /* YCAppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCAppManager.h; sourceTree = "<group>"; };
-		74EA9AE91F2B3F25006916C3 /* YCAppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCAppManager.m; sourceTree = "<group>"; };
-		74EA9AEC1F2B3F3C006916C3 /* YCHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCHeader.h; sourceTree = "<group>"; };
-		74EA9AEE1F2B3F73006916C3 /* YCCommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCCommonUtils.h; sourceTree = "<group>"; };
-		74EA9AEF1F2B3F73006916C3 /* YCCommonUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCCommonUtils.m; sourceTree = "<group>"; };
 		74EA9AF21F2B405B006916C3 /* houseStyle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = houseStyle.plist; sourceTree = "<group>"; };
-		74EDECE91F208B88006492AB /* YCLJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCLJ.h; sourceTree = "<group>"; };
 		75F2B237DE5D05E1292C84DC /* Pods-YCLJ.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YCLJ.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YCLJ/Pods-YCLJ.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -216,8 +263,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74C8F5371F25D7B500FA261C /* lfsqSDK.framework in Frameworks */,
 				4189F48961F017C406B952A1 /* libPods-YCLJ.a in Frameworks */,
+				74149A9B1F344B3B00671036 /* lfsqSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,19 +274,22 @@
 		74117ADC1F204E7F00911D09 = {
 			isa = PBXGroup;
 			children = (
+				74149C001F346BF100671036 /* FMDatabase.h */,
+				74149BFE1F346BE400671036 /* FMDatabase.m */,
+				74149B701F34675000671036 /* YCLJ */,
+				74149A9A1F344B3B00671036 /* lfsqSDK.framework */,
 				74545A4E1F29F805002EE1CE /* houseCity.plist */,
 				74545A4F1F29F805002EE1CE /* houseType.plist */,
 				74EA9AF21F2B405B006916C3 /* houseStyle.plist */,
 				74E406011F26ECAB00C01A1E /* DXFTemplate_shape.dxf */,
-				74C8F5361F25D7B500FA261C /* lfsqSDK.framework */,
 				74A68C621F220F4200DC37BA /* LFDrawManager.h */,
 				74A68C631F220F4200DC37BA /* LFDrawSDKAPI.h */,
 				74A68C641F220F4200DC37BA /* LFHouseInfoModel.h */,
 				74A68C651F220F4200DC37BA /* lfsqSDK.h */,
 				74A68C661F220F4200DC37BA /* PhotoManager.h */,
 				741CFED21F2080AD00E6B34C /* LFDrawManager.h */,
-				74117AE81F204E7F00911D09 /* YCLJ */,
 				74E406081F274F6300C01A1E /* MJRefresh */,
+				74149C141F346C9E00671036 /* FMDB */,
 				74117AE71F204E7F00911D09 /* Products */,
 				9E71C90D39D0717ABC532FC0 /* Pods */,
 				AD1B7D1701B4181EAB9151C1 /* Frameworks */,
@@ -254,131 +304,137 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		74117AE81F204E7F00911D09 /* YCLJ */ = {
+		74149B701F34675000671036 /* YCLJ */ = {
 			isa = PBXGroup;
 			children = (
-				74E405FF1F26ECAB00C01A1E /* FMDatabase.m */,
-				74E406001F26ECAB00C01A1E /* FMResultSet.m */,
-				74EDECE91F208B88006492AB /* YCLJ.h */,
-				741CFE961F205F1C00E6B34C /* NetWorkPrompt */,
-				741CFE8A1F205E9900E6B34C /* BaseTableViewCell.h */,
-				741CFE8B1F205E9900E6B34C /* BaseTableViewCell.m */,
-				741CFE8C1F205E9900E6B34C /* BaseTableViewController.h */,
-				741CFE8D1F205E9900E6B34C /* BaseTableViewController.m */,
-				741CFE8E1F205E9900E6B34C /* RootViewController.h */,
-				741CFE8F1F205E9900E6B34C /* RootViewController.m */,
-				741CFE861F205E7700E6B34C /* YCLJAppManager.h */,
-				741CFE871F205E7700E6B34C /* YCLJAppManager.m */,
-				741CFE7D1F205E4C00E6B34C /* User */,
-				741CFE711F205DF300E6B34C /* Solution */,
-				74117AFC1F20585200911D09 /* ZTHttpTool.h */,
-				74117AFD1F20585200911D09 /* ZTHttpTool.m */,
-				74117B001F20586600911D09 /* UploadParamModel.h */,
-				74117B011F20586600911D09 /* UploadParamModel.m */,
-				74EA9AE81F2B3F25006916C3 /* YCAppManager.h */,
-				74EA9AE91F2B3F25006916C3 /* YCAppManager.m */,
-				74EA9AEE1F2B3F73006916C3 /* YCCommonUtils.h */,
-				74EA9AEF1F2B3F73006916C3 /* YCCommonUtils.m */,
-				74EA9AEC1F2B3F3C006916C3 /* YCHeader.h */,
-				741CFE611F205D9F00E6B34C /* HouseFmdbTool.h */,
-				741CFE621F205D9F00E6B34C /* HouseFmdbTool.m */,
-				74117AEA1F204E7F00911D09 /* Info.plist */,
-				74117B041F2058B400911D09 /* YCLJ-Prefix.pch */,
+				74149B711F34675000671036 /* DXFTemplate_shape.dxf */,
+				74149B721F34675000671036 /* Info.plist */,
+				74149B731F34675000671036 /* Logic */,
+				74149B7E1F34675000671036 /* MJRefreshAutoNormalFooter.h */,
+				74149B7F1F34675000671036 /* MJRefreshAutoNormalFooter.m */,
+				74149B801F34675000671036 /* MJRefreshNormalHeader.h */,
+				74149B811F34675000671036 /* MJRefreshNormalHeader.m */,
+				74149B821F34675000671036 /* Solution */,
+				74149B8F1F34675000671036 /* User */,
+				74149B961F34675000671036 /* Util */,
+				74149BAB1F34675000671036 /* YCHeader.h */,
+				74149BAC1F34675000671036 /* YCLJ-Prefix.pch */,
+				74149BAD1F34675000671036 /* YCLJ.h */,
 			);
 			path = YCLJ;
 			sourceTree = "<group>";
 		};
-		741CFE711F205DF300E6B34C /* Solution */ = {
+		74149B731F34675000671036 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				741CFE741F205E0900E6B34C /* Controller */,
-				741CFE731F205E0200E6B34C /* View */,
-				741CFE721F205DFA00E6B34C /* Module */,
+				74149B741F34675000671036 /* YCAlertViewExtension.h */,
+				74149B751F34675000671036 /* YCAlertViewExtension.m */,
+				74149B761F34675000671036 /* YCAppManager.h */,
+				74149B771F34675000671036 /* YCAppManager.m */,
+				74149B781F34675000671036 /* YCHouseCityChoiceView.h */,
+				74149B791F34675000671036 /* YCHouseCityChoiceView.m */,
+				74149B7A1F34675000671036 /* YCHouseParmChoiceView.h */,
+				74149B7B1F34675000671036 /* YCHouseParmChoiceView.m */,
+				74149B7C1F34675000671036 /* YCPopViewExtension.h */,
+				74149B7D1F34675000671036 /* YCPopViewExtension.m */,
 			);
-			name = Solution;
+			path = Logic;
 			sourceTree = "<group>";
 		};
-		741CFE721F205DFA00E6B34C /* Module */ = {
+		74149B821F34675000671036 /* Solution */ = {
 			isa = PBXGroup;
 			children = (
-				741CFE671F205DE900E6B34C /* HouseModel.h */,
-				741CFE681F205DE900E6B34C /* HouseModel.m */,
-				741CFE691F205DE900E6B34C /* HouseObject.h */,
-				741CFE6A1F205DE900E6B34C /* HouseObject.m */,
+				74149B831F34675000671036 /* YCHouseListCell.h */,
+				74149B841F34675000671036 /* YCHouseListCell.m */,
+				74149B851F34675000671036 /* YCHouseListViewController.h */,
+				74149B861F34675000671036 /* YCHouseListViewController.m */,
+				74149B871F34675000671036 /* YCHouseModel.h */,
+				74149B881F34675000671036 /* YCHouseModel.m */,
+				74149B891F34675000671036 /* YCHouseObject.h */,
+				74149B8A1F34675000671036 /* YCHouseObject.m */,
+				74149B8B1F34675000671036 /* YCHouseOwnerView.h */,
+				74149B8C1F34675000671036 /* YCHouseOwnerView.m */,
+				74149B8D1F34675000671036 /* YCOwnerModel.h */,
+				74149B8E1F34675000671036 /* YCOwnerModel.m */,
 			);
-			name = Module;
+			path = Solution;
 			sourceTree = "<group>";
 		};
-		741CFE731F205E0200E6B34C /* View */ = {
+		74149B8F1F34675000671036 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				741CFE791F205E2000E6B34C /* HouseListCell.h */,
-				741CFE7A1F205E2000E6B34C /* HouseListCell.m */,
+				74149B901F34675000671036 /* YCNewUserViewController.h */,
+				74149B911F34675000671036 /* YCNewUserViewController.m */,
+				74149B921F34675000671036 /* YCUserListCell.h */,
+				74149B931F34675000671036 /* YCUserListCell.m */,
+				74149B941F34675000671036 /* YCUserListViewController.h */,
+				74149B951F34675000671036 /* YCUserListViewController.m */,
 			);
-			name = View;
+			path = User;
 			sourceTree = "<group>";
 		};
-		741CFE741F205E0900E6B34C /* Controller */ = {
+		74149B961F34675000671036 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				74EA9AE41F2B3F02006916C3 /* YCHouseListViewController.h */,
-				74EA9AE51F2B3F02006916C3 /* YCHouseListViewController.m */,
+				74149B991F34675000671036 /* HouseFmdbTool.h */,
+				74149B9A1F34675000671036 /* HouseFmdbTool.m */,
+				74149B9B1F34675000671036 /* Nonetwork.h */,
+				74149B9C1F34675000671036 /* Nonetwork.m */,
+				74149B9D1F34675000671036 /* StringCategory.h */,
+				74149B9E1F34675000671036 /* StringCategory.m */,
+				74149B9F1F34675000671036 /* ZTBaseTableViewCell.h */,
+				74149BA01F34675000671036 /* ZTBaseTableViewCell.m */,
+				74149BA11F34675000671036 /* ZTBaseTableViewController.h */,
+				74149BA21F34675000671036 /* ZTBaseTableViewController.m */,
+				74149BA31F34675000671036 /* ZTCommonUtils.h */,
+				74149BA41F34675000671036 /* ZTCommonUtils.m */,
+				74149BA51F34675000671036 /* ZTHttpTool.h */,
+				74149BA61F34675000671036 /* ZTHttpTool.m */,
+				74149BA71F34675000671036 /* ZTRootViewController.h */,
+				74149BA81F34675000671036 /* ZTRootViewController.m */,
+				74149BA91F34675000671036 /* ZTUploadParamModel.h */,
+				74149BAA1F34675000671036 /* ZTUploadParamModel.m */,
 			);
-			name = Controller;
+			path = Util;
 			sourceTree = "<group>";
 		};
-		741CFE7D1F205E4C00E6B34C /* User */ = {
+		74149C0F1F346C9E00671036 /* standard */ = {
 			isa = PBXGroup;
 			children = (
-				7477F1041F28698F006DF409 /* Module */,
-				7477F1031F28697F006DF409 /* View */,
-				7477F1021F28696C006DF409 /* Controller */,
-				741CFE7E1F205E5900E6B34C /* UserListCell.h */,
-				741CFE7F1F205E5900E6B34C /* UserListCell.m */,
+				74149C041F346C9E00671036 /* FMDB.h */,
+				74149C051F346C9E00671036 /* FMDatabase.h */,
+				74149C061F346C9E00671036 /* FMDatabase.m */,
+				74149C071F346C9E00671036 /* FMDatabaseAdditions.h */,
+				74149C081F346C9E00671036 /* FMDatabaseAdditions.m */,
+				74149C091F346C9E00671036 /* FMDatabasePool.h */,
+				74149C0A1F346C9E00671036 /* FMDatabasePool.m */,
+				74149C0B1F346C9E00671036 /* FMDatabaseQueue.h */,
+				74149C0C1F346C9E00671036 /* FMDatabaseQueue.m */,
+				74149C0D1F346C9E00671036 /* FMResultSet.h */,
+				74149C0E1F346C9E00671036 /* FMResultSet.m */,
 			);
-			name = User;
+			name = standard;
 			sourceTree = "<group>";
 		};
-		741CFE961F205F1C00E6B34C /* NetWorkPrompt */ = {
+		74149C131F346C9E00671036 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				741CFE971F205F2900E6B34C /* Nonetwork.h */,
-				741CFE981F205F2900E6B34C /* Nonetwork.m */,
-				741CFE991F205F2900E6B34C /* UIColor+ColorChange.h */,
-				741CFE9A1F205F2900E6B34C /* UIColor+ColorChange.m */,
+				74149C101F346C9E00671036 /* FMDB.xcconfig */,
+				74149C111F346C9E00671036 /* FMDB-dummy.m */,
+				74149C121F346C9E00671036 /* FMDB-prefix.pch */,
 			);
-			name = NetWorkPrompt;
+			name = "Support Files";
+			path = "../Target Support Files/FMDB";
 			sourceTree = "<group>";
 		};
-		7477F1021F28696C006DF409 /* Controller */ = {
+		74149C141F346C9E00671036 /* FMDB */ = {
 			isa = PBXGroup;
 			children = (
-				74EA9ADC1F2B3EE7006916C3 /* YCNewUserViewController.h */,
-				74EA9ADD1F2B3EE7006916C3 /* YCNewUserViewController.m */,
-				74EA9ADE1F2B3EE7006916C3 /* YCUserListViewController.h */,
-				74EA9ADF1F2B3EE7006916C3 /* YCUserListViewController.m */,
+				74149C0F1F346C9E00671036 /* standard */,
+				74149C131F346C9E00671036 /* Support Files */,
 			);
-			name = Controller;
-			sourceTree = "<group>";
-		};
-		7477F1031F28697F006DF409 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				74EA9AD41F2B3EBB006916C3 /* YCHouseParmChoiceView.h */,
-				74EA9AD51F2B3EBB006916C3 /* YCHouseParmChoiceView.m */,
-				74EA9AD61F2B3EBB006916C3 /* YCHouseCityChoiceView.h */,
-				74EA9AD71F2B3EBB006916C3 /* YCHouseCityChoiceView.m */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
-		7477F1041F28698F006DF409 /* Module */ = {
-			isa = PBXGroup;
-			children = (
-				741CFE651F205DE900E6B34C /* UserModel.h */,
-				741CFE661F205DE900E6B34C /* UserModel.m */,
-			);
-			name = Module;
+			name = FMDB;
+			path = Pods/FMDB;
 			sourceTree = "<group>";
 		};
 		74E406081F274F6300C01A1E /* MJRefresh */ = {
@@ -451,54 +507,67 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74149BE61F34675100671036 /* YCLJ.h in Headers */,
+				74149BE41F34675100671036 /* YCHeader.h in Headers */,
+				74149C011F346BF100671036 /* FMDatabase.h in Headers */,
 				741CFED31F2080AD00E6B34C /* LFDrawManager.h in Headers */,
 				74A68C671F220F4200DC37BA /* LFDrawSDKAPI.h in Headers */,
 				74A68C681F220F4200DC37BA /* LFHouseInfoModel.h in Headers */,
-				74A68C691F220F4200DC37BA /* lfsqSDK.h in Headers */,
-				74A68C6A1F220F4200DC37BA /* PhotoManager.h in Headers */,
+				74149BDC1F34675100671036 /* ZTCommonUtils.h in Headers */,
+				74149BC21F34675000671036 /* YCHouseModel.h in Headers */,
+				74149C181F346C9E00671036 /* FMDatabaseAdditions.h in Headers */,
+				74149C1E1F346C9E00671036 /* FMResultSet.h in Headers */,
+				74149BC61F34675000671036 /* YCHouseOwnerView.h in Headers */,
+				74149BBC1F34675000671036 /* MJRefreshNormalHeader.h in Headers */,
 				74E406471F274F9500C01A1E /* MJRefreshGifHeader.h in Headers */,
-				74EA9AF01F2B3F73006916C3 /* YCCommonUtils.h in Headers */,
-				74EA9AED1F2B3F3C006916C3 /* YCHeader.h in Headers */,
+				74149BC41F34675000671036 /* YCHouseObject.h in Headers */,
+				74149BDA1F34675100671036 /* ZTBaseTableViewController.h in Headers */,
+				74149BBE1F34675000671036 /* YCHouseListCell.h in Headers */,
 				74E406551F274F9500C01A1E /* UIView+MJExtension.h in Headers */,
-				74EA9AEA1F2B3F25006916C3 /* YCAppManager.h in Headers */,
+				74149BE21F34675100671036 /* ZTUploadParamModel.h in Headers */,
+				74149BC81F34675000671036 /* YCOwnerModel.h in Headers */,
+				74149BB21F34675000671036 /* YCAppManager.h in Headers */,
 				74E406411F274F9500C01A1E /* MJRefreshComponent.h in Headers */,
-				74EDECEA1F208B88006492AB /* YCLJ.h in Headers */,
-				74EA9AE61F2B3F02006916C3 /* YCHouseListViewController.h in Headers */,
-				74EA9AE01F2B3EE7006916C3 /* YCNewUserViewController.h in Headers */,
 				74E406371F274F9500C01A1E /* MJRefreshAutoStateFooter.h in Headers */,
 				74E406311F274F9500C01A1E /* MJRefreshAutoFooter.h in Headers */,
-				74EA9AE21F2B3EE7006916C3 /* YCUserListViewController.h in Headers */,
+				74149BE01F34675100671036 /* ZTRootViewController.h in Headers */,
+				74149BB61F34675000671036 /* YCHouseParmChoiceView.h in Headers */,
+				74149BB01F34675000671036 /* YCAlertViewExtension.h in Headers */,
 				74E4063B1F274F9500C01A1E /* MJRefreshBackGifFooter.h in Headers */,
-				741CFE941F205E9900E6B34C /* RootViewController.h in Headers */,
 				74E406531F274F9500C01A1E /* UIScrollView+MJRefresh.h in Headers */,
-				741CFE921F205E9900E6B34C /* BaseTableViewController.h in Headers */,
-				741CFE631F205D9F00E6B34C /* HouseFmdbTool.h in Headers */,
+				74149BCC1F34675000671036 /* YCUserListCell.h in Headers */,
 				74E4064F1F274F9500C01A1E /* NSBundle+MJRefresh.h in Headers */,
 				74E406301F274F9500C01A1E /* MJRefresh.h in Headers */,
-				741CFE6B1F205DE900E6B34C /* UserModel.h in Headers */,
+				74149BCE1F34675000671036 /* YCUserListViewController.h in Headers */,
 				74E406431F274F9500C01A1E /* MJRefreshConst.h in Headers */,
+				74149C221F346C9E00671036 /* FMDB-prefix.pch in Headers */,
 				74E4064B1F274F9500C01A1E /* MJRefreshNormalHeader.h in Headers */,
 				74E4063D1F274F9500C01A1E /* MJRefreshBackNormalFooter.h in Headers */,
-				741CFE6D1F205DE900E6B34C /* HouseModel.h in Headers */,
 				74E406391F274F9500C01A1E /* MJRefreshBackFooter.h in Headers */,
+				74149BB41F34675000671036 /* YCHouseCityChoiceView.h in Headers */,
+				74149BBA1F34675000671036 /* MJRefreshAutoNormalFooter.h in Headers */,
 				74E406491F274F9500C01A1E /* MJRefreshHeader.h in Headers */,
-				74117AFE1F20585200911D09 /* ZTHttpTool.h in Headers */,
-				741CFE901F205E9900E6B34C /* BaseTableViewCell.h in Headers */,
-				741CFE7B1F205E2100E6B34C /* HouseListCell.h in Headers */,
 				74E4064D1F274F9500C01A1E /* MJRefreshStateHeader.h in Headers */,
-				741CFE821F205E5900E6B34C /* UserListCell.h in Headers */,
-				74117B021F20586600911D09 /* UploadParamModel.h in Headers */,
-				74EA9AD81F2B3EBB006916C3 /* YCHouseParmChoiceView.h in Headers */,
-				741CFE9B1F205F2900E6B34C /* Nonetwork.h in Headers */,
-				741CFE9D1F205F2900E6B34C /* UIColor+ColorChange.h in Headers */,
 				74E4063F1F274F9500C01A1E /* MJRefreshBackStateFooter.h in Headers */,
-				741CFE6F1F205DE900E6B34C /* HouseObject.h in Headers */,
+				74149BD21F34675000671036 /* HouseFmdbTool.h in Headers */,
+				74149BC01F34675000671036 /* YCHouseListViewController.h in Headers */,
+				74149BB81F34675000671036 /* YCPopViewExtension.h in Headers */,
+				74149C161F346C9E00671036 /* FMDatabase.h in Headers */,
 				74E406511F274F9500C01A1E /* UIScrollView+MJExtension.h in Headers */,
+				74149BCA1F34675000671036 /* YCNewUserViewController.h in Headers */,
+				74149BD41F34675000671036 /* Nonetwork.h in Headers */,
+				74149BDE1F34675100671036 /* ZTHttpTool.h in Headers */,
+				74149C1A1F346C9E00671036 /* FMDatabasePool.h in Headers */,
+				74149BD81F34675100671036 /* ZTBaseTableViewCell.h in Headers */,
+				74149BE51F34675100671036 /* YCLJ-Prefix.pch in Headers */,
 				74E406451F274F9500C01A1E /* MJRefreshFooter.h in Headers */,
-				74EA9ADA1F2B3EBB006916C3 /* YCHouseCityChoiceView.h in Headers */,
 				74E406331F274F9500C01A1E /* MJRefreshAutoGifFooter.h in Headers */,
+				74149C1C1F346C9E00671036 /* FMDatabaseQueue.h in Headers */,
+				74149C151F346C9E00671036 /* FMDB.h in Headers */,
 				74E406351F274F9500C01A1E /* MJRefreshAutoNormalFooter.h in Headers */,
-				74117B051F2058B400911D09 /* YCLJ-Prefix.pch in Headers */,
+				74149BD61F34675000671036 /* StringCategory.h in Headers */,
+				74A68C691F220F4200DC37BA /* lfsqSDK.h in Headers */,
+				74A68C6A1F220F4200DC37BA /* PhotoManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,8 +633,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				74545A521F29F805002EE1CE /* houseCity.plist in Resources */,
+				74149BAE1F34675000671036 /* DXFTemplate_shape.dxf in Resources */,
+				74149BAF1F34675000671036 /* Info.plist in Resources */,
 				74545A531F29F805002EE1CE /* houseType.plist in Resources */,
 				74E406041F26ECAB00C01A1E /* DXFTemplate_shape.dxf in Resources */,
+				74149C201F346C9E00671036 /* FMDB.xcconfig in Resources */,
 				74EA9AF31F2B405B006916C3 /* houseStyle.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -610,49 +682,57 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74EDECF11F208F41006492AB /* LFDrawManager.h in Sources */,
-				74EA9AE31F2B3EE7006916C3 /* YCUserListViewController.m in Sources */,
+				74149BFF1F346BE400671036 /* FMDatabase.m in Sources */,
 				74E406521F274F9500C01A1E /* UIScrollView+MJExtension.m in Sources */,
+				74149C211F346C9E00671036 /* FMDB-dummy.m in Sources */,
+				74149C191F346C9E00671036 /* FMDatabaseAdditions.m in Sources */,
+				74149C1D1F346C9E00671036 /* FMDatabaseQueue.m in Sources */,
+				74149BC91F34675000671036 /* YCOwnerModel.m in Sources */,
 				74E406341F274F9500C01A1E /* MJRefreshAutoGifFooter.m in Sources */,
+				74149BB91F34675000671036 /* YCPopViewExtension.m in Sources */,
+				74149BD31F34675000671036 /* HouseFmdbTool.m in Sources */,
+				74149BDD1F34675100671036 /* ZTCommonUtils.m in Sources */,
+				74149BC31F34675000671036 /* YCHouseModel.m in Sources */,
 				74E406321F274F9500C01A1E /* MJRefreshAutoFooter.m in Sources */,
+				74149BC51F34675000671036 /* YCHouseObject.m in Sources */,
 				74E406461F274F9500C01A1E /* MJRefreshFooter.m in Sources */,
-				741CFE831F205E5900E6B34C /* UserListCell.m in Sources */,
-				74E406021F26ECAB00C01A1E /* FMDatabase.m in Sources */,
-				741CFE891F205E7700E6B34C /* YCLJAppManager.m in Sources */,
-				741CFE6E1F205DE900E6B34C /* HouseModel.m in Sources */,
 				74E406421F274F9500C01A1E /* MJRefreshComponent.m in Sources */,
+				74149C1B1F346C9E00671036 /* FMDatabasePool.m in Sources */,
+				74149BB71F34675000671036 /* YCHouseParmChoiceView.m in Sources */,
+				74149BD91F34675100671036 /* ZTBaseTableViewCell.m in Sources */,
+				74149BE11F34675100671036 /* ZTRootViewController.m in Sources */,
+				74149BB11F34675000671036 /* YCAlertViewExtension.m in Sources */,
 				74E406541F274F9500C01A1E /* UIScrollView+MJRefresh.m in Sources */,
 				74E4064A1F274F9500C01A1E /* MJRefreshHeader.m in Sources */,
-				74EA9AE11F2B3EE7006916C3 /* YCNewUserViewController.m in Sources */,
-				74117B031F20586600911D09 /* UploadParamModel.m in Sources */,
 				74E4064C1F274F9500C01A1E /* MJRefreshNormalHeader.m in Sources */,
-				74E406031F26ECAB00C01A1E /* FMResultSet.m in Sources */,
-				74EA9ADB1F2B3EBB006916C3 /* YCHouseCityChoiceView.m in Sources */,
-				741CFE6C1F205DE900E6B34C /* UserModel.m in Sources */,
-				741CFE641F205D9F00E6B34C /* HouseFmdbTool.m in Sources */,
-				74117AFF1F20585200911D09 /* ZTHttpTool.m in Sources */,
 				74E406441F274F9500C01A1E /* MJRefreshConst.m in Sources */,
+				74149BDB1F34675100671036 /* ZTBaseTableViewController.m in Sources */,
 				74E406361F274F9500C01A1E /* MJRefreshAutoNormalFooter.m in Sources */,
 				74E406501F274F9500C01A1E /* NSBundle+MJRefresh.m in Sources */,
+				74149BE31F34675100671036 /* ZTUploadParamModel.m in Sources */,
+				74149BD51F34675000671036 /* Nonetwork.m in Sources */,
 				74E406561F274F9500C01A1E /* UIView+MJExtension.m in Sources */,
-				741CFE9E1F205F2900E6B34C /* UIColor+ColorChange.m in Sources */,
-				74EA9AD91F2B3EBB006916C3 /* YCHouseParmChoiceView.m in Sources */,
+				74149BCD1F34675000671036 /* YCUserListCell.m in Sources */,
 				74E4063E1F274F9500C01A1E /* MJRefreshBackNormalFooter.m in Sources */,
-				74EA9AF11F2B3F73006916C3 /* YCCommonUtils.m in Sources */,
-				74EA9AE71F2B3F02006916C3 /* YCHouseListViewController.m in Sources */,
-				741CFE911F205E9900E6B34C /* BaseTableViewCell.m in Sources */,
+				74149BBF1F34675000671036 /* YCHouseListCell.m in Sources */,
+				74149BC71F34675000671036 /* YCHouseOwnerView.m in Sources */,
+				74149BBD1F34675000671036 /* MJRefreshNormalHeader.m in Sources */,
+				74149C171F346C9E00671036 /* FMDatabase.m in Sources */,
+				74149BBB1F34675000671036 /* MJRefreshAutoNormalFooter.m in Sources */,
 				74E406481F274F9500C01A1E /* MJRefreshGifHeader.m in Sources */,
-				741CFE701F205DE900E6B34C /* HouseObject.m in Sources */,
-				741CFE931F205E9900E6B34C /* BaseTableViewController.m in Sources */,
+				74149BB51F34675000671036 /* YCHouseCityChoiceView.m in Sources */,
 				74E4063A1F274F9500C01A1E /* MJRefreshBackFooter.m in Sources */,
+				74149BCB1F34675000671036 /* YCNewUserViewController.m in Sources */,
 				74E406401F274F9500C01A1E /* MJRefreshBackStateFooter.m in Sources */,
+				74149BCF1F34675000671036 /* YCUserListViewController.m in Sources */,
+				74149BDF1F34675100671036 /* ZTHttpTool.m in Sources */,
+				74149BD71F34675100671036 /* StringCategory.m in Sources */,
+				74149C1F1F346C9E00671036 /* FMResultSet.m in Sources */,
 				74E4063C1F274F9500C01A1E /* MJRefreshBackGifFooter.m in Sources */,
 				74E4064E1F274F9500C01A1E /* MJRefreshStateHeader.m in Sources */,
+				74149BC11F34675000671036 /* YCHouseListViewController.m in Sources */,
 				74E406381F274F9500C01A1E /* MJRefreshAutoStateFooter.m in Sources */,
-				741CFE9C1F205F2900E6B34C /* Nonetwork.m in Sources */,
-				741CFE7C1F205E2100E6B34C /* HouseListCell.m in Sources */,
-				741CFE951F205E9900E6B34C /* RootViewController.m in Sources */,
-				74EA9AEB1F2B3F25006916C3 /* YCAppManager.m in Sources */,
+				74149BB31F34675000671036 /* YCAppManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

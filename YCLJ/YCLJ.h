@@ -1,31 +1,31 @@
 //
 //  YCLJ.h
-//  YCLJ
+//  YC
 //
-//  Created by Adam on 2017/7/20.
+//  Created by Adam on 2017/8/4.
 //  Copyright © 2017年 YunChuang. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import <YCHeader.h>
+#import <ZTCommonUtils.h>
+#import <ZTHttpTool.h>
+#import <StringCategory.h>
+#import <ZTUploadParamModel.h>
+#import <YCAppManager.h>
+#import <YCNewUserViewController.h>
+#import <YCHouseListViewController.h>
+#import <YCUserListViewController.h>
+#import <HouseFmdbTool.h>
+#import <YCHouseModel.h>
+#import <YCOwnerModel.h>
 
-#import <YCLJ/YCHeader.h>
-#import <YCLJ/YCCommonUtils.h>
-#import <YCLJ/ZTHttpTool.h>
-#import <YCLJ/UploadParamModel.h>
-#import <YCLJ/YCAppManager.h>
-#import <YCLJ/YCNewUserViewController.h>
-#import <YCLJ/YCHouseListViewController.h>
-#import <YCLJ/YCUserListViewController.h>
-#import <YCLJ/HouseFmdbTool.h>
-#import <YCLJ/HouseModel.h>
-#import <YCLJ/UserModel.h>
+//! Project version number for YC.
+FOUNDATION_EXPORT double YCVersionNumber;
 
-//! Project version number for YCLJ.
-FOUNDATION_EXPORT double YCLJVersionNumber;
+//! Project version string for YC.
+FOUNDATION_EXPORT const unsigned char YCVersionString[];
 
-//! Project version string for YCLJ.
-FOUNDATION_EXPORT const unsigned char YCLJVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <YCLJ/PublicHeader.h>
+// In this header, you should import all the public headers of your framework using statements like #import <YC/PublicHeader.h>
 
 
