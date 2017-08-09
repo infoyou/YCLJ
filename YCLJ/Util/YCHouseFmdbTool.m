@@ -1,4 +1,4 @@
-#import "HouseFmdbTool.h"
+#import "YCHouseFmdbTool.h"
 #import "YCHouseModel.h"
 #import "YCOwnerModel.h"
 #import "ZTCommonUtils.h"
@@ -7,7 +7,7 @@
 
 #define  YC_HOUSE_SQLITE_NAME       @"YC.sqlite"
 
-@implementation HouseFmdbTool
+@implementation YCHouseFmdbTool
 
 static FMDatabase *_fmdb;
 

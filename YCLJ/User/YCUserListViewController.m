@@ -2,7 +2,7 @@
 #import "YCUserListViewController.h"
 #import "YCUserListCell.h"
 #import "YCOwnerModel.h"
-#import "HouseFmdbTool.h"
+#import "YCHouseFmdbTool.h"
 #import "YCAppManager.h"
 #import "YCHouseListViewController.h"
 
@@ -163,7 +163,7 @@
 - (void)loadSolutionFromDB
 {
     
-    cellDataArray = [HouseFmdbTool queryOwnerData:nil];
+    cellDataArray = [YCHouseFmdbTool queryOwnerData:nil];
 }
 
 @end

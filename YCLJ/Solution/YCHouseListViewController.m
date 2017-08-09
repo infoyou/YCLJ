@@ -16,7 +16,7 @@
 #import "YCAppManager.h"
 
 #import "YCOwnerModel.h"
-#import "HouseFmdbTool.h"
+#import "YCHouseFmdbTool.h"
 #import "YCHouseOwnerView.h"
 
 @interface YCHouseListViewController () <HouseListCellDelegate,YCAlertviewExtensionDelegate, HouseListOwnerViewDelegate>
@@ -140,10 +140,10 @@
 
 - (void)loadSolutionFromDB
 {
-    _userArray = [HouseFmdbTool queryOwnerData:nil];
+    _userArray = [YCHouseFmdbTool queryOwnerData:nil];
     _userCount = [_userArray count];
-    _userSolutionCountDict = [HouseFmdbTool queryOwnerSolutionNumber];
-    _resultDict = [HouseFmdbTool queryAllSolutionData:nil];
+    _userSolutionCountDict = [YCHouseFmdbTool queryOwnerSolutionNumber];
+    _resultDict = [YCHouseFmdbTool queryAllSolutionData:nil];
     _resultFormDict = [NSMutableDictionary dictionary];
 
     for (NSString *key in _resultDict) {
@@ -339,7 +339,7 @@
     houseModel.zipUrl = @"";
     houseModel.zipFpath = targetPath;
     houseModel.houseId = [NSString stringWithFormat:@"%@_1", orginHouseId];
-    [HouseFmdbTool insertSolutionModel:houseModel ownerId:houseModel.ownerId];
+    [YCHouseFmdbTool insertSolutionModel:houseModel ownerId:houseModel.ownerId];
     
     // reload msg
     [self loadSolutionFromDB];
@@ -387,7 +387,7 @@
 - (void)deleteCell
 {
     NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET isDelete = 1 where houseId = '%@'", _houseModel.houseId];
-    [HouseFmdbTool modifyData:modifySql];
+    [YCHouseFmdbTool modifyData:modifySql];
     
     // reload msg
     [self loadSolutionFromDB];

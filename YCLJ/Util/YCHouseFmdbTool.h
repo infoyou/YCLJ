@@ -1,5 +1,5 @@
 //
-//  HouseFmdbTool.h
+//  YCHouseFmdbTool.h
 //  LVDatabaseDemo
 //
 //
@@ -12,7 +12,7 @@
 @class YCOwnerModel;
 @class YCHouseModel;
 
-@interface HouseFmdbTool : NSObject
+@interface YCHouseFmdbTool : NSObject
 
 + (void)firstUse;
 
