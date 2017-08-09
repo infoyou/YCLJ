@@ -57,17 +57,16 @@
 }
 
 #pragma mark - 业主列表
-- (void)transLoginData:(NSString *)userName passWord:(NSString *)passWord
+- (void)transNewUser:(NSMutableDictionary *)userDict
 {
-    NSMutableDictionary *dataDict = [NSMutableDictionary dictionary];
-    [dataDict setObject:userName forKey:@"username"];
-    [dataDict setObject:passWord forKey:@"password"];
+    if (userDict != nil) {
+        [userDict setObject:[YCAppManager instance].workId forKey:@"chief_id"];
+        [userDict setObject:[YCAppManager instance].houseId forKey:@"house_num"];
+    }
     
-    NSMutableDictionary *paramDict = [ZTCommonUtils getParamDict:dataDict];
-    
-    NSString *urlStr = [NSString stringWithFormat:@"%@/Api/MeasureApi/houseList", LJ_HOST_URL];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/leju/owner/add/", YC_HOST_URL];
     [ZTHttpTool post:urlStr
-              params:paramDict
+              params:userDict
              success:^(id json) {
                  
                  NSDictionary *backDic = json;
@@ -80,14 +79,10 @@
                          
                          NSDictionary *resultDict = [backDic valueForKey:@"data"];
                          
-                         NSString *userId = resultDict[@"user_id"];
-                         NSString *mobile = resultDict[@"mobile"];
-                         NSString *userName = resultDict[@"username"];
+                         NSString *workOrderId = resultDict[@"work_order_id"];
+                         [userDict setObject:workOrderId forKey:@"work_order_id"];
                          
-                         NSLog(@"userId %@", userId);
-                         NSLog(@"mobile %@", mobile);
-                         NSLog(@"userName %@", userName);
-                         
+                         [self changeVC:userDict];
                      } else {
                          
                          NSLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
@@ -107,26 +102,30 @@
         
         // 构建存储的对象
         NSMutableDictionary *userDict = [NSMutableDictionary dictionary];
-        [userDict setObject:_txtName.text forKey:@"name"];
-        [userDict setObject:_txtMobile.text forKey:@"mobile"];
+        [userDict setObject:_txtName.text forKey:@"owner_name"];
+        [userDict setObject:_txtMobile.text forKey:@"owner_mobile"];
         [userDict setObject:[_txtAddress.text stringByAddingPercentEscapes] forKey:@"address"];
         [userDict setObject:_txtArea.text forKey:@"area"];
         
-        [userDict setObject:_strStyleValue forKey:@"style"];
-        [userDict setObject:_strTypeValue forKey:@"type"];
-        [userDict setObject:_btnCity.currentTitle forKey:@"city"];
+        [userDict setObject:_strStyleValue forKey:@"is_new"];
+        [userDict setObject:_strTypeValue forKey:@"house_type"];
+        [userDict setObject:_btnCity.currentTitle forKey:@"district"];
         
-        YCOwnerModel *userModel = [YCOwnerModel newWithDict:userDict type:0];
-        
-        // 存储本地数据库
-        [[YCAppManager instance] saveHouseData:userModel];
-        
-        [self.navigationController popViewControllerAnimated:YES];
-        /** 户型列表 */
-        YCHouseListViewController *solutionListVC = [[YCHouseListViewController alloc] init];
-        [self.navigationController pushViewController:solutionListVC animated:YES];
+        [self transNewUser:userDict];
     }
+}
+
+- (void)changeVC:(NSMutableDictionary *)userDict
+{
+    YCOwnerModel *userModel = [YCOwnerModel newWithDict:userDict];
     
+    // 存储本地数据库
+    [[YCAppManager instance] saveLocalOwnerData:userModel];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    /** 户型列表 */
+    YCHouseListViewController *solutionListVC = [[YCHouseListViewController alloc] init];
+    [self.navigationController pushViewController:solutionListVC animated:YES];
 }
 
 - (void)selectCity {

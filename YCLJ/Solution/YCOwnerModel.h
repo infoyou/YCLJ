@@ -10,7 +10,7 @@
 
 @interface YCOwnerModel : NSObject
 
-@property (nonatomic, copy) NSString *userId;   //本地数据库主键
+@property (nonatomic, copy) NSString *ownerId;   //本地数据库主键
 @property (nonatomic, copy) NSString *name;     //姓名
 @property (nonatomic, copy) NSString *mobile;   //手机号码
 @property (nonatomic, copy) NSString *address;  //地址
@@ -22,7 +22,8 @@
 
 @property (nonatomic, copy) NSString *createTime; //创建时间
 
-// type 0,YC，1，LJ
-+ (instancetype)newWithDict:(NSDictionary *)dict type:(NSInteger)type;
+@property (nonatomic, copy) NSString *workOrderId;
+
++ (instancetype)newWithDict:(NSDictionary *)dict;
 
 @end

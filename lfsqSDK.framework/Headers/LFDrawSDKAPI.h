@@ -36,6 +36,7 @@ typedef void(^ getCopyHouseIDSucceedBlock)(NSString * _Nonnull HouseID);
 /** 获取 3D文件(.obj) 保存路径  无该户型数据时为 @""*/
 +(NSString*_Nullable)getHouseU3DDataPathWithHouseID:(NSString*_Nonnull)houseID;
 
+
 /** 获取 3D文件(.mtl) 保存路径  无该户型数据时为 @""*/
 +(NSString*_Nullable)getHouseU3DMtlPathWithHouseID:(NSString*_Nonnull)houseID;
 
@@ -56,7 +57,12 @@ typedef void(^ getCopyHouseIDSucceedBlock)(NSString * _Nonnull HouseID);
 +(void)getHouseIDWhenSaveHouse:(getHouseIDBlock _Nullable )getHouseIDBlock;
 
 
+/** 拿到户型数据 的根目录 */
++(NSString*_Nullable)getHouseFilePathWithHouseID:(NSString*_Nullable)houseID;
 
+
+/** 创建obj文件夹 */
++(NSString*_Nullable)createHouseObjFilePathHouseID:(NSString*_Nullable)houseID;
 
 
 

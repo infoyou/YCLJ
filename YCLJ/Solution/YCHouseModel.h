@@ -12,7 +12,7 @@
 
 @property (nonatomic, copy) NSString *houseId; //4,
 @property (nonatomic, copy) NSString *name; //"华府豪庭",
-@property (nonatomic, copy) NSString *no;
+@property (nonatomic, copy) NSString *lfFile;
 @property (nonatomic, copy) NSString *areaFpath;
 @property (nonatomic, copy) NSString *huxingFpath;
 @property (nonatomic, copy) NSString *cadFpath;
@@ -27,9 +27,9 @@
 @property (nonatomic, assign) NSInteger isUpload;
 @property (nonatomic, assign) NSInteger isDelete;
 
-@property (nonatomic, copy) NSString *userId;   //本地数据库从键
+@property (nonatomic, copy) NSString *ownerId;   //本地数据库从键
 
-//id, userId, houseId, solutionId, filePath
+//id, ownerId, houseId, filePath
 
 + (instancetype)newWithDict:(NSDictionary *)dict;
 

@@ -38,9 +38,6 @@
 {
     [super viewWillAppear:animated];
     
-    // 上传数据到服务器
-    [[YCAppManager instance] transHouseData];
-    
     [self loadSolutionFromDB];
 }
 
@@ -104,7 +101,9 @@
                      
                      if ( [errCodeStr integerValue] == SUCCESS_DATA) {
                          
-                         NSArray *resultArray = (NSArray *)[(NSString *)[backDic valueForKey:@"data"] valueForKey:@"record"];
+                         NSArray *resultArray = (NSArray *)[backDic valueForKey:@"data"];
+                         
+//                         NSArray *resultArray = (NSArray *)[(NSString *)[backDic valueForKey:@"data"]];
                          
                          NSInteger logicCount = [resultArray count];
                          
@@ -144,7 +143,7 @@
     _userArray = [HouseFmdbTool queryOwnerData:nil];
     _userCount = [_userArray count];
     _userSolutionCountDict = [HouseFmdbTool queryOwnerSolutionNumber];
-    _resultDict = [HouseFmdbTool querySolutionData:nil];
+    _resultDict = [HouseFmdbTool queryAllSolutionData:nil];
     _resultFormDict = [NSMutableDictionary dictionary];
 
     for (NSString *key in _resultDict) {
@@ -189,10 +188,10 @@
     if (_userCount > 0) {
         
         YCOwnerModel *userModel = (YCOwnerModel *)[_userArray objectAtIndex:section];
-        NSString *userId = userModel.userId;
-        if ([_userSolutionCountDict objectForKey:userId]) {
+        NSString *ownerId = userModel.ownerId;
+        if ([_userSolutionCountDict objectForKey:ownerId]) {
             
-            sectionCount = [(NSNumber *)_userSolutionCountDict[userId] intValue];
+            sectionCount = [(NSNumber *)_userSolutionCountDict[ownerId] intValue];
         }
     }
     
@@ -221,9 +220,9 @@
 - (YCHouseObject *)getCellHouseObject:(NSInteger)section row:(NSInteger)row
 {
     YCOwnerModel *userModel = (YCOwnerModel *)[_userArray objectAtIndex:section];
-    NSString *userId = userModel.userId;
+    NSString *ownerId = userModel.ownerId;
     
-    NSString *key = [NSString stringWithFormat:@"%@%ld", userId, row];
+    NSString *key = [NSString stringWithFormat:@"%@%ld", ownerId, row];
     
     YCHouseObject *houseObject = nil;
     
@@ -300,9 +299,11 @@
     YCHouseObject *houseObject = [self getCellHouseObject:indexPath.section
                                                     row:indexPath.row];;
     NSString *houseId = houseObject.houseModel.houseId;
-    [YCAppManager instance].houseId = houseId; //缓存houseId
+    [YCAppManager instance].houseId = houseId; //缓存当前绘制的houseId
+    YCOwnerModel *userModel = [_userArray objectAtIndex:indexPath.section];
     [LFDrawManager initDrawVCWithHouseID:houseId];
 
+    
     // 加载网络
 //    [YCAppManager instance].houseId = @"062ECECD-FA54-453B-8C40-741919A1BA7B";
 //    [self downloadAction];
@@ -313,7 +314,7 @@
 {
 
     // 判断是否符合条件
-    NSInteger sectionCount = [(NSNumber *)_userSolutionCountDict[houseModel.userId] intValue];
+    NSInteger sectionCount = [(NSNumber *)_userSolutionCountDict[houseModel.ownerId] intValue];
     if (sectionCount > 1) {
         // 已经有拆改图了
         return;
@@ -338,7 +339,7 @@
     houseModel.zipUrl = @"";
     houseModel.zipFpath = targetPath;
     houseModel.houseId = [NSString stringWithFormat:@"%@_1", orginHouseId];
-    [HouseFmdbTool insertSolutionModel:houseModel userId:houseModel.userId];
+    [HouseFmdbTool insertSolutionModel:houseModel ownerId:houseModel.ownerId];
     
     // reload msg
     [self loadSolutionFromDB];

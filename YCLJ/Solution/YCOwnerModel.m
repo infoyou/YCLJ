@@ -2,23 +2,20 @@
 
 @implementation YCOwnerModel
 
-+ (instancetype)newWithDict:(NSDictionary *)dict type:(NSInteger)type
++ (instancetype)newWithDict:(NSDictionary *)dict
 {
-    if (type != 0) {
-        return [[self alloc] initWithDictFromLJ:dict];
-    } else {
-        return [[self alloc] initWithDictFromYC:dict];
-    }
+    
+    return [[self alloc] initWithDict:dict];
 }
 
-- (instancetype)initWithDictFromLJ:(NSDictionary *)dict
+- (instancetype)initWithDict:(NSDictionary *)dict
 {
     
     if (self = [super init])
     {
         if (dict != nil) {
             
-            self.userId = (NSString *)dict[@"userId"] ? (NSString *)dict[@"userId"]:@"";
+            self.ownerId = (NSString *)dict[@"ownerId"] ? (NSString *)dict[@"ownerId"]:@"";
             self.name = (NSString *)dict[@"owner_name"] ? (NSString *)dict[@"owner_name"]:@"";
             self.mobile = (NSString *)dict[@"owner_mobile"] ? (NSString *)dict[@"owner_mobile"]:@"";
             self.address = (NSString *)dict[@"address"] ? (NSString *)dict[@"address"]:@"";
@@ -28,7 +25,7 @@
             self.type = (NSString *)dict[@"house_type"] ? (NSString *)dict[@"house_type"]:@"";
             
             self.createTime = (NSString *)dict[@"complete_time"] ? (NSString *)dict[@"complete_time"]:@"";
-//            self.work_order_id = (NSString *)dict[@"work_order_id"] ? (NSString *)dict[@"work_order_id"]:@"";
+            self.workOrderId = (NSString *)dict[@"work_order_id"] ? (NSString *)dict[@"work_order_id"]:@"";
         }
     }
     
@@ -43,7 +40,7 @@
         if (dict != nil) {
             
             
-            self.userId = (NSString *)dict[@"userId"] ? (NSString *)dict[@"userId"]:@"";
+            self.ownerId = (NSString *)dict[@"ownerId"] ? (NSString *)dict[@"ownerId"]:@"";
             self.name = (NSString *)dict[@"name"] ? (NSString *)dict[@"name"]:@"";
             self.mobile = (NSString *)dict[@"mobile"] ? (NSString *)dict[@"mobile"]:@"";
             self.address = (NSString *)dict[@"address"] ? (NSString *)dict[@"address"]:@"";

@@ -24,7 +24,7 @@
             
             self.houseId = (NSString *)dict[@"houseId"] ? (NSString *)dict[@"houseId"]:@"";
             self.name = (NSString *)dict[@"name"] ? (NSString *)dict[@"name"]:@"";
-            self.no = (NSString *)dict[@"no"] ? (NSString *)dict[@"no"]:@"";
+            self.lfFile = (NSString *)dict[@"lf_file"] ? (NSString *)dict[@"lf_file"]:@"";
             self.huxingFpath = (NSString *)dict[@"huxing_fpath"] ? (NSString *)dict[@"huxing_fpath"]:@"";
             self.areaFpath = (NSString *)dict[@"area_fpath"] ? (NSString *)dict[@"area_fpath"]:@"";
             self.cadFpath = (NSString *)dict[@"cad_fpath"] ? (NSString *)dict[@"cad_fpath"]:@"";
@@ -34,7 +34,7 @@
             self.isUpload = [(NSNumber *)dict[@"isUpload"] intValue];
             self.isDelete = [(NSNumber *)dict[@"isDelete"] intValue];
             
-            self.userId = (NSString *)dict[@"userId"] ? (NSString *)dict[@"userId"]:@"";
+            self.ownerId = (NSString *)dict[@"ownerId"] ? (NSString *)dict[@"ownerId"]:@"";
         }
     }
     

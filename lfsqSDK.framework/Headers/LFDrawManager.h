@@ -29,6 +29,11 @@
  */
 +(void)initDrawVCWithHouseID:(NSString*)houseID;
 
+/**
+ 初始化控制器，打开爱福窝户型数据
+ */
++(void)initAFWDrawVCWithHouseDict:(NSDictionary *)dict;
+
 
 /**
  APP进入后台时保存 需在appDelegate的 applicationDidEnterBackground调用
@@ -45,6 +50,12 @@
  跳转到u3d界面
  */
 @property (nonatomic, copy) void (^jump3DPageBlock)(UIViewController * drawVC);
+
+/**
+ *  关闭 按钮 block
+ */
+@property (nonatomic, copy) void (^closeBtnActionBlock)(NSString* houseID);
+
 
 
 

@@ -93,7 +93,7 @@
     YCOwnerModel *userModel = (YCOwnerModel *)cellDataArray[indexPath.row];
     
     // 存储本地数据库
-    [[YCAppManager instance] saveHouseData:userModel];
+    [[YCAppManager instance] saveLocalOwnerData:userModel];
     
     [self.navigationController popViewControllerAnimated:YES];
     
@@ -106,14 +106,12 @@
 - (void)loadSolutionFromWeb
 {
     
-    NSMutableDictionary *dataDict = [NSMutableDictionary dictionary];
-    [dataDict setObject:@"workId" forKey:@"chief_id"];
-    [dataDict setObject:@"1" forKey:@"p"];
-    [dataDict setObject:@"20" forKey:@"page_size"];
+    NSMutableDictionary *paramDict = [NSMutableDictionary dictionary];
+    [paramDict setObject:[YCAppManager instance].workId forKey:@"chief_id"];
+    [paramDict setObject:@(pageIndex) forKey:@"page"];
+    [paramDict setObject:@"20" forKey:@"page_size"];
     
-    NSMutableDictionary *paramDict = [ZTCommonUtils getParamDict:dataDict];
-    
-    NSString *urlStr = [NSString stringWithFormat:@"%@/Api/MeasureApi/houseList", LJ_HOST_URL];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/leju/owner/list/", YC_HOST_URL];
 
     [ZTHttpTool post:urlStr
               params:paramDict
@@ -123,11 +121,15 @@
                  
                  if (backDic != nil) {
                      
-                     NSString *errCodeStr = (NSString *)[backDic valueForKey:@"result"];
+                     NSString *errCodeStr = (NSString *)[backDic valueForKey:@"code"];
                      
-                     if ( [errCodeStr integerValue] == LJ_SUCCESS_DATA) {
+                     if ( [errCodeStr integerValue] == SUCCESS_DATA) {
                          
                          NSArray *resultArray = (NSArray *)[backDic valueForKey:@"data"];
+                         
+                         if ([resultArray isEqual:@""]) {
+                             return;
+                         }
                          
                          NSInteger logicCount = [resultArray count];
                          
@@ -135,7 +137,7 @@
                              
                              NSMutableDictionary *logicDict = (NSMutableDictionary *)resultArray[productIndex];
                              
-                             YCOwnerModel *areaModel = [YCOwnerModel newWithDict:logicDict type:1];
+                             YCOwnerModel *areaModel = [YCOwnerModel newWithDict:logicDict];
                              [cellDataArray addObject:areaModel];
                          }
                          

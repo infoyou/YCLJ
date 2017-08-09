@@ -12,20 +12,26 @@
 
 @interface YCAppManager : NSObject
 
-@property (nonatomic, copy) NSString *userId;
-@property (nonatomic, copy) NSString *solutionId;
+@property (nonatomic, copy) NSString *workId;
+@property (nonatomic, copy) NSString *workName;
+@property (nonatomic, copy) NSString *workMobile;
+@property (nonatomic, copy) NSString *ownerId;
 @property (nonatomic, copy) NSString *houseId;
-@property (nonatomic, copy) NSString *zipPath;
+//@property (nonatomic, copy) NSString *zipPath;
+@property (nonatomic, strong) YCOwnerModel *userModel;
 
 + (instancetype)instance;
 
-- (void)updateHouseData:(NSString *)aHouseNo
-                houseId:(NSString *)aHouseId;
+- (void)updateHouseData:(NSString *)aHouseId;
 
 - (NSString *)getHouseId;
 
+#pragma mark - 上传户型数据文件
+- (void)saveLocalHouseData:(NSString *)zipPath;
+
+- (void)uploadFileMehtod:(NSString *)filePath;
+
 - (void)transLoginData:(NSString *)userName passWord:(NSString *)passWord;
-- (void)saveHouseData:(YCOwnerModel *)userModel;
-- (void)transHouseData;
+- (void)saveLocalOwnerData:(YCOwnerModel *)userModel;
 
 @end
