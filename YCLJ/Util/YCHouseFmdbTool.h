@@ -28,7 +28,10 @@
 #pragma mark - 户型方案
 + (BOOL)insertSolutionModel:(YCHouseModel *)model;
 + (BOOL)insertSolutionModel:(YCHouseModel *)model ownerId:(NSString *)ownerId;
+
 + (BOOL)querySolutionData:(NSString *)houseId;
++ (BOOL)queryOwnerSolutionZipFile:(NSString *)houseId;
++ (BOOL)queryOwnerSolutionObjFile:(NSString *)houseId;
 
 /** 查询数据,如果 传空 默认会查询表中所有数据 */
 + (NSArray *)queryOwnerData:(NSString *)querySql;

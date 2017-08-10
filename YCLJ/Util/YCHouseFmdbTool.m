@@ -227,8 +227,8 @@ static FMDatabase *_fmdb;
     
     NSMutableDictionary *paramDict = [NSMutableDictionary dictionary];
     
-    NSString *querySql = [NSString stringWithFormat:@"SELECT o.mobile, o.workOrderId, s.type, s.zipUrl, s.objUrl FROM Solution s, Owner o where o.id = s.ownerId and isDelete != 1 and houseId = '%@';", houseId];
-
+    NSString *querySql = [NSString stringWithFormat:@"SELECT o.mobile, o.workOrderId, s.type FROM Solution s, Owner o where o.id = s.ownerId and isDelete != 1 and houseId = '%@';", houseId];
+    
     FMResultSet *set = [_fmdb executeQuery:querySql];
     
     while ([set next]) {
@@ -236,17 +236,62 @@ static FMDatabase *_fmdb;
         NSString *mobile = [set stringForColumn:@"mobile"];
         NSInteger type = [set intForColumn:@"type"];
         NSString *workOrderId = [set stringForColumn:@"workOrderId"];
-        NSString *zipUrl = [set stringForColumn:@"zipUrl"];
-        NSString *objUrl = [set stringForColumn:@"objUrl"];
         
         [paramDict setObject:mobile forKey:@"owner_mobile"];
         [paramDict setObject:[NSNumber numberWithInteger:type] forKey:@"is_copy"];
-        [paramDict setObject:zipUrl forKey:@"file_url"];
-        [paramDict setObject:objUrl forKey:@"obj_file_url"];
         [paramDict setObject:workOrderId forKey:@"work_order_id"];
     }
     
     return paramDict;
+}
+
++ (BOOL)queryOwnerSolutionZipFile:(NSString *)houseId
+{
+    
+    BOOL isExist = NO;
+    
+    NSString *querySql = [NSString stringWithFormat:@"SELECT s.zipUrl FROM Solution s, Owner o where o.id = s.ownerId and isDelete != 1 and houseId = '%@';", houseId];
+    
+    FMResultSet *set = [_fmdb executeQuery:querySql];
+    
+    while ([set next]) {
+        
+        NSString *zipUrl = [set stringForColumn:@"zipUrl"];
+        if (zipUrl.length > 1) {
+            
+            isExist = YES;
+        } else {
+            
+            isExist = NO;
+        }
+    }
+    
+    return isExist;
+}
+
++ (BOOL)queryOwnerSolutionObjFile:(NSString *)houseId
+{
+    
+    BOOL isExist = NO;
+    
+    NSString *querySql = [NSString stringWithFormat:@"SELECT s.objUrl FROM Solution s, Owner o where o.id = s.ownerId and isDelete != 1 and houseId = '%@';", houseId];
+    
+    FMResultSet *set = [_fmdb executeQuery:querySql];
+    
+    while ([set next]) {
+        
+        NSString *objUrl = [set stringForColumn:@"objUrl"];
+        if (objUrl.length > 1) {
+            
+            isExist = YES;
+        } else {
+            
+            isExist = NO;
+        }
+        
+    }
+    
+    return isExist;
 }
 
 #pragma mark - common

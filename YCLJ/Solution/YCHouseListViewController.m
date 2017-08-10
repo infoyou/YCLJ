@@ -49,7 +49,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-//    [self checkNetAvailable];
+    //    [self checkNetAvailable];
 }
 
 - (void)checkNetAvailable
@@ -68,8 +68,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     YCHouseObject *houseObject = [self getCellHouseObject:indexPath.section
-                                                    row:indexPath.row];
-
+                                                      row:indexPath.row];
+    
     return houseObject.cellHeight;
 }
 
@@ -103,7 +103,7 @@
                          
                          NSArray *resultArray = (NSArray *)[backDic valueForKey:@"data"];
                          
-//                         NSArray *resultArray = (NSArray *)[(NSString *)[backDic valueForKey:@"data"]];
+                         //                         NSArray *resultArray = (NSArray *)[(NSString *)[backDic valueForKey:@"data"]];
                          
                          NSInteger logicCount = [resultArray count];
                          
@@ -145,7 +145,7 @@
     _userSolutionCountDict = [YCHouseFmdbTool queryOwnerSolutionNumber];
     _resultDict = [YCHouseFmdbTool queryAllSolutionData:nil];
     _resultFormDict = [NSMutableDictionary dictionary];
-
+    
     for (NSString *key in _resultDict) {
         
         YCHouseModel *houseModel = _resultDict[key];
@@ -160,7 +160,7 @@
 
 - (void)transTableDataInfo
 {
-//    [self loadSolutionFromDB];
+    //    [self loadSolutionFromDB];
 }
 
 - (void)loadCellDataDone
@@ -232,7 +232,7 @@
     } else {
         houseObject = nil;
     }
-
+    
     return houseObject;
 }
 
@@ -261,7 +261,7 @@
     //    self.status.text = @"正在下载";
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_t downloadDispatchGroup = dispatch_group_create();
-        
+    
     NSString *imagePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"KCSOFT/13524010590/062ECECD-FA54-453B-8C40-741919A1BA7B/062ECECD-FA54-453B-8C40-741919A1BA7B.lf"];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -295,24 +295,24 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-
+    
     YCHouseObject *houseObject = [self getCellHouseObject:indexPath.section
-                                                    row:indexPath.row];;
+                                                      row:indexPath.row];;
     NSString *houseId = houseObject.houseModel.houseId;
     [YCAppManager instance].houseId = houseId; //缓存当前绘制的houseId
     YCOwnerModel *userModel = [_userArray objectAtIndex:indexPath.section];
     [LFDrawManager initDrawVCWithHouseID:houseId];
-
+    
     
     // 加载网络
-//    [YCAppManager instance].houseId = @"062ECECD-FA54-453B-8C40-741919A1BA7B";
-//    [self downloadAction];
+    //    [YCAppManager instance].houseId = @"062ECECD-FA54-453B-8C40-741919A1BA7B";
+    //    [self downloadAction];
 }
 
 #pragma mark - HouseListCellDelegate method
 - (void)handleCopy:(YCHouseModel *)houseModel
 {
-
+    
     // 判断是否符合条件
     NSInteger sectionCount = [(NSNumber *)_userSolutionCountDict[houseModel.ownerId] intValue];
     if (sectionCount > 1) {
@@ -340,6 +340,7 @@
     houseModel.zipFpath = targetPath;
     houseModel.houseId = [NSString stringWithFormat:@"%@_1", orginHouseId];
     [YCHouseFmdbTool insertSolutionModel:houseModel ownerId:houseModel.ownerId];
+    [[YCAppManager instance] transHouseData:houseModel.houseId];
     
     // reload msg
     [self loadSolutionFromDB];
@@ -395,6 +396,9 @@
     // 刷新table view
     [self.mTableView reloadData];
     
+    // 同步服务器
+    [[YCAppManager instance] transDeleteHouse:_houseModel.houseId];
+    
     /*
      UITableView *curTableView = (UITableView *)cell.superview.superview;
      NSIndexPath *indexPath = [curTableView indexPathForCell:cell];
@@ -406,7 +410,7 @@
      //                withRowAnimation:UITableViewRowAnimationLeft];
      [curTableView endUpdates];
      */
-
+    
 }
 
 - (void)handleDel:(YCHouseListCell *)cell houseModel:(YCHouseModel *)houseModel
@@ -420,12 +424,24 @@
 {
     DLog(@"doShareOwner");
     ShowAlertWithOneButton(self, @"", @"分享业主", @"OK");
+    
+    if (self.shareEventBlock)
+    {
+        self.shareEventBlock(); // 调用回调函数
+    }
+    
 }
 
 - (void)doSendOwner
 {
     DLog(@"doSendOwner");
     ShowAlertWithOneButton(self, @"", @"发送业主", @"OK");
+    
+    if (self.sendEventBlock)
+    {
+        self.sendEventBlock(); // 调用回调函数
+    }
+    
 }
 
 @end

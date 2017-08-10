@@ -47,7 +47,7 @@ static YCAppManager *singleton = nil;
     NSUserDefaults *_def = [NSUserDefaults standardUserDefaults];
     
     [_def setObject:aHouseId forKey:@"houseId"];
-
+    
     [_def synchronize];
 }
 
@@ -111,20 +111,21 @@ static YCAppManager *singleton = nil;
     // 更改本地数据
     NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET ownerId = '%@' where houseId = '%@'", _ownerId, _houseId];
     [YCHouseFmdbTool modifyData:modifySql];
-
+    
     // 上传户型数据到服务端
-    [self transHouseData];
+    [self transHouseData:_houseId];
 }
 
 #pragma mark - 保存户型数据
 - (void)saveLocalHouseData:(NSString *)zipPath
+                   houseId:(NSString *)houseId
 {
-    
+    _houseId = houseId;
     NSArray *array = [zipPath componentsSeparatedByString:@".zip"];
     NSString *zipFpath = array[0];
     
     NSMutableDictionary *houseDict = [NSMutableDictionary dictionary];
-    [houseDict setValue:_houseId forKey:@"houseId"];
+    [houseDict setValue:houseId forKey:@"houseId"];
     [houseDict setValue:zipFpath forKey:@"zipFpath"];
     [houseDict setValue:HOUSE_SOLUTION_ORIGN_TYPE forKey:@"type"];
     [houseDict setValue:0 forKey:@"isUpload"];
@@ -136,14 +137,14 @@ static YCAppManager *singleton = nil;
 }
 
 #pragma mark - 新增户型数据
-- (void)transHouseData
+- (void)transHouseData:(NSString *)houseId
 {
     
-    NSMutableDictionary *paramDict = [YCHouseFmdbTool queryOwnerSolutionData:_houseId];
+    NSMutableDictionary *paramDict = [YCHouseFmdbTool queryOwnerSolutionData:houseId];
     [paramDict setValue:_workId forKey:@"chief_id"];
     [paramDict setValue:_workName forKey:@"chief_name"];
     [paramDict setValue:_workMobile forKey:@"chief_mobile"];
-    [paramDict setValue:_houseId forKey:@"house_num"];
+    [paramDict setValue:houseId forKey:@"house_num"];
     
     NSString *urlStr = [NSString stringWithFormat:@"%@/leju/house/save/", YC_HOST_URL];
     
@@ -164,7 +165,11 @@ static YCAppManager *singleton = nil;
                          NSString *strHouseId = resultDict[@"house_num"];
                          NSString *strLFfile = resultDict[@"lf_file"];
                          
-                         [YCAppManager instance].houseId = strHouseId;
+                         // 如果上传过zip文件，直接更新
+                         if ([YCHouseFmdbTool queryOwnerSolutionZipFile:strHouseId]) {
+                             // 检查Solution是否有zipURL，如果有更新
+                             [self transUpdateHouse];
+                         }
                          
                          // 更改本地数据
                          NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET lfFile = '%@' where houseId = '%@'", strLFfile, strHouseId];
@@ -188,7 +193,6 @@ static YCAppManager *singleton = nil;
 {
     
     NSMutableDictionary *paramDict = [YCHouseFmdbTool queryOwnerSolutionData:_houseId];
-    [paramDict setValue:_workMobile forKey:@"file_url"];
     [paramDict setValue:_houseId forKey:@"house_num"];
     
     NSString *urlStr = [NSString stringWithFormat:@"%@/leju/house/update/", YC_HOST_URL];
@@ -210,12 +214,44 @@ static YCAppManager *singleton = nil;
                          NSString *strHouseId = resultDict[@"house_num"];
                          NSString *strLFfile = resultDict[@"lf_file"];
                          
-                         [YCAppManager instance].houseId = strHouseId;
-                         
                          // 更改本地数据
                          NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET lfFile = '%@' where houseId = '%@'", strLFfile, strHouseId];
                          [YCHouseFmdbTool modifyData:modifySql];
+                         
+                     } else {
+                         
+                         NSLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
+                         //[self showHUDWithText:[backDic valueForKey:@"msg"]];
+                     }
+                 }
+                 
+             } failure:^(NSError *error) {
+                 
+                 NSLog(@"请求失败-%@", error);
+             }];
+}
 
+#pragma mark - 删除户型数据
+- (void)transDeleteHouse:(NSString *)houseId
+{
+    
+    NSMutableDictionary *paramDict = [YCHouseFmdbTool queryOwnerSolutionData:houseId];
+    [paramDict setValue:houseId forKey:@"house_num"];
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@/leju/house/delete/", YC_HOST_URL];
+    
+    [ZTHttpTool post:urlStr
+              params:paramDict
+             success:^(id json) {
+                 
+                 NSDictionary *backDic = json;
+                 
+                 if (backDic != nil) {
+                     
+                     NSString *errCodeStr = (NSString *)[backDic valueForKey:@"code"];
+                     
+                     if ( [errCodeStr integerValue] == SUCCESS_DATA ) {
+                         NSLog(@"删除拆改图成功");
                      } else {
                          
                          NSLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
@@ -231,12 +267,16 @@ static YCAppManager *singleton = nil;
 
 #pragma mark - 上传户型数据文件
 - (void)uploadFileMehtod:(NSString *)filePath
+                 houseId:(NSString *)houseId
+                    type:(NSString *)type
 {
+    
+    _houseId = houseId;
     
     // 创建参数模型
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-//    [parameters setObject:@"5" forKey:@"type"]; // 户型图 & 3D
-    [parameters setObject:_houseId forKey:@"houseId"]; // 科创houseID
+    [parameters setObject:type forKey:@"zip_type"]; // 0:普通zip包, 1: obj的zip包
+    [parameters setObject:_houseId forKey:@"house_num"]; // 科创houseID
     
     NSFileManager * fm;
     fm = [NSFileManager defaultManager];
@@ -268,11 +308,18 @@ static YCAppManager *singleton = nil;
                 
                 NSLog(@"zipFileUrl %@", zipFileUrl);
                 
+                // 拆改图直接上传 || 原始图需要有zipUrl地址直接通知
+                if ([_houseId hasSuffix:@"_1"] ||
+                    [YCHouseFmdbTool queryOwnerSolutionZipFile:houseId])
+                {
+                    // save过 直接通知
+                    [self transUpdateHouse];
+                }
+                
                 // 更新Solution zipUrl 字段
                 NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET zipUrl = '%@', isUpload = 1 where houseId = '%@'", zipFileUrl, _houseId];
                 [YCHouseFmdbTool modifyData:modifySql];
                 
-                [self transUpdateHouse];
             } else {
                 
                 NSLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
