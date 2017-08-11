@@ -25,6 +25,11 @@
 
 - (NSString *)getHouseId;
 
+#pragma mark - 注册工长
+- (void)registerWorkerData:(NSString *)strMobile
+                    workId:(NSString *)workId
+                  workName:(NSString *)workName;
+
 #pragma mark - 上传户型数据文件
 - (void)saveLocalHouseData:(NSString *)zipPath
                    houseId:(NSString *)houseId;
@@ -37,8 +42,7 @@
 
 #pragma mark - 上传户型数据文件
 - (void)uploadFileMehtod:(NSString *)filePath
-                 houseId:(NSString *)houseId
-                    type:(NSString *)type;
+                 houseId:(NSString *)houseId;
 
 - (void)transLoginData:(NSString *)userName passWord:(NSString *)passWord;
 - (void)saveLocalOwnerData:(YCOwnerModel *)userModel;

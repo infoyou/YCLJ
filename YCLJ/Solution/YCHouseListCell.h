@@ -1,6 +1,6 @@
 //
 //  YCHouseListCell.h
-//  
+//
 //
 //  Created by Adam on 17/4/6.
 //  Copyright ©YC. All rights reserved.

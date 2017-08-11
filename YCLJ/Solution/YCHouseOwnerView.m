@@ -124,7 +124,10 @@
     if (![userModel.area hasSuffix:@"㎡"])
     {
         strArea = [NSString stringWithFormat:@"面积: %@㎡", userModel.area];
+    } else {
+        strArea = [NSString stringWithFormat:@"面积: %@", userModel.area];
     }
+    
     _labArea.text = strArea;
     CGFloat labAreaW = [ZTCommonUtils calcuViewWidth:_labArea.text font:_labArea.font];
     _labArea.frame = CGRectMake(areaX, addressY, labAreaW, 20);

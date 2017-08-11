@@ -1,6 +1,6 @@
 //
 //  YCHouseListCell.m
-//  
+//
 //
 //  Created by Adam on 17/4/6.
 //  Copyright ©YC. All rights reserved.
@@ -9,6 +9,7 @@
 #import "YCHouseListCell.h"
 #import "YCHouseObject.h"
 #import "YCHouseModel.h"
+#import "ZTCommonUtils.h"
 
 @interface YCHouseListCell()
 {
@@ -66,19 +67,19 @@
         imgDelete = [[UIImageView alloc] init];
         imgDelete.image = GetImageByName(@"ycDelete");
         [self.contentView addSubview:imgDelete];
-
+        
         // 3, delete btn
         btnDel = [UIButton buttonWithType:UIButtonTypeCustom];
         [btnDel addTarget:self action:@selector(doDelete) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:btnDel];
-
+        
         // 4, author
         labDate = [[UILabel alloc] init];
         [self.contentView addSubview:labDate];
         labDate.textAlignment = NSTextAlignmentCenter;
         labDate.font = kHouse_Date_Font;
         labDate.textColor = HEX_COLOR(@"0x333333");
-
+        
         // 5, Copy Solution
         labCopySolution = [[UILabel alloc] init];
         [self.contentView addSubview:labCopySolution];
@@ -128,11 +129,11 @@
         btnDel.hidden = YES;
     }
     
-    // 2, author
+    // 2, date
     if (![houseModel.updateDate isEqualToString:@""]) {
-        labDate.text = @"修改日期";
+        labDate.text = [NSString stringWithFormat:@"修改日期 %@", [ZTCommonUtils currentDateStr:houseModel.updateDate]];
     } else {
-        labDate.text = @"新建日期";
+        labDate.text = [NSString stringWithFormat:@"新建日期 %@", [ZTCommonUtils currentDateStr:houseModel.creatDate]];
     }
     
 }

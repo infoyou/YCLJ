@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4189F48961F017C406B952A1 /* libPods-YCLJ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A31E24CF965375A4118BBA /* libPods-YCLJ.a */; };
+		740337271F3D4E260087D8EB /* lfsqSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740337261F3D4E260087D8EB /* lfsqSDK.framework */; };
 		74149BAF1F34675000671036 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74149B721F34675000671036 /* Info.plist */; };
 		74149BB01F34675000671036 /* YCAlertViewExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B741F34675000671036 /* YCAlertViewExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74149BB11F34675000671036 /* YCAlertViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B751F34675000671036 /* YCAlertViewExtension.m */; };
@@ -84,7 +85,6 @@
 		743F8E071F3471E200198D20 /* YCPopViewExtension.h in Sources */ = {isa = PBXBuildFile; fileRef = 74149B7C1F34675000671036 /* YCPopViewExtension.h */; };
 		74545A521F29F805002EE1CE /* houseCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74545A4E1F29F805002EE1CE /* houseCity.plist */; };
 		74545A531F29F805002EE1CE /* houseType.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74545A4F1F29F805002EE1CE /* houseType.plist */; };
-		746BB32D1F3C3C4300FF1E45 /* lfsqSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 746BB32C1F3C3C4300FF1E45 /* lfsqSDK.framework */; };
 		74A68C671F220F4200DC37BA /* LFDrawSDKAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A68C631F220F4200DC37BA /* LFDrawSDKAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74A68C681F220F4200DC37BA /* LFHouseInfoModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A68C641F220F4200DC37BA /* LFHouseInfoModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74A68C691F220F4200DC37BA /* lfsqSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A68C651F220F4200DC37BA /* lfsqSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -134,6 +134,7 @@
 /* Begin PBXFileReference section */
 		06210651EC74D832FDD66DF0 /* Pods-YCLJ.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YCLJ.release.xcconfig"; path = "Pods/Target Support Files/Pods-YCLJ/Pods-YCLJ.release.xcconfig"; sourceTree = "<group>"; };
 		65A31E24CF965375A4118BBA /* libPods-YCLJ.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YCLJ.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		740337261F3D4E260087D8EB /* lfsqSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lfsqSDK.framework; sourceTree = "<group>"; };
 		74117AE61F204E7F00911D09 /* YCLJ.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YCLJ.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74149B721F34675000671036 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74149B741F34675000671036 /* YCAlertViewExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCAlertViewExtension.h; sourceTree = "<group>"; };
@@ -211,7 +212,6 @@
 		743F8E041F34714000198D20 /* YCUserListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCUserListCell.m; sourceTree = "<group>"; };
 		74545A4E1F29F805002EE1CE /* houseCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = houseCity.plist; sourceTree = "<group>"; };
 		74545A4F1F29F805002EE1CE /* houseType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = houseType.plist; sourceTree = "<group>"; };
-		746BB32C1F3C3C4300FF1E45 /* lfsqSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lfsqSDK.framework; sourceTree = "<group>"; };
 		74A68C621F220F4200DC37BA /* LFDrawManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LFDrawManager.h; path = lfsqSDK.framework/Headers/LFDrawManager.h; sourceTree = "<group>"; };
 		74A68C631F220F4200DC37BA /* LFDrawSDKAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LFDrawSDKAPI.h; path = lfsqSDK.framework/Headers/LFDrawSDKAPI.h; sourceTree = "<group>"; };
 		74A68C641F220F4200DC37BA /* LFHouseInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LFHouseInfoModel.h; path = lfsqSDK.framework/Headers/LFHouseInfoModel.h; sourceTree = "<group>"; };
@@ -266,7 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4189F48961F017C406B952A1 /* libPods-YCLJ.a in Frameworks */,
-				746BB32D1F3C3C4300FF1E45 /* lfsqSDK.framework in Frameworks */,
+				740337271F3D4E260087D8EB /* lfsqSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +276,7 @@
 		74117ADC1F204E7F00911D09 = {
 			isa = PBXGroup;
 			children = (
-				746BB32C1F3C3C4300FF1E45 /* lfsqSDK.framework */,
+				740337261F3D4E260087D8EB /* lfsqSDK.framework */,
 				74302B521F3AFAB70095D3BD /* MapFileParser.sh */,
 				74302B531F3AFAB70095D3BD /* DXFTemplate_shape.dxf */,
 				74302B541F3AFAB70095D3BD /* RoomTypeAndIDList.plist */,

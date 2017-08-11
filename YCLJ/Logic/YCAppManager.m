@@ -56,6 +56,21 @@ static YCAppManager *singleton = nil;
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"houseId"];
 }
 
+#pragma mark - 注册工长
+- (void)registerWorkerData:(NSString *)strMobile
+                    workId:(NSString *)workId
+                  workName:(NSString *)workName
+{
+    if (![YCHouseFmdbTool queryWorkerData:strMobile]) {
+        // 工长第一次登录 或 换手机
+        [YCHouseFmdbTool firstUse];
+        [YCHouseFmdbTool insertWorker:strMobile
+                               workId:workId
+                             workName:workName];
+    }
+    
+}
+
 #pragma mark - 用户登录
 - (void)transLoginData:(NSString *)userName passWord:(NSString *)passWord
 {
@@ -265,14 +280,10 @@ static YCAppManager *singleton = nil;
              }];
 }
 
-#pragma mark - 上传户型数据文件
-- (void)uploadFileMehtod:(NSString *)filePath
-                 houseId:(NSString *)houseId
-                    type:(NSString *)type
+- (void)transZipData:(NSString *)filePath
+             houseId:(NSString *)houseId
+                type:(NSString *)type
 {
-    
-    _houseId = houseId;
-    
     // 创建参数模型
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:type forKey:@"zip_type"]; // 0:普通zip包, 1: obj的zip包
@@ -317,7 +328,7 @@ static YCAppManager *singleton = nil;
                 }
                 
                 // 更新Solution zipUrl 字段
-                NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET zipUrl = '%@', isUpload = 1 where houseId = '%@'", zipFileUrl, _houseId];
+                NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET zipUrl = '%@', updateDate = '%@', isUpload = 1 where houseId = '%@'", zipFileUrl, [ZTCommonUtils currentTimeInterval], _houseId];
                 [YCHouseFmdbTool modifyData:modifySql];
                 
             } else {
@@ -331,6 +342,29 @@ static YCAppManager *singleton = nil;
         //            failure(error);
         //        }
     }];
+}
+
+#pragma mark - 上传户型数据文件
+- (void)uploadFileMehtod:(NSString *)filePath
+                 houseId:(NSString *)houseId
+{
+    
+    _houseId = houseId;
+    [self transZipData:filePath houseId:houseId type:@"0"];
+    
+    NSArray *array = [filePath componentsSeparatedByString:@".zip"];
+    NSString *zipFpath = array[0];
+    NSString *u3dDir = [NSString stringWithFormat:@"%@_obj", zipFpath];
+    
+    if ([ZTCommonUtils isExistDirName:u3dDir]) {
+        
+        NSString *u3dZipFpath = [NSString stringWithFormat:@"%@.zip", u3dDir];
+        [ZTCommonUtils zipFileDir:u3dZipFpath sourcePath:u3dDir];
+        
+        // 存在3d文件，上传
+        [self transZipData:u3dZipFpath houseId:houseId type:@"1"];
+    }
+    
 }
 
 @end

@@ -41,6 +41,10 @@ typedef void(^ getCopyHouseIDSucceedBlock)(NSString * _Nonnull HouseID);
 +(NSString*_Nullable)getHouseU3DMtlPathWithHouseID:(NSString*_Nonnull)houseID;
 
 
+/** 获取 “3D文件夹” 路径  无该户型数据时为 @""*/
++(NSString*_Nullable)getHouseU3DPathWithHouseID:(NSString*_Nonnull)houseID;
+
+
 /** 获取 户型ZIP文件(.zip) 保存路径  无该户型数据时为 @""*/
 +(NSString*_Nullable)getHouseZIPDataPathWithHouseID:(NSString*_Nonnull)houseID;
 

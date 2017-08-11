@@ -49,10 +49,10 @@
 - (void)addRightBtn
 {
     UIBarButtonItem *btnSave = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"保存"
-                                   style:UIBarButtonItemStylePlain
-                                   target:self
-                                   action:@selector(doSave:)];
+                                initWithTitle:@"保存"
+                                style:UIBarButtonItemStylePlain
+                                target:self
+                                action:@selector(doSave:)];
     self.navigationItem.rightBarButtonItem = btnSave;
 }
 
@@ -85,8 +85,9 @@
                          [self changeVC:userDict];
                      } else {
                          
+                         NSString *backMsg = (NSString *)backDic[@"msg"];
                          NSLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
-                         //[self showHUDWithText:[backDic valueForKey:@"msg"]];
+                         ShowAlertWithOneButton(self, @"提示", backMsg, @"关闭");
                      }
                  }
                  
@@ -157,7 +158,17 @@
     [self.view addSubview:view];
 }
 
+- (void)closeTxtKeyboard
+{
+    [_txtName resignFirstResponder];
+    [_txtMobile resignFirstResponder];
+    [_txtArea resignFirstResponder];
+    [_txtAddress resignFirstResponder];
+}
+
 - (void)selectType {
+    
+    [self closeTxtKeyboard];
     
     YCHouseParmChoiceView * view = [[YCHouseParmChoiceView alloc] initWithFrame:self.view.frame];
     [view loadData:@"houseType" strTitle:@"请选择房屋类型"];
@@ -214,7 +225,7 @@
     CGFloat areaX = nameX;
     CGFloat areaY = nameY + nameH + offsetY;
     CGRect areaF = CGRectMake(areaX, areaY, nameW, nameH);
-        
+    
     if (!_txtArea) {
         _txtArea = [[UITextField alloc] init];
         _txtArea.frame = areaF;
@@ -248,7 +259,7 @@
         [_btnCity addTarget:self action:@selector(selectCity) forControlEvents:UIControlEventTouchUpInside];
         [self changeBtnStyle:_btnCity];
     }
-
+    
     // 房屋属性
     CGFloat styleX = mobileX;
     CGFloat styleY = nameY + 2 * (nameH + offsetY);
@@ -267,7 +278,7 @@
     CGFloat addressY = nameY + 3 * (nameH + offsetY);
     CGFloat addressW = YC_SCREEN_WIDTH - 2 * nameX;
     CGRect addressF = CGRectMake(addressX, addressY, addressW, nameH);
-        
+    
     if (!_txtAddress) {
         _txtAddress = [[UITextField alloc] init];
         _txtAddress.frame = addressF;
@@ -285,7 +296,7 @@
     [bgView addSubview:_btnStyle];
     
     [self.view addSubview:bgView];
-
+    
 }
 
 - (void)changeTxtStyle:(UITextField *)textField
@@ -304,7 +315,7 @@
     textField.leftView = [[UILabel alloc] initWithFrame:CGRectMake(offsetInX, 0, offsetInX, textH)];
     textField.leftViewMode  = UITextFieldViewModeAlways;
     
-//    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:textField.placeholder attributes:@{NSForegroundColorAttributeName:HEX_COLOR(@"0xBFBFBF"), NSFontAttributeName:FontSystem(15)}];
+    //    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:textField.placeholder attributes:@{NSForegroundColorAttributeName:HEX_COLOR(@"0xBFBFBF"), NSFontAttributeName:FontSystem(15)}];
 }
 
 - (void)changeBtnStyle:(UIButton *)btn
@@ -332,7 +343,7 @@
     
     return YES;
 }
-    
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -387,14 +398,14 @@
         ShowAlertWithOneButton(self, @"提示", @"房屋所在地区为空", @"OK");
         return NO;
     }
-
+    
     if (_txtAddress.text.length == 0 || [_txtAddress.text isEqualToString:@""]) {
         
         ShowAlertWithOneButton(self, @"提示", @"房屋位置为空", @"OK");
         [_txtAddress becomeFirstResponder];
         return NO;
     }
-
+    
     
     return YES;
 }

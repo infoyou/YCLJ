@@ -129,7 +129,7 @@ static FMDatabase *_fmdb;
     
     NSString *currentTime = [ZTCommonUtils currentTimeInterval];
     
-    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Solution(id, ownerId, houseId, lfFile, filePath, creatDate, updateDate, type, isUpload, isDelete) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%zd', '%zd', '%zd');", [ZTCommonUtils currentTimeInterval], ownerId, model.houseId, model.lfFile, model.zipFpath, currentTime, @"", model.type, model.isUpload, model.isDelete];
+    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Solution(id, ownerId, houseId, lfFile, filePath, creatDate, updateDate, type, isUpload, isDelete) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%zd', '%zd', '%zd');", currentTime, ownerId, model.houseId, model.lfFile, model.zipFpath, currentTime, @"", model.type, model.isUpload, model.isDelete];
     
     return [_fmdb executeUpdate:insertSql];
 }

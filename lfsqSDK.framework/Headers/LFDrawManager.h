@@ -46,6 +46,7 @@
  */
 @property (nonatomic, copy) void (^houseListBtnActionBlock)(NSString *houseID);
 
+
 /**
  跳转到u3d界面
  */
@@ -57,6 +58,10 @@
 @property (nonatomic, copy) void (^closeBtnActionBlock)(NSString* houseID);
 
 
+/**
+ 注销
+ */
++(void)loginOut;
 
 
 /**
