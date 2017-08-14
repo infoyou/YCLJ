@@ -7,6 +7,7 @@
 //
 
 #import "YCHouseListViewController.h"
+#import "YCSendResultViewController.h"
 #import "YCHouseObject.h"
 #import "YCHouseListCell.h"
 #import "YCAlertViewExtension.h"
@@ -140,6 +141,7 @@
 
 - (void)loadSolutionFromDB
 {
+    
     _userArray = [YCHouseFmdbTool queryOwnerData:nil];
     _userCount = [_userArray count];
     _userSolutionCountDict = [YCHouseFmdbTool queryOwnerSolutionNumber];
@@ -320,7 +322,7 @@
         return;
     }
     
-    DLog(@"handle Copy %@", houseModel.zipFpath);
+//    DLog(@"handle Copy %@", houseModel.zipFpath);
     NSString *sourcePath = houseModel.zipFpath;
     NSString *orginHouseId = houseModel.houseId;
     
@@ -340,6 +342,8 @@
     houseModel.zipFpath = targetPath;
     houseModel.houseId = [NSString stringWithFormat:@"%@_1", orginHouseId];
     [YCHouseFmdbTool insertSolutionModel:houseModel ownerId:houseModel.ownerId];
+    
+    // 同步后台
     [[YCAppManager instance] transHouseData:houseModel.houseId];
     
     // reload msg
@@ -422,8 +426,8 @@
 #pragma mark - HouseListOwnerViewDelegate method
 - (void)doShareOwner
 {
-    DLog(@"doShareOwner");
-    ShowAlertWithOneButton(self, @"", @"分享业主", @"OK");
+//    DLog(@"doShareOwner");
+//    ShowAlertWithOneButton(self, @"", @"分享业主", @"OK");
     
     if (self.shareEventBlock)
     {
@@ -434,8 +438,8 @@
 
 - (void)doSendOwner
 {
-    DLog(@"doSendOwner");
-    ShowAlertWithOneButton(self, @"", @"发送业主", @"OK");
+    YCSendResultViewController *sendResultVC = [[YCSendResultViewController alloc] init];
+    [self.navigationController pushViewController:sendResultVC animated:YES];
     
     if (self.sendEventBlock)
     {

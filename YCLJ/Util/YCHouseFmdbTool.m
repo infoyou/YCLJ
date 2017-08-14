@@ -119,8 +119,9 @@ static FMDatabase *_fmdb;
 {
     
     NSString *currentTime = [ZTCommonUtils currentTimeInterval];
+    NSString *currentTimeStr = [ZTCommonUtils getCurrentTime];
     
-    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Solution(id, houseId, lfFile, filePath, creatDate, updateDate, type, isUpload, isDelete) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%zd', '%zd', '%zd');", [ZTCommonUtils currentTimeInterval], model.houseId, model.lfFile, model.zipFpath, currentTime, @"", model.type, model.isUpload, model.isDelete];
+    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Solution(id, houseId, lfFile, filePath, creatDate, updateDate, type, isUpload, isDelete) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%zd', '%zd', '%zd');", currentTime, model.houseId, model.lfFile, model.zipFpath, currentTimeStr, @"", model.type, model.isUpload, model.isDelete];
     
     return [_fmdb executeUpdate:insertSql];
 }
@@ -128,8 +129,9 @@ static FMDatabase *_fmdb;
 + (BOOL)insertSolutionModel:(YCHouseModel *)model ownerId:(NSString *)ownerId {
     
     NSString *currentTime = [ZTCommonUtils currentTimeInterval];
+    NSString *currentTimeStr = [ZTCommonUtils getCurrentTime];
     
-    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Solution(id, ownerId, houseId, lfFile, filePath, creatDate, updateDate, type, isUpload, isDelete) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%zd', '%zd', '%zd');", currentTime, ownerId, model.houseId, model.lfFile, model.zipFpath, currentTime, @"", model.type, model.isUpload, model.isDelete];
+    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Solution(id, ownerId, houseId, lfFile, filePath, creatDate, updateDate, type, isUpload, isDelete) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%zd', '%zd', '%zd');", currentTime, ownerId, model.houseId, model.lfFile, model.zipFpath, currentTimeStr, @"", model.type, model.isUpload, model.isDelete];
     
     return [_fmdb executeUpdate:insertSql];
 }
@@ -174,9 +176,12 @@ static FMDatabase *_fmdb;
     while ([set next]) {
         
         NSString *ownerId = [set stringForColumn:@"ownerId"];
-        NSInteger number = [set intForColumn:@"number"];
         
-        [dict setObject:[NSNumber numberWithInteger:number] forKey:ownerId];
+        if (ownerId != nil) {
+            NSInteger number = [set intForColumn:@"number"];
+            
+            [dict setObject:[NSNumber numberWithInteger:number] forKey:ownerId];
+        }
     }
     
     return dict;
@@ -195,28 +200,32 @@ static FMDatabase *_fmdb;
     while ([set next]) {
         
         NSString *ownerId = [set stringForColumn:@"ownerId"];
-        NSInteger type = [set intForColumn:@"type"];
-        NSString *houseId = [set stringForColumn:@"houseId"];
-        NSString *zipFpath = [set stringForColumn:@"filePath"];
-        NSString *creatDate = [set stringForColumn:@"creatDate"];
-        NSString *updateDate = [set stringForColumn:@"updateDate"];
-        NSInteger isUpload = [set intForColumn:@"isUpload"];
-        NSInteger isDelete = [set intForColumn:@"isDelete"];
         
-        NSMutableDictionary *houseDict = [NSMutableDictionary dictionary];
-        [houseDict setObject:ownerId forKey:@"ownerId"];
-        [houseDict setObject:houseId forKey:@"houseId"];
-        [houseDict setObject:zipFpath forKey:@"zipFpath"];
-        [houseDict setObject:[NSNumber numberWithInteger:type] forKey:@"type"];
-        [houseDict setObject:[NSNumber numberWithInteger:isUpload] forKey:@"isUpload"];
-        [houseDict setObject:[NSNumber numberWithInteger:isDelete] forKey:@"isDelete"];
-        [houseDict setObject:creatDate forKey:@"creatDate"];
-        [houseDict setObject:updateDate forKey:@"updateDate"];
-        
-        NSString *key = [NSString stringWithFormat:@"%@%ld", ownerId, type];
-        YCHouseModel *modal = [YCHouseModel newWithDict:houseDict];
-        
-        [dict setObject:modal forKey:key];
+        if (ownerId != nil) {
+            
+            NSInteger type = [set intForColumn:@"type"];
+            NSString *houseId = [set stringForColumn:@"houseId"];
+            NSString *zipFpath = [set stringForColumn:@"filePath"];
+            NSString *creatDate = [set stringForColumn:@"creatDate"];
+            NSString *updateDate = [set stringForColumn:@"updateDate"];
+            NSInteger isUpload = [set intForColumn:@"isUpload"];
+            NSInteger isDelete = [set intForColumn:@"isDelete"];
+            
+            NSMutableDictionary *houseDict = [NSMutableDictionary dictionary];
+            [houseDict setObject:ownerId forKey:@"ownerId"];
+            [houseDict setObject:houseId forKey:@"houseId"];
+            [houseDict setObject:zipFpath forKey:@"zipFpath"];
+            [houseDict setObject:[NSNumber numberWithInteger:type] forKey:@"type"];
+            [houseDict setObject:[NSNumber numberWithInteger:isUpload] forKey:@"isUpload"];
+            [houseDict setObject:[NSNumber numberWithInteger:isDelete] forKey:@"isDelete"];
+            [houseDict setObject:creatDate forKey:@"creatDate"];
+            [houseDict setObject:updateDate forKey:@"updateDate"];
+            
+            NSString *key = [NSString stringWithFormat:@"%@%ld", ownerId, type];
+            YCHouseModel *modal = [YCHouseModel newWithDict:houseDict];
+            
+            [dict setObject:modal forKey:key];
+        }
     }
     
     return dict;

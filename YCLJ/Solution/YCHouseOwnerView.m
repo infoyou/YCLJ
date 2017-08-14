@@ -123,9 +123,9 @@
     NSString *strArea = userModel.area;
     if (![userModel.area hasSuffix:@"㎡"])
     {
-        strArea = [NSString stringWithFormat:@"面积: %@㎡", userModel.area];
+        strArea = [NSString stringWithFormat:@"建筑面积: %@㎡", userModel.area];
     } else {
-        strArea = [NSString stringWithFormat:@"面积: %@", userModel.area];
+        strArea = [NSString stringWithFormat:@"建筑面积: %@", userModel.area];
     }
     
     _labArea.text = strArea;

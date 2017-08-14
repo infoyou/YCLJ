@@ -13,6 +13,7 @@
 @interface ZTCommonUtils : NSObject
 
 + (NSString *)currentTimeInterval;
++ (NSString *)getCurrentTime;
 + (NSString *)curDateString;
 + (NSString *)currentDateStr:(NSString *)strSecs;
 
@@ -26,6 +27,7 @@
 + (void)doCopyFile:(NSString *)sourcePath targetPath:(NSString *)targetPath houseId:(NSString *)houseId;
 + (void)zipFileDir:(NSString *)zipPath sourcePath:(NSString *)sourcePath;
 
++ (NSMutableArray *)allFilesAtPath:(NSString *)direString;
 + (BOOL)isExistDirName:(NSString *)dirName;
 
 #pragma mark - 定宽高度自适应

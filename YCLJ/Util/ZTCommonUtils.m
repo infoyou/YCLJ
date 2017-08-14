@@ -22,6 +22,15 @@
     return dateInterval;
 }
 
++ (NSString *)getCurrentTime {
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy/MM/dd HH:mm"];
+    NSString *dateTime = [formatter stringFromDate:[NSDate date]];
+    
+    return dateTime;
+}
+
 + (NSString *)curDateString
 {
     NSDate *curDate = [NSDate date];

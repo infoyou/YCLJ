@@ -131,9 +131,9 @@
     
     // 2, date
     if (![houseModel.updateDate isEqualToString:@""]) {
-        labDate.text = [NSString stringWithFormat:@"修改日期 %@", [ZTCommonUtils currentDateStr:houseModel.updateDate]];
+        labDate.text = [NSString stringWithFormat:@"修改日期 %@", houseModel.updateDate];
     } else {
-        labDate.text = [NSString stringWithFormat:@"新建日期 %@", [ZTCommonUtils currentDateStr:houseModel.creatDate]];
+        labDate.text = [NSString stringWithFormat:@"新建日期 %@", houseModel.creatDate];
     }
     
 }

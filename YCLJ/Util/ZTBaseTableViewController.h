@@ -38,6 +38,8 @@
 
 - (void)loadCellDataDone;
 
+- (void)setTablePage;
+
 //- (void)loadNewData;
 //- (void)loadNewDataDone;
 //

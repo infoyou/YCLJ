@@ -35,6 +35,9 @@
             self.isDelete = [(NSNumber *)dict[@"isDelete"] intValue];
             
             self.ownerId = (NSString *)dict[@"ownerId"] ? (NSString *)dict[@"ownerId"]:@"";
+            
+            self.creatDate = (NSString *)dict[@"creatDate"] ? (NSString *)dict[@"creatDate"]:@"";
+            self.updateDate = (NSString *)dict[@"updateDate"] ? (NSString *)dict[@"updateDate"]:@"";
         }
     }
     

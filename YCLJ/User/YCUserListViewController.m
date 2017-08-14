@@ -18,6 +18,7 @@
     
     [self adjustView];
     
+    [self setTablePage];
     self.title = @"测量阶段业主";
     
     self.view.backgroundColor = [UIColor whiteColor];
@@ -39,7 +40,7 @@
 {
     [self loadSolutionFromWeb];
     
-    [super loadCellDataDone];
+//    [super loadCellDataDone];
 }
 
 - (void)loadCellDataDone

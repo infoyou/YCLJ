@@ -328,7 +328,7 @@ static YCAppManager *singleton = nil;
                 }
                 
                 // 更新Solution zipUrl 字段
-                NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET zipUrl = '%@', updateDate = '%@', isUpload = 1 where houseId = '%@'", zipFileUrl, [ZTCommonUtils currentTimeInterval], _houseId];
+                NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET zipUrl = '%@', updateDate = '%@', isUpload = 1 where houseId = '%@'", zipFileUrl, [ZTCommonUtils getCurrentTime], _houseId];
                 [YCHouseFmdbTool modifyData:modifySql];
                 
             } else {
@@ -356,7 +356,16 @@ static YCAppManager *singleton = nil;
     NSString *zipFpath = array[0];
     NSString *u3dDir = [NSString stringWithFormat:@"%@_obj", zipFpath];
     
+//    NSLog(@"u3dDir is dir %@", u3dDir);
     if ([ZTCommonUtils isExistDirName:u3dDir]) {
+        
+//        NSLog(@"u3dDir is exist");
+//        NSMutableArray *pathArray = [ZTCommonUtils allFilesAtPath:u3dDir];
+//        NSInteger count = pathArray.count;
+//        
+//        for (NSInteger i=0; i<count; i++) {
+//            NSLog(@"u3dDir pathArray[%d] = %@", i, pathArray[i]);
+//        }
         
         NSString *u3dZipFpath = [NSString stringWithFormat:@"%@.zip", u3dDir];
         [ZTCommonUtils zipFileDir:u3dZipFpath sourcePath:u3dDir];
