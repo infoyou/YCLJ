@@ -1,5 +1,5 @@
 //
-//  StringCategory.h
+//  ZTStringCategory.h
 //  YCLJSDK
 //
 //  Created by Adam on 2017/8/3.

@@ -8,7 +8,7 @@
 
 #import "ZTCommonUtils.h"
 #import "YCHouseFmdbTool.h"
-#import "StringCategory.h"
+#import "ZTStringCategory.h"
 
 #ifndef YCLJ_Header_h
 #define YCLJ_Header_h
