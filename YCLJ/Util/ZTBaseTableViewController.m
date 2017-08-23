@@ -19,6 +19,8 @@
 
 - (void)viewDidLoad {
     
+    [super viewDidLoad];
+    
     self.mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, YC_SCREEN_WIDTH, YC_SCREEN_HEIGHT) style:UITableViewStylePlain];
     
     self.mTableView.delegate = self;
@@ -32,8 +34,6 @@
     [self.view addSubview:self.mTableView];
     
 //    [self adjustView];
-    
-    [super viewDidLoad];
 }
 
 - (void)addTapStatus

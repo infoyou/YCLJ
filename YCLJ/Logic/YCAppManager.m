@@ -27,6 +27,16 @@ static YCAppManager *singleton = nil;
     return singleton;
 }
 
+- (BOOL) isHengping
+{
+    return _hengping;
+}
+
+- (void) setHengping:(BOOL)flag
+{
+    _hengping = flag;
+}
+
 - (void)updateUserData:(NSString *)aUserId
 {
     NSUserDefaults *_def = [NSUserDefaults standardUserDefaults];

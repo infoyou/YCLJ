@@ -439,6 +439,7 @@
 - (void)doSendOwner
 {
     YCSendResultViewController *sendResultVC = [[YCSendResultViewController alloc] init];
+    sendResultVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:sendResultVC animated:YES];
     
     if (self.sendEventBlock)

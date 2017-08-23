@@ -125,8 +125,9 @@
     
     [self.navigationController popViewControllerAnimated:YES];
     /** 户型列表 */
-    YCHouseListViewController *solutionListVC = [[YCHouseListViewController alloc] init];
-    [self.navigationController pushViewController:solutionListVC animated:YES];
+    YCHouseListViewController *houseListVC = [[YCHouseListViewController alloc] init];
+    houseListVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:houseListVC animated:YES];
 }
 
 - (void)selectCity {

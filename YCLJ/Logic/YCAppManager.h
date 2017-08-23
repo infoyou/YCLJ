@@ -19,7 +19,13 @@
 @property (nonatomic, copy) NSString *houseId;
 @property (nonatomic, strong) YCOwnerModel *userModel;
 
+@property (nonatomic, assign) BOOL hengping;
+
 + (instancetype)instance;
+
+- (BOOL) isHengping;
+
+- (void) setHengping;
 
 - (void)updateHouseData:(NSString *)aHouseId;
 
