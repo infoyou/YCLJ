@@ -7,7 +7,6 @@
 //
 
 #import "ZTRootViewController.h"
-#import <lfsqSDK/PhotoManager.h>
 
 @interface ZTRootViewController ()
 
@@ -20,7 +19,6 @@
     
     // Do any additional setup after loading the view.
     [[YCAppManager instance] setHengping:YES];
-    [[PhotoManager getInstance] isHengping];
     
     [self setNewOrientation:YES];
     

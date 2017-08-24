@@ -25,7 +25,7 @@
 
 - (BOOL) isHengping;
 
-- (void) setHengping;
+- (void) setHengping:(BOOL)flag;
 
 - (void)updateHouseData:(NSString *)aHouseId;
 

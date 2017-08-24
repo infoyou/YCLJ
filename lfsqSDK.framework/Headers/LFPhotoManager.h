@@ -1,5 +1,5 @@
 //
-//  PhotoManager.h
+//  LFPhotoManager.h
 //
 //
 //  Created by apple on 15/12/24.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PhotoManager : NSObject
+@interface LFPhotoManager : NSObject
 
 +(id) getInstance;
 

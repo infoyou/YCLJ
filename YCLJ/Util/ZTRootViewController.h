@@ -11,7 +11,6 @@
 #import "ZTHttpTool.h"
 #import "YCHeader.h"
 #import "YCAppManager.h"
-//#import "PhotoManager.h"
 
 @interface ZTRootViewController : UIViewController
 
