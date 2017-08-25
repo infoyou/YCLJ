@@ -14,27 +14,51 @@
 
 @implementation ZTRootViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    NSNumber *orientationTarget = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+    [[UIDevice currentDevice] setValue:orientationTarget forKey:@"orientation"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Do any additional setup after loading the view.
-    [[YCAppManager instance] setHengping:YES];
-    
-    [self setNewOrientation:YES];
-    
-    NSLog(@"viewDidLoad");
+    NSNumber *orientationTarget = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight];
+    [[UIDevice currentDevice] setValue:orientationTarget forKey:@"orientation"];
+
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+//- (void)viewDidDisappear:(BOOL)animated
+//{
+//    
+//    [super viewDidDisappear:animated];
+
+//
+//    NSLog(@"viewDidDisappear");
+//}
+
+- (void)hengpingStart1
 {
     
-    [super viewDidDisappear:animated];
+    [[YCAppManager instance] setHengping:YES];
+    [self setNewOrientation:YES];
     
-    [[YCAppManager instance] setHengping:NO];
+}
 
+- (void)hengpingOver1
+{
+
+    [[YCAppManager instance] setHengping:NO];
     [self setNewOrientation:NO];
-    
-    NSLog(@"viewDidDisappear");
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,35 +78,43 @@
 
 #pragma mark - Orientations
 
-//- (BOOL)shouldAutorotate
-//{
-//    return YES;
-//}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:
-(UIInterfaceOrientation)toInterfaceOrientation {
-    
-    return (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight);
+- (BOOL)shouldAutorotate {
+    return YES;
 }
 
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskLandscapeRight;
 }
 
-//- (BOOL)prefersStatusBarHidden
-//{
-//    return NO;
-//}
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationLandscapeRight;
+}
 
 //- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
 //    
 //    return UIInterfaceOrientationLandscapeRight;
 //}
-//
-//- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
-//{
-//    return UIStatusBarAnimationSlide;
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
+{
+    return UIStatusBarAnimationSlide;
+}
+
+//-(BOOL)shouldAutorotate{
+//    if ([EHZCommonUtil canRotateView]) {
+//        return YES;
+//    }
+//    return NO;
+//    //    return EHZRootNavigationController.topViewController.shouldAutorotate;
+//}
+////支持的方向
+//- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+//    if ([EHZCommonUtil canRotateView]) {
+//        return EHZRootNavigationController.topViewController.supportedInterfaceOrientations;;
+//    }
+//    return UIInterfaceOrientationMaskPortrait;
+//    
 //}
 
 - (void)setNewOrientation:(BOOL)fullscreen

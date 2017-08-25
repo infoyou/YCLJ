@@ -66,14 +66,16 @@
 
 - (void)setFrame
 {
+    CGFloat offsetY = 40;
+    
     // result
-    _labResult.frame = CGRectMake(0, 80, YC_SCREEN_WIDTH, 25);
+    _labResult.frame = CGRectMake(0, offsetY, YC_SCREEN_WIDTH, 25);
     // note label
-    _labNote.frame = CGRectMake(0, 120, YC_SCREEN_WIDTH, 25);
+    _labNote.frame = CGRectMake(0, offsetY + 40, YC_SCREEN_WIDTH, 25);
     // barcode img
     CGFloat barCodeWH = 128.0;
     CGFloat barCodeX = (YC_SCREEN_WIDTH - barCodeWH)/2;
-    _imgBarCode.frame = CGRectMake(barCodeX, 180, barCodeWH, barCodeWH);
+    _imgBarCode.frame = CGRectMake(barCodeX, offsetY + 100, barCodeWH, barCodeWH);
     
 }
 
