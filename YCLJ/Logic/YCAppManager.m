@@ -81,6 +81,60 @@ static YCAppManager *singleton = nil;
     
 }
 
+#pragma mark - 获取户型id
+- (void)transHouseId:(NSString *)workId
+         ownerMobile:(NSString *)ownerMobile
+{
+    NSMutableDictionary *dataDict = [NSMutableDictionary dictionary];
+    [dataDict setObject:workId forKey:@"chief_id"];
+    [dataDict setObject:ownerMobile forKey:@"owner_mobile"];
+    
+    NSMutableDictionary *paramDict = [ZTCommonUtils getParamDict:dataDict];
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@/leju/house/house-num/", YC_HOST_URL];
+    [ZTHttpTool post:urlStr
+              params:paramDict
+             success:^(id json) {
+                 
+                 NSDictionary *backDic = json;
+                 
+                 if (backDic != nil) {
+                     
+                     NSString *errCodeStr = (NSString *)[backDic valueForKey:@"code"];
+                     
+                     if ( [errCodeStr integerValue] == SUCCESS_DATA ) {
+                         
+                         NSDictionary *resultDict = [backDic valueForKey:@"data"];
+                         
+                         NSString *house_num = resultDict[@"house_num"];
+                         
+                         NSLog(@"house_num %@", house_num);
+                         
+                         if (self.GetHouseId)
+                         {
+                             self.GetHouseId(house_num); // 调用回调函数
+                         }
+                         
+                     } else {
+                         
+                         NSLog(@"transHouseId back msg is %@", [backDic valueForKey:@"msg"]);
+                         //[self showHUDWithText:[backDic valueForKey:@"msg"]];
+                         
+                         if (self.GetHouseId)
+                         {
+                             self.GetHouseId(@""); // 调用回调函数
+                         }
+                     }
+                 }
+                 
+             } failure:^(NSError *error) {
+                 
+                 NSLog(@"请求失败-%@", error);
+             }];
+    
+    NSLog(@"transHouseId %@", @"结束");
+}
+
 #pragma mark - 用户登录
 - (void)transLoginData:(NSString *)userName passWord:(NSString *)passWord
 {
