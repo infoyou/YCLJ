@@ -105,7 +105,8 @@
         NSMutableDictionary *userDict = [NSMutableDictionary dictionary];
         [userDict setObject:_txtName.text forKey:@"owner_name"];
         [userDict setObject:_txtMobile.text forKey:@"owner_mobile"];
-        [userDict setObject:[_txtAddress.text stringByAddingPercentEscapes] forKey:@"address"];
+        [userDict setObject:_txtAddress.text forKey:@"address"];
+//        [userDict setObject:[_txtAddress.text stringByAddingPercentEscapes] forKey:@"address"];
         [userDict setObject:_txtArea.text forKey:@"area"];
         
         [userDict setObject:_strStyleValue forKey:@"is_new"];
@@ -118,6 +119,7 @@
 
 - (void)changeVC:(NSMutableDictionary *)userDict
 {
+    [userDict setObject:[_txtAddress.text stringByAddingPercentEscapes] forKey:@"address"];
     YCOwnerModel *userModel = [YCOwnerModel newWithDict:userDict];
     
     // 存储本地数据库
@@ -193,11 +195,11 @@
     UIView *bgView = [[UIView alloc] initWithFrame:bgFrame];
     bgView.backgroundColor = [UIColor whiteColor];
     
-    CGFloat offsetY = 30;
+    CGFloat offsetY = 15;
     
     // 业主姓名
     CGFloat nameX = 50;
-    CGFloat nameY = 70;
+    CGFloat nameY = 55;
     CGFloat nameW = (YC_SCREEN_WIDTH - (nameX * 3))/2;
     CGFloat nameH = 40;
     CGRect nameF = CGRectMake(nameX, nameY, nameW, nameH);

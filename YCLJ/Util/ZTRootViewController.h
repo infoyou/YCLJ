@@ -14,5 +14,6 @@
 
 @interface ZTRootViewController : UIViewController
 
+- (void)popToRootView;
 
 @end

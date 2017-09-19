@@ -18,7 +18,6 @@
 
 #define YC_HOST_URL           @"http://leju.jiandanhome.com"
 
-#define LJ_HOST_URL           @"http://testwww.7gz.com"
 #define LJ_SUCCESS_DATA                      0
 
 // system info

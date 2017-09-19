@@ -305,7 +305,6 @@
     YCOwnerModel *userModel = [_userArray objectAtIndex:indexPath.section];
     [LFDrawManager initDrawVCWithHouseID:houseId];
     
-    
     // 加载网络
     //    [YCAppManager instance].houseId = @"062ECECD-FA54-453B-8C40-741919A1BA7B";
     //    [self downloadAction];

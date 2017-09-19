@@ -34,6 +34,7 @@
     NSNumber *orientationTarget = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight];
     [[UIDevice currentDevice] setValue:orientationTarget forKey:@"orientation"];
 
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(popToRootView)];
 }
 
 //- (void)viewDidDisappear:(BOOL)animated
@@ -141,7 +142,11 @@
         [[UIDevice currentDevice] setValue:orientationTarget forKey:@"orientation"];
         
     }
-    
+}
+
+- (void)popToRootView
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

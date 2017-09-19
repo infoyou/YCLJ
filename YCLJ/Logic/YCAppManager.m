@@ -11,6 +11,8 @@
 #import "YCHouseFmdbTool.h"
 #import "YCHouseModel.h"
 #import "YCOwnerModel.h"
+#import "LFDrawSDKAPI.h"
+#import "YCHouseListViewController.h"
 
 @implementation YCAppManager
 
@@ -237,7 +239,8 @@ static YCAppManager *singleton = nil;
                      
                      NSString *errCodeStr = (NSString *)[backDic valueForKey:@"code"];
                      
-                     if ( [errCodeStr integerValue] == SUCCESS_DATA ) {
+                     if ( [errCodeStr integerValue] == SUCCESS_DATA ||
+                         [errCodeStr integerValue] == 10001 ) {
                          
                          NSDictionary *resultDict = [backDic valueForKey:@"data"];
                          
