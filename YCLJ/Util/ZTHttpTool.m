@@ -22,7 +22,7 @@
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     
     // 2.发送请求
-    [session GET:@"请求的url" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [session GET:url parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if (success) {
             
             success(responseObject);

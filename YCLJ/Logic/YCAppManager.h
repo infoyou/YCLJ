@@ -18,7 +18,7 @@
 @property (nonatomic, copy) NSString *ownerId;
 @property (nonatomic, copy) NSString *houseId;
 @property (nonatomic, strong) YCOwnerModel *userModel;
-@property (nonatomic, copy) void(^GetHouseId)(NSString *houseId);
+@property (nonatomic, copy) void(^GetOwnerHouseId)(NSString *houseId, NSString *lfFile, NSString *msg);
 
 @property (nonatomic, assign) BOOL hengping;
 
@@ -33,8 +33,8 @@
 - (NSString *)getHouseId;
 
 #pragma mark - 获取户型id
-- (void)transHouseId:(NSString *)workId
-         ownerMobile:(NSString *)ownerMobile;
+- (void)transWorkId:(NSString *)workId
+        ownerMobile:(NSString *)ownerMobile;
 
 #pragma mark - 注册工长
 - (void)registerWorkerData:(NSString *)strMobile

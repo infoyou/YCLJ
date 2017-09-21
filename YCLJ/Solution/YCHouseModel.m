@@ -22,22 +22,22 @@
     {
         if (dict != nil) {
             
-            self.houseId = (NSString *)dict[@"houseId"] ? (NSString *)dict[@"houseId"]:@"";
+            self.houseId = (NSString *)dict[@"house_num"] ? (NSString *)dict[@"house_num"]:@"";
             self.name = (NSString *)dict[@"name"] ? (NSString *)dict[@"name"]:@"";
             self.lfFile = (NSString *)dict[@"lf_file"] ? (NSString *)dict[@"lf_file"]:@"";
             self.huxingFpath = (NSString *)dict[@"huxing_fpath"] ? (NSString *)dict[@"huxing_fpath"]:@"";
-            self.areaFpath = (NSString *)dict[@"area_fpath"] ? (NSString *)dict[@"area_fpath"]:@"";
-            self.cadFpath = (NSString *)dict[@"cad_fpath"] ? (NSString *)dict[@"cad_fpath"]:@"";
+            self.areaFpath = (NSString *)dict[@"area_file"] ? (NSString *)dict[@"area_file"]:@"";
+            self.cadFpath = (NSString *)dict[@"cad_file"] ? (NSString *)dict[@"cad_file"]:@"";
             
-            self.zipFpath = (NSString *)dict[@"zipFpath"] ? (NSString *)dict[@"zipFpath"]:@"";
-            self.type = [(NSNumber *)dict[@"type"] intValue];
+            self.zipFpath = (NSString *)dict[@"pkg"] ? (NSString *)dict[@"pkg"]:@"";
+            self.type = [(NSNumber *)dict[@"is_copy"] intValue];
             self.isUpload = [(NSNumber *)dict[@"isUpload"] intValue];
             self.isDelete = [(NSNumber *)dict[@"isDelete"] intValue];
             
-            self.ownerId = (NSString *)dict[@"ownerId"] ? (NSString *)dict[@"ownerId"]:@"";
+            self.ownerId = (NSString *)dict[@"owner_mobile"] ? (NSString *)dict[@"owner_mobile"]:@"";
             
-            self.creatDate = (NSString *)dict[@"creatDate"] ? (NSString *)dict[@"creatDate"]:@"";
-            self.updateDate = (NSString *)dict[@"updateDate"] ? (NSString *)dict[@"updateDate"]:@"";
+            self.creatDate = (NSString *)dict[@"create_time"] ? (NSString *)dict[@"create_time"]:@"";
+            self.updateDate = (NSString *)dict[@"modify_time"] ? (NSString *)dict[@"modify_time"]:@"";
         }
     }
     

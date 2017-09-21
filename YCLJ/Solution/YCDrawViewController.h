@@ -11,6 +11,6 @@
 
 @interface YCDrawViewController : ZTRootViewController
 
-- (void)setHouseId:(NSString *)houseId ownerMobile:(NSString *)ownerMobile;
+- (void)setOwnerMobile:(NSString *)ownerMobile;
 
 @end

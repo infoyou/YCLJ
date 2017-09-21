@@ -9,12 +9,14 @@
 #import "YCDrawViewController.h"
 #import "LFDrawManager.h"
 #import "LFDrawSDKAPI.h"
-
+#import "LFUnityViewController.h"
 #import "YCLJ.h"
 
 typedef enum {
+    
     HOUSE_EXIT_TYPE = 0,
     HOUSE_TO_SOLUTION_TYPE,
+    
 } BACK_VIEW_TYPE;
 
 @interface YCDrawViewController () <YCAlertviewExtensionDelegate>
@@ -55,13 +57,13 @@ typedef enum {
  * ownerMobile 业主手机号码
  *
  */
-- (void)setHouseId:(NSString *)houseId ownerMobile:(NSString *)ownerMobile
+- (void)setOwnerMobile:(NSString *)ownerMobile
 {
 //    setHouseId:@"51652" ownerMobile:@"13585869804"
     
-    if (![houseId isEqualToString:@""] && ![ownerMobile isEqualToString:@""] ) {
+    if (![ownerMobile isEqualToString:@""] ) {
         
-        [self drawHouse:houseId ownerMobile:ownerMobile];
+        [self drawHouseWithOwnerMobile:ownerMobile];
     } else {
         
         [self drawHouse];
@@ -83,7 +85,7 @@ typedef enum {
         [self backView:HOUSE_TO_SOLUTION_TYPE];
     }];
     
-    [dm setCloseBtnActionBlock:^(NSString* houseID){
+    [dm setCloseBtnActionBlock:^(NSString *houseID){
         
         NSLog(@"\n-------点击了“关闭”按钮-------\n %@", houseID);
         
@@ -92,52 +94,125 @@ typedef enum {
     }];
     
     // 点击3D
-//    [dm setJump3DPageBlock:^(UIViewController * drawVC){
-//        
-//        LFUnityViewController * d3VC = [[LFUnityViewController alloc] init];
-//        [drawVC.navigationController pushViewController:d3VC animated:YES];
-//    }];
+    [dm setJump3DPageBlock:^(UIViewController *drawVC){
+        
+        NSLog(@"\n-------点击了“3D”按钮-------\n");
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+        LFUnityViewController *d3VC = [[LFUnityViewController alloc] init];
+        [drawVC.navigationController pushViewController:d3VC animated:NO];
+        
+    }];
 }
 
 // 原有基础上修改
-- (void)drawHouse:(NSString *)houseId ownerMobile:(NSString *)ownerMobile
+- (void)drawHouseWithOwnerMobile:(NSString *)ownerMobile
 {
     
     // 工长下面业主的户型，如果有拆改的返回拆改图ID，如果没有就返回原始图ID
-    [[YCAppManager instance] transHouseId:houseId
-                              ownerMobile:ownerMobile];
+    [[YCAppManager instance] transWorkId:[YCAppManager instance].workId
+                             ownerMobile:ownerMobile];
     
-    [YCAppManager instance].GetHouseId = ^(NSString *houseId){
+    [YCAppManager instance].GetOwnerHouseId = ^(NSString *houseId, NSString *lfFile, NSString *msg){
         
         NSLog(@"houseId = %@", houseId);
         
-        /** 初始化一个绘图界面 */
-        [LFDrawManager initDrawVCWithHouseID:houseId];
-        
-        LFDrawManager *dm = [LFDrawManager sharedInstance];
-        // 点击户型列表
-        [dm setHouseListBtnActionBlock:^(NSString *houseID){
-            
-            NSLog(@"点击了户型列表");
-            
-            self.tempHouseID = houseID;
-            [self backView:HOUSE_TO_SOLUTION_TYPE];
-        }];
-        
-        [dm setCloseBtnActionBlock:^(NSString* houseID){
-            
-            NSLog(@"\n-------点击了“关闭”按钮-------\n %@", houseID);
-            
-            self.tempHouseID = houseID;
-            [self backView:HOUSE_EXIT_TYPE];
-        }];
-        
-        // 点击3D
-//        [dm setJump3DPageBlock:^(UIViewController * drawVC){
-//            LFUnityViewController * d3VC = [[LFUnityViewController alloc] init];
-//            [drawVC.navigationController pushViewController:d3VC animated:YES];
-//        }];
+        if(![msg isEqualToString:@""])
+        {
+            ShowAlertWithOneButton(self, @"", msg, @"Ok");
+        } else {
+            [self downloadAction:lfFile houseId:houseId];
+        }
+    
     };
+}
+
+/**
+ *
+ *
+ NSString *urlString = @"http://zhuangxiu-img.img-cn-shanghai.aliyuncs.com/leju/1708/03/37294516782411e780e900163e0e98a7.lf";
+ *
+ */
+- (void)downloadAction:(NSString *)urlString houseId:(NSString *)houseId
+{
+    DLog(@"downloadAction:%@ houseId:%@", urlString, houseId);
+    
+    //    self.status.text = @"正在下载";
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_group_t downloadDispatchGroup = dispatch_group_create();
+    
+    // KCSOFT/13524010590/062ECECD-FA54-453B-8C40-741919A1BA7B/062ECECD-FA54-453B-8C40-741919A1BA7B.lf
+    
+    // dir
+    NSString *dirKCPath = [NSString stringWithFormat:@"KCSOFT/%@/%@/", [YCAppManager instance].workMobile, houseId];
+    
+    NSString *dirPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:dirKCPath];
+
+    // file
+    NSString *fileKCPath = [NSString stringWithFormat:@"KCSOFT/%@/%@/%@.lf", [YCAppManager instance].workMobile, houseId, houseId];
+    
+    NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:fileKCPath];
+
+    
+    // 如果本地不存在图片，则从网络中下载
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    if (![fileManager fileExistsAtPath:filePath])
+    { // 不管是否存在都从网上下载，保证内容最新
+        
+        // Create target path
+        [[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:NULL];
+        
+        dispatch_group_async(downloadDispatchGroup, queue, ^{
+            DLog(@"Starting file download:%@", dirPath);
+            
+            // URL组装和编码
+            NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            NSLog(@"file download from url: %@", urlString);
+            
+            // 开始下载图片
+            NSData *responseData = [NSData dataWithContentsOfURL:url];
+            // 将图片保存到指定路径中
+            [responseData writeToFile:filePath atomically:YES];
+            // 将下载的图片赋值给info
+            NSLog(@"file download finish:%@", filePath);
+            [self drawWithHouseId:houseId];
+        });
+    }
+//    else {
+//        
+//        [self drawWithHouseId:houseId];
+//    }
+}
+
+- (void)drawWithHouseId:(NSString *)houseId
+{
+    /** 初始化一个绘图界面 */
+    [LFDrawManager initDrawVCWithHouseID:houseId];
+
+    LFDrawManager *dm = [LFDrawManager sharedInstance];
+    // 点击户型列表
+    [dm setHouseListBtnActionBlock:^(NSString *houseID){
+        
+        NSLog(@"点击了户型列表");
+        
+        self.tempHouseID = houseID;
+        [self backView:HOUSE_TO_SOLUTION_TYPE];
+    }];
+
+    [dm setCloseBtnActionBlock:^(NSString* houseID){
+        
+        NSLog(@"\n-------点击了“关闭”按钮-------\n %@", houseID);
+        
+        self.tempHouseID = houseID;
+        [self backView:HOUSE_EXIT_TYPE];
+    }];
+
+    // 点击3D
+    //        [dm setJump3DPageBlock:^(UIViewController * drawVC){
+    //            LFUnityViewController * d3VC = [[LFUnityViewController alloc] init];
+    //            [drawVC.navigationController pushViewController:d3VC animated:YES];
+    //        }];
 }
 
 - (IBAction)btnAreaList:(id)sender {

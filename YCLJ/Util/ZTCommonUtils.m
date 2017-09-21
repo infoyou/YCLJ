@@ -12,6 +12,15 @@
 
 @implementation ZTCommonUtils
 
++ (NSTimeInterval)currentTimeIntervalDouble {
+    
+    NSDate *today = [NSDate dateWithTimeIntervalSinceNow:0];
+    // 秒.毫秒 1442541004.2110679
+    NSTimeInterval interval = [today timeIntervalSince1970];
+    
+    return interval;
+}
+
 + (NSString *)currentTimeInterval {
     
     NSDate *today = [NSDate dateWithTimeIntervalSinceNow:0];

@@ -84,8 +84,8 @@ static YCAppManager *singleton = nil;
 }
 
 #pragma mark - 获取户型id
-- (void)transHouseId:(NSString *)workId
-         ownerMobile:(NSString *)ownerMobile
+- (void)transWorkId:(NSString *)workId
+        ownerMobile:(NSString *)ownerMobile
 {
     NSMutableDictionary *dataDict = [NSMutableDictionary dictionary];
     [dataDict setObject:workId forKey:@"chief_id"];
@@ -109,22 +109,22 @@ static YCAppManager *singleton = nil;
                          NSDictionary *resultDict = [backDic valueForKey:@"data"];
                          
                          NSString *house_num = resultDict[@"house_num"];
+                         NSString *lf_file = resultDict[@"lf_file"];
                          
                          NSLog(@"house_num %@", house_num);
                          
-                         if (self.GetHouseId)
+                         if (self.GetOwnerHouseId)
                          {
-                             self.GetHouseId(house_num); // 调用回调函数
+                             // 调用回调函数
+                             self.GetOwnerHouseId(house_num, lf_file, @"");
                          }
                          
                      } else {
-                         
-                         NSLog(@"transHouseId back msg is %@", [backDic valueForKey:@"msg"]);
                          //[self showHUDWithText:[backDic valueForKey:@"msg"]];
                          
-                         if (self.GetHouseId)
+                         if (self.GetOwnerHouseId)
                          {
-                             self.GetHouseId(@""); // 调用回调函数
+                             self.GetOwnerHouseId(@"", @"", [backDic valueForKey:@"msg"]); // 调用回调函数
                          }
                      }
                  }
@@ -190,7 +190,7 @@ static YCAppManager *singleton = nil;
     _ownerId = [YCHouseFmdbTool insertOwnerModel:userModel];
     
     // 更改本地数据
-    NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET ownerId = '%@' where houseId = '%@'", _ownerId, _houseId];
+    NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET ownerId = '%@' where houseId = '%@'", userModel.mobile, _houseId];
     [YCHouseFmdbTool modifyData:modifySql];
     
     // 上传户型数据到服务端
@@ -206,9 +206,9 @@ static YCAppManager *singleton = nil;
     NSString *zipFpath = array[0];
     
     NSMutableDictionary *houseDict = [NSMutableDictionary dictionary];
-    [houseDict setValue:houseId forKey:@"houseId"];
-    [houseDict setValue:zipFpath forKey:@"zipFpath"];
-    [houseDict setValue:HOUSE_SOLUTION_ORIGN_TYPE forKey:@"type"];
+    [houseDict setValue:houseId forKey:@"house_num"];
+    [houseDict setValue:zipFpath forKey:@"pkg"];
+    [houseDict setValue:HOUSE_SOLUTION_ORIGN_TYPE forKey:@"is_copy"];
     [houseDict setValue:0 forKey:@"isUpload"];
     [houseDict setValue:0 forKey:@"isDelete"];
     

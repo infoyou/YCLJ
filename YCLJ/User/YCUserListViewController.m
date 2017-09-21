@@ -48,9 +48,9 @@
     
     [super loadCellDataDone];
     
-    if (pageIndex == 1) {
-        [self scrollingToTopPosition];
-    }
+//    if (pageIndex == 1) {
+//        [self scrollingToTopPosition];
+//    }
 }
 
 #pragma mark - Table view data source
@@ -139,7 +139,7 @@
                              
                              NSMutableDictionary *logicDict = (NSMutableDictionary *)resultArray[productIndex];
                              
-                             YCOwnerModel *areaModel = [YCOwnerModel newWithDict:logicDict];
+                             YCOwnerModel *areaModel = [YCOwnerModel newWithUserDict:logicDict];
                              [cellDataArray addObject:areaModel];
                          }
                          

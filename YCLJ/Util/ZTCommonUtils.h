@@ -12,6 +12,8 @@
 
 @interface ZTCommonUtils : NSObject
 
++ (NSTimeInterval)currentTimeIntervalDouble;
+
 + (NSString *)currentTimeInterval;
 + (NSString *)getCurrentTime;
 + (NSString *)curDateString;

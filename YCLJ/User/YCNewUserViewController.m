@@ -120,7 +120,7 @@
 - (void)changeVC:(NSMutableDictionary *)userDict
 {
     [userDict setObject:[_txtAddress.text stringByAddingPercentEscapes] forKey:@"address"];
-    YCOwnerModel *userModel = [YCOwnerModel newWithDict:userDict];
+    YCOwnerModel *userModel = [YCOwnerModel newWithUserDict:userDict];
     
     // 存储本地数据库
     [[YCAppManager instance] saveLocalOwnerData:userModel];

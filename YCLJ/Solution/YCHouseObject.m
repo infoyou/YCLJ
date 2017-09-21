@@ -33,7 +33,7 @@
     // 2, date
     CGFloat authorX = 111;
     CGFloat authorY = titleY;
-    CGFloat authorW = 177;
+    CGFloat authorW = 184;
     CGFloat authorH = 22;
     _labDateF = CGRectMake(authorX, authorY, authorW, authorH);
 

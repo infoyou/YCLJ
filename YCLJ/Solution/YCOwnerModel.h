@@ -24,6 +24,9 @@
 
 @property (nonatomic, copy) NSString *workOrderId;
 
+@property (nonatomic, strong) NSArray *houseArray;
+
 + (instancetype)newWithDict:(NSDictionary *)dict;
++ (instancetype)newWithUserDict:(NSDictionary *)dict;
 
 @end

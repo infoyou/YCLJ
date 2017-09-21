@@ -52,6 +52,7 @@
  */
 @property (nonatomic, copy) void (^jump3DPageBlock)(UIViewController * drawVC);
 
+
 /**
  *  关闭 按钮 block
  */
@@ -68,6 +69,12 @@
  LFDrawManager 单例
  */
 + (instancetype)sharedInstance;
+
+
+/**
+ 关闭绘图控制器
+ */
++(void)dismissDrawVC;
 
 
 @end

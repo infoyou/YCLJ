@@ -81,6 +81,43 @@ static FMDatabase *_fmdb;
     return nil;
 }
 
++ (NSString *)insertOwnerArrayModel:(NSArray *)modelArray
+{
+    
+    NSTimeInterval currentTimeDouble = [ZTCommonUtils currentTimeIntervalDouble];
+    
+    NSInteger count = [modelArray count];
+    for (NSInteger i=0; i<count; i++) {
+        
+        YCOwnerModel *model = modelArray[i];
+        NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Owner(id, name, mobile, address, area, city, type, style, workOrderId) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');", model.mobile, model.name, model.mobile, model.address, model.area, model.city, model.type, model.style, model.workOrderId];
+        
+        [_fmdb executeUpdate:insertSql];
+    }
+    
+    NSLog(@"save owner use time: %f", [ZTCommonUtils currentTimeIntervalDouble] - currentTimeDouble);
+    return nil;
+}
+
++ (NSString *)insertOwnerHouseArrayModel:(NSArray *)modelArray
+{
+    
+    NSTimeInterval currentTimeDouble = [ZTCommonUtils currentTimeIntervalDouble];
+    
+    NSInteger count = [modelArray count];
+    for (NSInteger i=0; i<count; i++) {
+        
+        YCHouseModel *model = modelArray[i];
+        
+        NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Solution(id, ownerId, houseId, lfFile, filePath, creatDate, updateDate, type, isUpload, isDelete) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%zd', '%zd', '%zd');", model.houseId, model.ownerId, model.houseId, model.lfFile, model.zipFpath, model.creatDate, model.updateDate, model.type, model.isUpload, model.isDelete];
+        
+        [_fmdb executeUpdate:insertSql];
+    }
+    
+    NSLog(@"save owner house use time: %f", [ZTCommonUtils currentTimeIntervalDouble] - currentTimeDouble);
+    return nil;
+}
+
 + (NSArray *)queryOwnerData:(NSString *)querySql {
     
     if (querySql == nil) {
@@ -99,12 +136,13 @@ static FMDatabase *_fmdb;
         NSString *area = [set stringForColumn:@"area"];
         NSString *workOrderId = [set stringForColumn:@"workOrderId"];
         
+        // 解析json 参数
         NSMutableDictionary *userDict = [NSMutableDictionary dictionary];
-        [userDict setObject:ownerId forKey:@"ownerId"];
-        [userDict setObject:name forKey:@"owner_name"];
-        [userDict setObject:mobile forKey:@"owner_mobile"];
+        [userDict setObject:mobile forKey:@"ownerId"];
+        [userDict setObject:name forKey:@"name"];
+        [userDict setObject:mobile forKey:@"mobile"];
         [userDict setObject:address forKey:@"address"];
-        [userDict setObject:area forKey:@"area"];
+        [userDict setObject:area forKey:@"building_area"];
         [userDict setObject:workOrderId forKey:@"workOrderId"];
         
         YCOwnerModel *modal = [YCOwnerModel newWithDict:userDict];
@@ -126,7 +164,9 @@ static FMDatabase *_fmdb;
     return [_fmdb executeUpdate:insertSql];
 }
 
-+ (BOOL)insertSolutionModel:(YCHouseModel *)model ownerId:(NSString *)ownerId {
++ (BOOL)insertCopySolutionModel:(YCHouseModel *)model
+                        ownerId:(NSString *)ownerId
+{
     
     NSString *currentTime = [ZTCommonUtils currentTimeInterval];
     NSString *currentTimeStr = [ZTCommonUtils getCurrentTime];
@@ -167,7 +207,7 @@ static FMDatabase *_fmdb;
     return [_fmdb executeUpdate:deleteSql];
 }
 
-+ (NSDictionary *)queryOwnerSolutionNumber
++ (NSMutableDictionary *)queryOwnerSolutionNumber
 {
     NSString *querySql = @"SELECT ownerId, count(houseId) as number FROM solution where isDelete != 1 group by ownerId";
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -188,7 +228,7 @@ static FMDatabase *_fmdb;
 }
 
 #pragma mark - Solution
-+ (NSDictionary *)queryAllSolutionData:(NSString *)querySql
++ (NSMutableDictionary *)queryAllSolutionData:(NSString *)querySql
 {
     if (querySql == nil) {
         querySql = @"SELECT ownerId, type, houseId, filePath, creatDate, updateDate, isUpload, isDelete FROM Solution where isDelete != 1;";
@@ -211,15 +251,16 @@ static FMDatabase *_fmdb;
             NSInteger isUpload = [set intForColumn:@"isUpload"];
             NSInteger isDelete = [set intForColumn:@"isDelete"];
             
+            // 解析json 参数
             NSMutableDictionary *houseDict = [NSMutableDictionary dictionary];
-            [houseDict setObject:ownerId forKey:@"ownerId"];
-            [houseDict setObject:houseId forKey:@"houseId"];
-            [houseDict setObject:zipFpath forKey:@"zipFpath"];
-            [houseDict setObject:[NSNumber numberWithInteger:type] forKey:@"type"];
+            [houseDict setObject:ownerId forKey:@"owner_mobile"];
+            [houseDict setObject:houseId forKey:@"house_num"];
+            [houseDict setObject:zipFpath forKey:@"pkg"];
+            [houseDict setObject:[NSNumber numberWithInteger:type] forKey:@"is_copy"];
             [houseDict setObject:[NSNumber numberWithInteger:isUpload] forKey:@"isUpload"];
             [houseDict setObject:[NSNumber numberWithInteger:isDelete] forKey:@"isDelete"];
-            [houseDict setObject:creatDate forKey:@"creatDate"];
-            [houseDict setObject:updateDate forKey:@"updateDate"];
+            [houseDict setObject:creatDate forKey:@"create_time"];
+            [houseDict setObject:updateDate forKey:@"modify_time"];
             
             NSString *key = [NSString stringWithFormat:@"%@%ld", ownerId, type];
             YCHouseModel *modal = [YCHouseModel newWithDict:houseDict];
@@ -236,7 +277,7 @@ static FMDatabase *_fmdb;
     
     NSMutableDictionary *paramDict = [NSMutableDictionary dictionary];
     
-    NSString *querySql = [NSString stringWithFormat:@"SELECT o.mobile, o.workOrderId, s.type FROM Solution s, Owner o where o.id = s.ownerId and isDelete != 1 and houseId = '%@';", houseId];
+    NSString *querySql = [NSString stringWithFormat:@"SELECT o.mobile, o.workOrderId, s.type FROM Solution s, Owner o where o.mobile = s.ownerId and isDelete != 1 and houseId = '%@';", houseId];
     
     FMResultSet *set = [_fmdb executeQuery:querySql];
     

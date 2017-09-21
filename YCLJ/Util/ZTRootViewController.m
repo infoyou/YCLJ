@@ -28,6 +28,14 @@
     [[UIDevice currentDevice] setValue:orientationTarget forKey:@"orientation"];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    NSNumber *orientationTarget = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+    [[UIDevice currentDevice] setValue:orientationTarget forKey:@"orientation"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

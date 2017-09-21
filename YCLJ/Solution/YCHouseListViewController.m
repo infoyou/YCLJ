@@ -27,10 +27,11 @@
 
 @property (nonatomic, strong) YCHouseModel *houseModel;
 @property (nonatomic, strong) NSArray *userArray;
-@property (nonatomic, strong) NSDictionary *userSolutionCountDict;
-@property (nonatomic, strong) NSDictionary *resultDict;
+@property (nonatomic, strong) NSMutableDictionary *userSolutionCountDict;
+@property (nonatomic, strong) NSMutableDictionary *resultDict;
 @property (nonatomic, strong) NSMutableDictionary *resultFormDict;
 @property (nonatomic, assign) NSInteger userCount;
+
 @end
 
 @implementation YCHouseListViewController
@@ -80,82 +81,94 @@
 }
 
 #pragma mark - Trans Data
-
 - (void)loadSolutionFromWeb
 {
-    NSMutableDictionary *dataDict = [NSMutableDictionary dictionary];
-    [dataDict setObject:@"0" forKey:@"start_index"];
-    [dataDict setObject:@"10" forKey:@"count"];
     
-    NSMutableDictionary *paramDict = [ZTCommonUtils getParamDict:dataDict];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/leju/chief/detail/%@", YC_HOST_URL, [YCAppManager instance].workId];
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@/leju/plan/list/", YC_HOST_URL];
-    [ZTHttpTool post:urlStr
-              params:paramDict
-             success:^(id json) {
-                 
-                 NSDictionary *backDic = json;
-                 
-                 if (backDic != nil) {
-                     
-                     NSString *errCodeStr = (NSString *)[backDic valueForKey:@"code"];
-                     
-                     if ( [errCodeStr integerValue] == SUCCESS_DATA) {
-                         
-                         NSArray *resultArray = (NSArray *)[backDic valueForKey:@"data"];
-                         
-                         //                         NSArray *resultArray = (NSArray *)[(NSString *)[backDic valueForKey:@"data"]];
-                         
-                         NSInteger logicCount = [resultArray count];
-                         
-                         for (NSInteger index = 0; index < logicCount; index++) {
-                             
-                             NSMutableDictionary *logicDict = (NSMutableDictionary *)resultArray[index];
-                             
-                             YCHouseModel *houseModel = [YCHouseModel newWithDict:logicDict];
-                             YCHouseObject *houseObject = [[YCHouseObject alloc] init];
-                             houseObject.houseModel = houseModel;
-                             
-                             // cellDataArray 废弃
-                             [cellDataArray addObject:houseObject];
-                         }
-                         
-                         [self loadCellDataDone];
-                     } else if ([errCodeStr integerValue] == NO_MORE_DATA) {
-                         [self loadCellDataDone];
-                     } else {
-                         //[self showHUDWithText:[backDic valueForKey:@"msg"]];
-                     }
-                 } else {
-                     //[self showHUDWithText:LocaleStringForKey(NSReturnDataIsEmpty, nil)];
-                     [self isNeedShowEmptyView];
-                 }
-                 
-             } failure:^(NSError *error) {
-                 
-                 NSLog(@"请求失败-%@", error);
-                 [self endRefreshingView];
-                 //[self showHUDWithText:@"请检查网络设置。"];
-             }];
+    [ZTHttpTool get:urlStr
+             params:nil
+            success:^(id json) {
+                
+                NSDictionary *backDic = json;
+                
+                if (backDic != nil) {
+                    
+                    NSString *errCodeStr = (NSString *)[backDic valueForKey:@"code"];
+                    
+                    if ( [errCodeStr integerValue] == SUCCESS_DATA ) {
+                        
+                        NSDictionary *resultDict = [backDic valueForKey:@"data"];
+                        
+                        // owner
+                        NSArray *ownerDictArray = (NSArray *)[resultDict valueForKey:@"owner_list"];
+                        NSInteger ownerCount = ownerDictArray.count;
+                        
+                        NSMutableArray *ownerArray = [NSMutableArray arrayWithCapacity:ownerCount];
+                        NSMutableArray *ownerHouseArray = [NSMutableArray array];
+                        
+                        for (NSInteger i=0; i<ownerCount; i++) {
+                            
+                            NSMutableDictionary *ownerDict = (NSMutableDictionary *)ownerDictArray[i];
+                            YCOwnerModel *ownerModel = [YCOwnerModel newWithDict:ownerDict];
+                            
+                            // house
+                            NSArray *houseDictArray = (NSArray *)[ownerDict valueForKey:@"house_list"];
+                            NSInteger houseCount = houseDictArray.count;
+                            
+                            NSMutableArray *houseArray = [NSMutableArray arrayWithCapacity:houseCount];
+                            for (NSInteger j=0; j<houseCount; j++) {
+                                
+                                NSMutableDictionary *houseDict = (NSMutableDictionary *)houseDictArray[j];
+                                YCHouseModel *houseModel = [YCHouseModel newWithDict:houseDict];
+                                [ownerHouseArray addObject:houseModel];
+                                
+                                [houseArray addObject:houseModel];
+                            }
+                            
+                            [ownerArray addObject:ownerModel];
+                        }
+                        
+                        [YCHouseFmdbTool insertOwnerArrayModel:ownerArray];
+                        [YCHouseFmdbTool insertOwnerHouseArrayModel:ownerHouseArray];
+                        
+                        NSLog(@"over");
+                    } else {
+                        
+                        NSLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
+                        //[self showHUDWithText:[backDic valueForKey:@"msg"]];
+                    }
+                }
+                
+            } failure:^(NSError *error) {
+                
+                NSLog(@"请求失败-%@", error);
+            }];
 }
 
 - (void)loadSolutionFromDB
 {
     
-    _userArray = [YCHouseFmdbTool queryOwnerData:nil];
-    _userCount = [_userArray count];
-    _userSolutionCountDict = [YCHouseFmdbTool queryOwnerSolutionNumber];
-    _resultDict = [YCHouseFmdbTool queryAllSolutionData:nil];
-    _resultFormDict = [NSMutableDictionary dictionary];
+    [self loadSolutionFromWeb];
     
-    for (NSString *key in _resultDict) {
-        
-        YCHouseModel *houseModel = _resultDict[key];
-        YCHouseObject *houseObject = [[YCHouseObject alloc] init];
-        houseObject.houseModel = houseModel;
-        
-        [_resultFormDict setValue:houseObject forKey:key];
-    }
+    // 从数据库读取
+    NSTimeInterval currentTimeDouble = [ZTCommonUtils currentTimeIntervalDouble];
+     _userArray = [YCHouseFmdbTool queryOwnerData:nil];
+     _userCount = [_userArray count];
+     _userSolutionCountDict = [YCHouseFmdbTool queryOwnerSolutionNumber];
+     _resultDict = [YCHouseFmdbTool queryAllSolutionData:nil];
+     _resultFormDict = [NSMutableDictionary dictionary];
+     
+     for (NSString *key in _resultDict) {
+     
+         YCHouseModel *houseModel = _resultDict[key];
+         YCHouseObject *houseObject = [[YCHouseObject alloc] init];
+         houseObject.houseModel = houseModel;
+         
+         [_resultFormDict setValue:houseObject forKey:key];
+     }
+    
+    NSLog(@"从数据库读取 use time: %f", [ZTCommonUtils currentTimeIntervalDouble] - currentTimeDouble);
     
     [self loadCellDataDone];
 }
@@ -190,11 +203,13 @@
     if (_userCount > 0) {
         
         YCOwnerModel *userModel = (YCOwnerModel *)[_userArray objectAtIndex:section];
-        NSString *ownerId = userModel.ownerId;
-        if ([_userSolutionCountDict objectForKey:ownerId]) {
-            
-            sectionCount = [(NSNumber *)_userSolutionCountDict[ownerId] intValue];
+        NSString *mobile = userModel.mobile;
+        if ([_userSolutionCountDict objectForKey:mobile]) {
+            //            todo 为什么会调用3次
+            sectionCount = [(NSNumber *)_userSolutionCountDict[mobile] intValue];
         }
+        
+        //        DLog(@"_userSolutionCountDict %@ %@", [(NSNumber *)_userSolutionCountDict[mobile] intValue], mobile);
     }
     
     return sectionCount;
@@ -258,39 +273,46 @@
     return cell;
 }
 
-- (void)downloadAction
+/**
+ *
+ *
+ NSString *urlString = @"http://zhuangxiu-img.img-cn-shanghai.aliyuncs.com/leju/1708/03/37294516782411e780e900163e0e98a7.lf";
+ *
+ */
+- (void)downloadAction:(NSString *)urlString houseId:(NSString *)houseId
 {
     //    self.status.text = @"正在下载";
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_t downloadDispatchGroup = dispatch_group_create();
     
-    NSString *imagePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"KCSOFT/13524010590/062ECECD-FA54-453B-8C40-741919A1BA7B/062ECECD-FA54-453B-8C40-741919A1BA7B.lf"];
+    // KCSOFT/13524010590/062ECECD-FA54-453B-8C40-741919A1BA7B/062ECECD-FA54-453B-8C40-741919A1BA7B.lf
+    NSString *fileKCPath = [NSString stringWithFormat:@"KCSOFT/%@/%@/%@.lf", [YCAppManager instance].workMobile, houseId, houseId];
+    
+    NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:fileKCPath];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     // 如果本地不存在图片，则从网络中下载
-    if (![fileManager fileExistsAtPath:imagePath]) {
+    if (![fileManager fileExistsAtPath:filePath]) {
         
         dispatch_group_async(downloadDispatchGroup, queue, ^{
-            DLog(@"Starting file download:%@", imagePath);
+            DLog(@"Starting file download:%@", filePath);
             
             // URL组装和编码
-            NSString *urlString = @"http://zhuangxiu-img.img-cn-shanghai.aliyuncs.com/leju/1708/03/37294516782411e780e900163e0e98a7.lf";
-            
             NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            NSLog(@"image download from url: %@", urlString);
+            NSLog(@"file download from url: %@", urlString);
             
             // 开始下载图片
             NSData *responseData = [NSData dataWithContentsOfURL:url];
             // 将图片保存到指定路径中
-            [responseData writeToFile:imagePath atomically:YES];
+            [responseData writeToFile:filePath atomically:YES];
             // 将下载的图片赋值给info
-            NSLog(@"image download finish:%@", imagePath);
-            [LFDrawManager initDrawVCWithHouseID:[YCAppManager instance].houseId];
+            NSLog(@"file download finish:%@", filePath);
+            [LFDrawManager initDrawVCWithHouseID:houseId];
         });
     } else {
         
-        [LFDrawManager initDrawVCWithHouseID:[YCAppManager instance].houseId];
+        [LFDrawManager initDrawVCWithHouseID:houseId];
     }
 }
 
@@ -316,12 +338,12 @@
     
     // 判断是否符合条件
     NSInteger sectionCount = [(NSNumber *)_userSolutionCountDict[houseModel.ownerId] intValue];
-    if (sectionCount > 1) {
-        // 已经有拆改图了
-        return;
-    }
+    //    if (sectionCount > 1) {
+    //        // 已经有拆改图了
+    //        return;
+    //    }
     
-//    DLog(@"handle Copy %@", houseModel.zipFpath);
+    //    DLog(@"handle Copy %@", houseModel.zipFpath);
     NSString *sourcePath = houseModel.zipFpath;
     NSString *orginHouseId = houseModel.houseId;
     
@@ -340,7 +362,7 @@
     houseModel.zipUrl = @"";
     houseModel.zipFpath = targetPath;
     houseModel.houseId = [NSString stringWithFormat:@"%@_1", orginHouseId];
-    [YCHouseFmdbTool insertSolutionModel:houseModel ownerId:houseModel.ownerId];
+    [YCHouseFmdbTool insertCopySolutionModel:houseModel ownerId:houseModel.ownerId];
     
     // 同步后台
     [[YCAppManager instance] transHouseData:houseModel.houseId];
@@ -352,7 +374,7 @@
     [self.mTableView reloadData];
 }
 
-//添加alertview
+//添加 alertview
 -(void)addAlertView
 {
     self.view.backgroundColor =[UIColor whiteColor];
@@ -425,8 +447,8 @@
 #pragma mark - HouseListOwnerViewDelegate method
 - (void)doShareOwner
 {
-//    DLog(@"doShareOwner");
-//    ShowAlertWithOneButton(self, @"", @"分享业主", @"OK");
+    //    DLog(@"doShareOwner");
+    //    ShowAlertWithOneButton(self, @"", @"分享业主", @"OK");
     
     if (self.shareEventBlock)
     {

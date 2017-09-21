@@ -71,7 +71,9 @@
 		74A68C671F220F4200DC37BA /* LFDrawSDKAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A68C631F220F4200DC37BA /* LFDrawSDKAPI.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		74A68C681F220F4200DC37BA /* LFHouseInfoModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A68C641F220F4200DC37BA /* LFHouseInfoModel.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		74A68C691F220F4200DC37BA /* lfsqSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A68C651F220F4200DC37BA /* lfsqSDK.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		74CFC9F51F4E6BA50007A990 /* lfsqSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CFC9F41F4E6BA50007A990 /* lfsqSDK.framework */; };
+		74C5D7E31F7351EB00717F3F /* LFUnityViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C5D7E11F7351EB00717F3F /* LFUnityViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74C5D7E41F7351EB00717F3F /* LFUnityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C5D7E21F7351EB00717F3F /* LFUnityViewController.m */; };
+		74C5D8201F73A01800717F3F /* lfsqSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C5D81F1F73A01800717F3F /* lfsqSDK.framework */; };
 		74EA9AF31F2B405B006916C3 /* houseStyle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74EA9AF21F2B405B006916C3 /* houseStyle.plist */; };
 		8F37A9FD0103E8E1D559D1E4 /* libPods-YCLJ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A31E24CF965375A4118BBA /* libPods-YCLJ.a */; };
 /* End PBXBuildFile section */
@@ -144,7 +146,9 @@
 		74A68C631F220F4200DC37BA /* LFDrawSDKAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LFDrawSDKAPI.h; path = lfsqSDK.framework/Headers/LFDrawSDKAPI.h; sourceTree = "<group>"; };
 		74A68C641F220F4200DC37BA /* LFHouseInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LFHouseInfoModel.h; path = lfsqSDK.framework/Headers/LFHouseInfoModel.h; sourceTree = "<group>"; };
 		74A68C651F220F4200DC37BA /* lfsqSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = lfsqSDK.h; path = lfsqSDK.framework/Headers/lfsqSDK.h; sourceTree = "<group>"; };
-		74CFC9F41F4E6BA50007A990 /* lfsqSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lfsqSDK.framework; sourceTree = "<group>"; };
+		74C5D7E11F7351EB00717F3F /* LFUnityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFUnityViewController.h; sourceTree = "<group>"; };
+		74C5D7E21F7351EB00717F3F /* LFUnityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFUnityViewController.m; sourceTree = "<group>"; };
+		74C5D81F1F73A01800717F3F /* lfsqSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lfsqSDK.framework; sourceTree = "<group>"; };
 		74EA9AF21F2B405B006916C3 /* houseStyle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = houseStyle.plist; sourceTree = "<group>"; };
 		75F2B237DE5D05E1292C84DC /* Pods-YCLJ.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YCLJ.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YCLJ/Pods-YCLJ.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,7 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F37A9FD0103E8E1D559D1E4 /* libPods-YCLJ.a in Frameworks */,
-				74CFC9F51F4E6BA50007A990 /* lfsqSDK.framework in Frameworks */,
+				74C5D8201F73A01800717F3F /* lfsqSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,7 +169,7 @@
 		74117ADC1F204E7F00911D09 = {
 			isa = PBXGroup;
 			children = (
-				74CFC9F41F4E6BA50007A990 /* lfsqSDK.framework */,
+				74C5D81F1F73A01800717F3F /* lfsqSDK.framework */,
 				74302B521F3AFAB70095D3BD /* MapFileParser.sh */,
 				74302B531F3AFAB70095D3BD /* DXFTemplate_shape.dxf */,
 				74302B541F3AFAB70095D3BD /* RoomTypeAndIDList.plist */,
@@ -196,6 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				74149B721F34675000671036 /* Info.plist */,
+				74C5D7E11F7351EB00717F3F /* LFUnityViewController.h */,
+				74C5D7E21F7351EB00717F3F /* LFUnityViewController.m */,
 				74149B731F34675000671036 /* Logic */,
 				74149B821F34675000671036 /* Solution */,
 				74149B8F1F34675000671036 /* User */,
@@ -337,6 +343,7 @@
 				74149BDE1F34675100671036 /* ZTHttpTool.h in Headers */,
 				74563D871F6FA9FE00B3D359 /* YCDrawViewController.h in Headers */,
 				74149BD61F34675000671036 /* ZTStringCategory.h in Headers */,
+				74C5D7E31F7351EB00717F3F /* LFUnityViewController.h in Headers */,
 				741CFED31F2080AD00E6B34C /* LFDrawManager.h in Headers */,
 				74A68C671F220F4200DC37BA /* LFDrawSDKAPI.h in Headers */,
 				74A68C681F220F4200DC37BA /* LFHouseInfoModel.h in Headers */,
@@ -459,6 +466,7 @@
 				74149BB91F34675000671036 /* YCPopViewExtension.m in Sources */,
 				74302B601F3AFB6D0095D3BD /* YCNewUserViewController.m in Sources */,
 				74149BDD1F34675100671036 /* ZTCommonUtils.m in Sources */,
+				74C5D7E41F7351EB00717F3F /* LFUnityViewController.m in Sources */,
 				74302B691F3AFBBD0095D3BD /* YCOwnerModel.m in Sources */,
 				74149BB71F34675000671036 /* YCHouseParmChoiceView.m in Sources */,
 				74149BD91F34675100671036 /* ZTBaseTableViewCell.m in Sources */,
