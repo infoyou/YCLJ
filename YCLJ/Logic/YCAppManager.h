@@ -48,6 +48,9 @@
 #pragma mark - 新增户型数据
 - (void)transHouseData:(NSString *)houseId;
 
+#pragma mark - copy户型数据
+- (void)transCopyHouseData:(NSString *)houseId;
+
 #pragma mark - 删除户型数据
 - (void)transDeleteHouse:(NSString *)houseId;
 

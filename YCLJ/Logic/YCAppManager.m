@@ -39,21 +39,6 @@ static YCAppManager *singleton = nil;
     _hengping = flag;
 }
 
-- (void)updateUserData:(NSString *)aUserId
-{
-    NSUserDefaults *_def = [NSUserDefaults standardUserDefaults];
-    
-    if(_ownerId == nil) {
-        
-        [_def removeObjectForKey:@"ownerId"];
-    } else {
-        
-        [_def setObject:aUserId forKey:@"ownerId"];
-    }
-    
-    [_def synchronize];
-}
-
 - (void)updateHouseData:(NSString *)aHouseId
 {
     NSUserDefaults *_def = [NSUserDefaults standardUserDefaults];
@@ -187,7 +172,7 @@ static YCAppManager *singleton = nil;
 {
     
     // 保存业主数据
-    _ownerId = [YCHouseFmdbTool insertOwnerModel:userModel];
+    [YCHouseFmdbTool insertOwnerModel:userModel];
     
     // 更改本地数据
     NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET ownerId = '%@' where houseId = '%@'", userModel.mobile, _houseId];
@@ -257,6 +242,41 @@ static YCAppManager *singleton = nil;
                          NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET lfFile = '%@' where houseId = '%@'", strLFfile, strHouseId];
                          [YCHouseFmdbTool modifyData:modifySql];
                          
+                     } else {
+                         
+                         NSLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
+                         //[self showHUDWithText:[backDic valueForKey:@"msg"]];
+                     }
+                 }
+                 
+             } failure:^(NSError *error) {
+                 
+                 NSLog(@"请求失败-%@", error);
+             }];
+}
+
+#pragma mark - copy户型数据
+- (void)transCopyHouseData:(NSString *)houseId
+{
+    
+    NSMutableDictionary *paramDict = [NSMutableDictionary dictionary];
+    [paramDict setValue:houseId forKey:@"house_num"];
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@/leju/house/copy/", YC_HOST_URL];
+    
+    [ZTHttpTool post:urlStr
+              params:paramDict
+             success:^(id json) {
+                 
+                 NSDictionary *backDic = json;
+                 
+                 if (backDic != nil) {
+                     
+                     NSString *errCodeStr = (NSString *)[backDic valueForKey:@"code"];
+                     
+                     if ( [errCodeStr integerValue] == SUCCESS_DATA ) {
+                         
+                         DLog(@"copy success");
                      } else {
                          
                          NSLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
@@ -423,16 +443,16 @@ static YCAppManager *singleton = nil;
     NSString *zipFpath = array[0];
     NSString *u3dDir = [NSString stringWithFormat:@"%@_obj", zipFpath];
     
-//    NSLog(@"u3dDir is dir %@", u3dDir);
+    //    NSLog(@"u3dDir is dir %@", u3dDir);
     if ([ZTCommonUtils isExistDirName:u3dDir]) {
         
-//        NSLog(@"u3dDir is exist");
-//        NSMutableArray *pathArray = [ZTCommonUtils allFilesAtPath:u3dDir];
-//        NSInteger count = pathArray.count;
-//        
-//        for (NSInteger i=0; i<count; i++) {
-//            NSLog(@"u3dDir pathArray[%d] = %@", i, pathArray[i]);
-//        }
+        //        NSLog(@"u3dDir is exist");
+        //        NSMutableArray *pathArray = [ZTCommonUtils allFilesAtPath:u3dDir];
+        //        NSInteger count = pathArray.count;
+        //
+        //        for (NSInteger i=0; i<count; i++) {
+        //            NSLog(@"u3dDir pathArray[%d] = %@", i, pathArray[i]);
+        //        }
         
         NSString *u3dZipFpath = [NSString stringWithFormat:@"%@.zip", u3dDir];
         [ZTCommonUtils zipFileDir:u3dZipFpath sourcePath:u3dDir];

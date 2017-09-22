@@ -5,7 +5,7 @@
 #import "FMDB.h"
 #import "YCAppManager.h"
 
-#define  YC_HOUSE_SQLITE_NAME       @"YC.sqlite"
+#define  YC_HOUSE_SQLITE_NAME       @"YCLJ.sqlite"
 
 @implementation YCHouseFmdbTool
 
@@ -26,7 +26,7 @@ static FMDatabase *_fmdb;
     [_fmdb executeUpdate:@"CREATE TABLE IF NOT EXISTS Worker(id TEXT PRIMARY KEY, mobile TEXT NOT NULL, workId TEXT NOT NULL, workName TEXT);"];
     
     // Owner
-    [_fmdb executeUpdate:@"CREATE TABLE IF NOT EXISTS Owner(id TEXT PRIMARY KEY, name TEXT NOT NULL, mobile TEXT NOT NULL, address TEXT NOT NULL, area TEXT NOT NULL, style TEXT NOT NULL, type TEXT NOT NULL, city TEXT NOT NULL, workOrderId TEXT NOT NULL);"];
+    [_fmdb executeUpdate:@"CREATE TABLE IF NOT EXISTS Owner(id TEXT PRIMARY KEY, name TEXT NOT NULL, mobile TEXT NOT NULL, address TEXT NOT NULL, area TEXT NOT NULL, style TEXT NOT NULL, type TEXT NOT NULL, city TEXT NOT NULL, workOrderId TEXT NOT NULL, createTime TEXT NOT NULL);"];
     
     // Solution
     [_fmdb executeUpdate:@"CREATE TABLE IF NOT EXISTS Solution(id TEXT PRIMARY KEY, ownerId TEXT, houseId TEXT NOT NULL, lfFile TEXT, filePath TEXT, zipUrl TEXT, objUrl TEXT, creatDate TEXT NOT NULL, updateDate TEXT, type INTEGER NOT NULL, isUpload INTEGER NOT NULL, isDelete INTEGER NOT NULL);"];
@@ -72,7 +72,7 @@ static FMDatabase *_fmdb;
     
     NSString *currentTime = [ZTCommonUtils currentTimeInterval];
     
-    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Owner(id, name, mobile, address, area, city, type, style, workOrderId) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');", currentTime, model.name, model.mobile, model.address, model.area, model.city, model.type, model.style, model.workOrderId];
+    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Owner(id, name, mobile, address, area, city, type, style, workOrderId, createTime) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');", model.mobile, model.name, model.mobile, model.address, model.area, model.city, model.type, model.style, model.workOrderId, currentTime];
     
     if ([_fmdb executeUpdate:insertSql]) {
         return currentTime;
@@ -85,12 +85,12 @@ static FMDatabase *_fmdb;
 {
     
     NSTimeInterval currentTimeDouble = [ZTCommonUtils currentTimeIntervalDouble];
-    
     NSInteger count = [modelArray count];
+    
     for (NSInteger i=0; i<count; i++) {
         
         YCOwnerModel *model = modelArray[i];
-        NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Owner(id, name, mobile, address, area, city, type, style, workOrderId) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');", model.mobile, model.name, model.mobile, model.address, model.area, model.city, model.type, model.style, model.workOrderId];
+        NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Owner(id, name, mobile, address, area, city, type, style, workOrderId, createTime) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');", model.mobile, model.name, model.mobile, model.address, model.area, model.city, model.type, model.style, model.workOrderId, [ZTCommonUtils currentTimeInterval]];
         
         [_fmdb executeUpdate:insertSql];
     }
@@ -121,7 +121,7 @@ static FMDatabase *_fmdb;
 + (NSArray *)queryOwnerData:(NSString *)querySql {
     
     if (querySql == nil) {
-        querySql = @"SELECT id, name, mobile, address, area, workOrderId FROM Owner order by id desc;";
+        querySql = @"SELECT id, name, mobile, address, area, workOrderId FROM Owner order by createTime desc;";
     }
     
     NSMutableArray *array = [NSMutableArray array];
@@ -156,10 +156,9 @@ static FMDatabase *_fmdb;
 + (BOOL)insertSolutionModel:(YCHouseModel *)model
 {
     
-    NSString *currentTime = [ZTCommonUtils currentTimeInterval];
     NSString *currentTimeStr = [ZTCommonUtils getCurrentTime];
     
-    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Solution(id, houseId, lfFile, filePath, creatDate, updateDate, type, isUpload, isDelete) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%zd', '%zd', '%zd');", currentTime, model.houseId, model.lfFile, model.zipFpath, currentTimeStr, @"", model.type, model.isUpload, model.isDelete];
+    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Solution(id, houseId, lfFile, filePath, creatDate, updateDate, type, isUpload, isDelete) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%zd', '%zd', '%zd');", model.houseId, model.houseId, model.lfFile, model.zipFpath, currentTimeStr, @"", model.type, model.isUpload, model.isDelete];
     
     return [_fmdb executeUpdate:insertSql];
 }
@@ -168,10 +167,9 @@ static FMDatabase *_fmdb;
                         ownerId:(NSString *)ownerId
 {
     
-    NSString *currentTime = [ZTCommonUtils currentTimeInterval];
     NSString *currentTimeStr = [ZTCommonUtils getCurrentTime];
     
-    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Solution(id, ownerId, houseId, lfFile, filePath, creatDate, updateDate, type, isUpload, isDelete) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%zd', '%zd', '%zd');", currentTime, ownerId, model.houseId, model.lfFile, model.zipFpath, currentTimeStr, @"", model.type, model.isUpload, model.isDelete];
+    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Solution(id, ownerId, houseId, lfFile, filePath, creatDate, updateDate, type, isUpload, isDelete) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%zd', '%zd', '%zd');", model.houseId, ownerId, model.houseId, model.lfFile, model.zipFpath, currentTimeStr, @"", model.type, model.isUpload, model.isDelete];
     
     return [_fmdb executeUpdate:insertSql];
 }
@@ -196,6 +194,7 @@ static FMDatabase *_fmdb;
     [self deleteData:@"DELETE FROM Worker"];
     [self deleteData:@"DELETE FROM Owner"];
     [self deleteData:@"DELETE FROM Solution"];
+    
 }
 
 + (BOOL)deleteData:(NSString *)deleteSql {

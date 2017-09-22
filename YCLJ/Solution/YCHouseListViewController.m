@@ -40,7 +40,7 @@
 {
     [super viewWillAppear:animated];
     
-    [self loadSolutionFromDB];
+    [self loadFirstSolution];
 }
 
 - (void)viewDidLoad {
@@ -121,6 +121,8 @@
                                 
                                 NSMutableDictionary *houseDict = (NSMutableDictionary *)houseDictArray[j];
                                 YCHouseModel *houseModel = [YCHouseModel newWithDict:houseDict];
+                                houseModel.isDelete = 0;
+                                houseModel.isUpload = 1;
                                 [ownerHouseArray addObject:houseModel];
                                 
                                 [houseArray addObject:houseModel];
@@ -129,8 +131,12 @@
                             [ownerArray addObject:ownerModel];
                         }
                         
+                        // 插入本地数据库
                         [YCHouseFmdbTool insertOwnerArrayModel:ownerArray];
                         [YCHouseFmdbTool insertOwnerHouseArrayModel:ownerHouseArray];
+                        
+                        // 3, 从数据库读取
+                        [self loadSolutionFromDB];
                         
                         NSLog(@"over");
                     } else {
@@ -146,30 +152,39 @@
             }];
 }
 
+- (void)loadFirstSolution
+{
+    // 1,删除本地数据 除了未上传的纪录
+    [YCHouseFmdbTool deleteData:@"DELETE FROM Solution where isUpload = 1"];
+    
+    // 2, 拉去网上数据 & 插入本地数据库
+    [self loadSolutionFromWeb];
+    
+}
+
 - (void)loadSolutionFromDB
 {
     
-    [self loadSolutionFromWeb];
-    
-    // 从数据库读取
     NSTimeInterval currentTimeDouble = [ZTCommonUtils currentTimeIntervalDouble];
-     _userArray = [YCHouseFmdbTool queryOwnerData:nil];
-     _userCount = [_userArray count];
-     _userSolutionCountDict = [YCHouseFmdbTool queryOwnerSolutionNumber];
-     _resultDict = [YCHouseFmdbTool queryAllSolutionData:nil];
-     _resultFormDict = [NSMutableDictionary dictionary];
-     
-     for (NSString *key in _resultDict) {
-     
-         YCHouseModel *houseModel = _resultDict[key];
-         YCHouseObject *houseObject = [[YCHouseObject alloc] init];
-         houseObject.houseModel = houseModel;
-         
-         [_resultFormDict setValue:houseObject forKey:key];
-     }
     
-    NSLog(@"从数据库读取 use time: %f", [ZTCommonUtils currentTimeIntervalDouble] - currentTimeDouble);
+    _userArray = [YCHouseFmdbTool queryOwnerData:nil];
+    _userCount = [_userArray count];
+    _userSolutionCountDict = [YCHouseFmdbTool queryOwnerSolutionNumber];
+    _resultDict = [YCHouseFmdbTool queryAllSolutionData:nil];
+    _resultFormDict = [NSMutableDictionary dictionary];
     
+    for (NSString *key in _resultDict) {
+        
+        YCHouseModel *houseModel = _resultDict[key];
+        YCHouseObject *houseObject = [[YCHouseObject alloc] init];
+        houseObject.houseModel = houseModel;
+        
+        [_resultFormDict setValue:houseObject forKey:key];
+    }
+    
+    DLog(@"从数据库读取 use time: %f", [ZTCommonUtils currentTimeIntervalDouble] - currentTimeDouble);
+    
+    // 4, 更新列表
     [self loadCellDataDone];
 }
 
@@ -178,12 +193,12 @@
     //    [self loadSolutionFromDB];
 }
 
-- (void)loadCellDataDone
-{
-    
-    [super loadCellDataDone];
-    
-}
+//- (void)loadCellDataDone
+//{
+//
+//    [super loadCellDataDone];
+//
+//}
 
 #pragma mark - Table view data source
 
@@ -205,11 +220,11 @@
         YCOwnerModel *userModel = (YCOwnerModel *)[_userArray objectAtIndex:section];
         NSString *mobile = userModel.mobile;
         if ([_userSolutionCountDict objectForKey:mobile]) {
-            //            todo 为什么会调用3次
+            // todo 为什么会调用3次
             sectionCount = [(NSNumber *)_userSolutionCountDict[mobile] intValue];
         }
         
-        //        DLog(@"_userSolutionCountDict %@ %@", [(NSNumber *)_userSolutionCountDict[mobile] intValue], mobile);
+        // DLog(@"_userSolutionCountDict %@ %@", [(NSNumber *)_userSolutionCountDict[mobile] intValue], mobile);
     }
     
     return sectionCount;
@@ -281,22 +296,35 @@
  */
 - (void)downloadAction:(NSString *)urlString houseId:(NSString *)houseId
 {
+    DLog(@"downloadAction:%@ houseId:%@", urlString, houseId);
+    
     //    self.status.text = @"正在下载";
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_t downloadDispatchGroup = dispatch_group_create();
     
     // KCSOFT/13524010590/062ECECD-FA54-453B-8C40-741919A1BA7B/062ECECD-FA54-453B-8C40-741919A1BA7B.lf
+    
+    // dir
+    NSString *dirKCPath = [NSString stringWithFormat:@"KCSOFT/%@/%@/", [YCAppManager instance].workMobile, houseId];
+    
+    NSString *dirPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:dirKCPath];
+    
+    // file
     NSString *fileKCPath = [NSString stringWithFormat:@"KCSOFT/%@/%@/%@.lf", [YCAppManager instance].workMobile, houseId, houseId];
     
     NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:fileKCPath];
     
-    NSFileManager *fileManager = [NSFileManager defaultManager];
     
     // 如果本地不存在图片，则从网络中下载
-    if (![fileManager fileExistsAtPath:filePath]) {
+    //    NSFileManager *fileManager = [NSFileManager defaultManager];
+    //    if (![fileManager fileExistsAtPath:filePath])
+    { // 不管是否存在都从网上下载，保证内容最新
+        
+        // Create target path
+        [[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:NULL];
         
         dispatch_group_async(downloadDispatchGroup, queue, ^{
-            DLog(@"Starting file download:%@", filePath);
+            DLog(@"Starting file download:%@", dirPath);
             
             // URL组装和编码
             NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -308,12 +336,34 @@
             [responseData writeToFile:filePath atomically:YES];
             // 将下载的图片赋值给info
             NSLog(@"file download finish:%@", filePath);
-            [LFDrawManager initDrawVCWithHouseID:houseId];
+            [self drawWithHouseId:houseId];
         });
-    } else {
-        
-        [LFDrawManager initDrawVCWithHouseID:houseId];
     }
+    //    else {
+    //
+    //        [self drawWithHouseId:houseId];
+    //    }
+}
+
+- (void)drawWithHouseId:(NSString *)houseId
+{
+    /** 初始化一个绘图界面 */
+    [LFDrawManager initDrawVCWithHouseID:houseId];
+    
+    LFDrawManager *dm = [LFDrawManager sharedInstance];
+    
+    [dm setCloseBtnActionBlock:^(NSString* houseID){
+        
+        NSLog(@"\n-------点击了“关闭”按钮-------\n %@", houseID);
+        
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }];
+    
+    // 点击3D
+    //        [dm setJump3DPageBlock:^(UIViewController * drawVC){
+    //            LFUnityViewController * d3VC = [[LFUnityViewController alloc] init];
+    //            [drawVC.navigationController pushViewController:d3VC animated:YES];
+    //        }];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -323,11 +373,15 @@
     YCHouseObject *houseObject = [self getCellHouseObject:indexPath.section
                                                       row:indexPath.row];;
     NSString *houseId = houseObject.houseModel.houseId;
-    [YCAppManager instance].houseId = houseId; //缓存当前绘制的houseId
-    YCOwnerModel *userModel = [_userArray objectAtIndex:indexPath.section];
-    [LFDrawManager initDrawVCWithHouseID:houseId];
+    //    [YCAppManager instance].houseId = houseId; //缓存当前绘制的houseId
+    //    YCOwnerModel *userModel = [_userArray objectAtIndex:indexPath.section];
+    //    [LFDrawManager initDrawVCWithHouseID:houseId];
+    
+    NSString *strUrl = @"http://zhuangxiu-img.img-cn-shanghai.aliyuncs.com/leju/1708/03/37294516782411e780e900163e0e98a7.lf";
+    [self downloadAction:strUrl houseId:houseId];
     
     // 加载网络
+    
     //    [YCAppManager instance].houseId = @"062ECECD-FA54-453B-8C40-741919A1BA7B";
     //    [self downloadAction];
 }
@@ -338,10 +392,10 @@
     
     // 判断是否符合条件
     NSInteger sectionCount = [(NSNumber *)_userSolutionCountDict[houseModel.ownerId] intValue];
-    //    if (sectionCount > 1) {
-    //        // 已经有拆改图了
-    //        return;
-    //    }
+    if (sectionCount > 1) {
+        // 已经有拆改图了
+        return;
+    }
     
     //    DLog(@"handle Copy %@", houseModel.zipFpath);
     NSString *sourcePath = houseModel.zipFpath;
@@ -365,7 +419,7 @@
     [YCHouseFmdbTool insertCopySolutionModel:houseModel ownerId:houseModel.ownerId];
     
     // 同步后台
-    [[YCAppManager instance] transHouseData:houseModel.houseId];
+    [[YCAppManager instance] transCopyHouseData:houseModel.houseId];
     
     // reload msg
     [self loadSolutionFromDB];
@@ -412,8 +466,12 @@
 
 - (void)deleteCell
 {
-    NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET isDelete = 1 where houseId = '%@'", _houseModel.houseId];
-    [YCHouseFmdbTool modifyData:modifySql];
+    // 本地真删除，服务器软删除
+    //    NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET isDelete = 1 where houseId = '%@'", _houseModel.houseId];
+    //    [YCHouseFmdbTool modifyData:modifySql];
+    
+    NSString *deleteSql = [NSString stringWithFormat:@"DELETE FROM Solution where houseId = '%@'", _houseModel.houseId];
+    [YCHouseFmdbTool deleteData:deleteSql];
     
     // reload msg
     [self loadSolutionFromDB];
