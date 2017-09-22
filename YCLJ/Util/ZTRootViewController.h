@@ -12,8 +12,19 @@
 #import "YCHeader.h"
 #import "YCAppManager.h"
 
+#import "ZTLoaddingView.h"
+#import "ZTToastView.h"
+
 @interface ZTRootViewController : UIViewController
+{
+    ZTLoaddingView * Loadding;
+}
 
 - (void)popToRootView;
+
+#pragma mark - loading msg
+- (void)showLoadingMsg:(NSString *)msg;
+
+- (void)closeLoadingMsg;
 
 @end

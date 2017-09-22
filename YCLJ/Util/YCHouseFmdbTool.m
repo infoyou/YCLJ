@@ -230,7 +230,7 @@ static FMDatabase *_fmdb;
 + (NSMutableDictionary *)queryAllSolutionData:(NSString *)querySql
 {
     if (querySql == nil) {
-        querySql = @"SELECT ownerId, type, houseId, filePath, creatDate, updateDate, isUpload, isDelete FROM Solution where isDelete != 1;";
+        querySql = @"SELECT ownerId, type, houseId, lfFile, filePath, creatDate, updateDate, isUpload, isDelete FROM Solution where isDelete != 1;";
     }
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -244,6 +244,8 @@ static FMDatabase *_fmdb;
             
             NSInteger type = [set intForColumn:@"type"];
             NSString *houseId = [set stringForColumn:@"houseId"];
+            NSString *lfFile = [set stringForColumn:@"lfFile"];
+            DLog(@"lfFile %@", lfFile);
             NSString *zipFpath = [set stringForColumn:@"filePath"];
             NSString *creatDate = [set stringForColumn:@"creatDate"];
             NSString *updateDate = [set stringForColumn:@"updateDate"];
@@ -254,6 +256,7 @@ static FMDatabase *_fmdb;
             NSMutableDictionary *houseDict = [NSMutableDictionary dictionary];
             [houseDict setObject:ownerId forKey:@"owner_mobile"];
             [houseDict setObject:houseId forKey:@"house_num"];
+            [houseDict setObject:lfFile forKey:@"lf_file"];
             [houseDict setObject:zipFpath forKey:@"pkg"];
             [houseDict setObject:[NSNumber numberWithInteger:type] forKey:@"is_copy"];
             [houseDict setObject:[NSNumber numberWithInteger:isUpload] forKey:@"isUpload"];

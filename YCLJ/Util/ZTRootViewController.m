@@ -157,4 +157,16 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
+#pragma mark - loading msg
+- (void)showLoadingMsg:(NSString *)msg
+{
+    Loadding = [ZTLoaddingView initWithParentView:self.view];
+    [Loadding showLoaddingViewWithText:msg andStyle:0];
+}
+
+- (void)closeLoadingMsg
+{
+    [Loadding dismissLoaddingView];
+}
+
 @end

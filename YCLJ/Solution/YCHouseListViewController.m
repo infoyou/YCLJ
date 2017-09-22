@@ -138,7 +138,9 @@
                         // 3, 从数据库读取
                         [self loadSolutionFromDB];
                         
-                        NSLog(@"over");
+                        [self closeLoadingMsg];
+                        
+                        DLog(@"over");
                     } else {
                         
                         NSLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
@@ -154,6 +156,7 @@
 
 - (void)loadFirstSolution
 {
+    [self showLoadingMsg:@"加载数据"];
     // 1,删除本地数据 除了未上传的纪录
     [YCHouseFmdbTool deleteData:@"DELETE FROM Solution where isUpload = 1"];
     
@@ -262,6 +265,7 @@
         
         houseObject = (YCHouseObject *)_resultFormDict[key];
     } else {
+        
         houseObject = nil;
     }
     
@@ -298,7 +302,6 @@
 {
     DLog(@"downloadAction:%@ houseId:%@", urlString, houseId);
     
-    //    self.status.text = @"正在下载";
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_t downloadDispatchGroup = dispatch_group_create();
     
@@ -339,6 +342,9 @@
             [self drawWithHouseId:houseId];
         });
     }
+    
+    [self closeLoadingMsg];
+    
     //    else {
     //
     //        [self drawWithHouseId:houseId];
@@ -356,7 +362,8 @@
         
         NSLog(@"\n-------点击了“关闭”按钮-------\n %@", houseID);
         
-        [self.navigationController popToRootViewControllerAnimated:NO];
+        [self dismissViewControllerAnimated:NO completion:nil];
+        [self.navigationController popViewControllerAnimated:NO];
     }];
     
     // 点击3D
@@ -371,14 +378,24 @@
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     
     YCHouseObject *houseObject = [self getCellHouseObject:indexPath.section
-                                                      row:indexPath.row];;
-    NSString *houseId = houseObject.houseModel.houseId;
+                                                      row:indexPath.row];
+    YCHouseModel *houseModel = houseObject.houseModel;
+    
     //    [YCAppManager instance].houseId = houseId; //缓存当前绘制的houseId
     //    YCOwnerModel *userModel = [_userArray objectAtIndex:indexPath.section];
     //    [LFDrawManager initDrawVCWithHouseID:houseId];
     
-    NSString *strUrl = @"http://zhuangxiu-img.img-cn-shanghai.aliyuncs.com/leju/1708/03/37294516782411e780e900163e0e98a7.lf";
-    [self downloadAction:strUrl houseId:houseId];
+    //    [self showLoadingMsg:@"加载数据"];
+    
+    DLog(@"houseModel.lfFile %@", houseModel.lfFile);
+    if ([houseModel.lfFile isEqualToString:@""]) {
+        
+        [ZTToastView showToastViewWithText:@"户型文件为空" andDuration:1 andCorner:5 andParentView:self.view];
+    } else {
+        
+        [ZTToastView showToastViewWithText:houseModel.lfFile andDuration:1 andCorner:5 andParentView:self.view];
+        [self downloadAction:houseModel.lfFile houseId:houseModel.houseId];
+    }
     
     // 加载网络
     

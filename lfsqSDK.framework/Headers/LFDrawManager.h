@@ -52,7 +52,6 @@
  */
 @property (nonatomic, copy) void (^jump3DPageBlock)(UIViewController * drawVC);
 
-
 /**
  *  关闭 按钮 block
  */

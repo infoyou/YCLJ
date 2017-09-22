@@ -73,7 +73,11 @@
 		74A68C691F220F4200DC37BA /* lfsqSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A68C651F220F4200DC37BA /* lfsqSDK.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		74C5D7E31F7351EB00717F3F /* LFUnityViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C5D7E11F7351EB00717F3F /* LFUnityViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74C5D7E41F7351EB00717F3F /* LFUnityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C5D7E21F7351EB00717F3F /* LFUnityViewController.m */; };
-		74C5D8201F73A01800717F3F /* lfsqSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C5D81F1F73A01800717F3F /* lfsqSDK.framework */; };
+		74C64AF41F7554AA00D67C88 /* lfsqSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C64AF31F7554AA00D67C88 /* lfsqSDK.framework */; };
+		74C64AF91F75559700D67C88 /* ZTLoaddingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C64AF51F75559700D67C88 /* ZTLoaddingView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74C64AFA1F75559700D67C88 /* ZTLoaddingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C64AF61F75559700D67C88 /* ZTLoaddingView.m */; };
+		74C64AFB1F75559700D67C88 /* ZTToastView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C64AF71F75559700D67C88 /* ZTToastView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74C64AFC1F75559700D67C88 /* ZTToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C64AF81F75559700D67C88 /* ZTToastView.m */; };
 		74EA9AF31F2B405B006916C3 /* houseStyle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74EA9AF21F2B405B006916C3 /* houseStyle.plist */; };
 		8F37A9FD0103E8E1D559D1E4 /* libPods-YCLJ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A31E24CF965375A4118BBA /* libPods-YCLJ.a */; };
 /* End PBXBuildFile section */
@@ -148,7 +152,11 @@
 		74A68C651F220F4200DC37BA /* lfsqSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = lfsqSDK.h; path = lfsqSDK.framework/Headers/lfsqSDK.h; sourceTree = "<group>"; };
 		74C5D7E11F7351EB00717F3F /* LFUnityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFUnityViewController.h; sourceTree = "<group>"; };
 		74C5D7E21F7351EB00717F3F /* LFUnityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFUnityViewController.m; sourceTree = "<group>"; };
-		74C5D81F1F73A01800717F3F /* lfsqSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lfsqSDK.framework; sourceTree = "<group>"; };
+		74C64AF31F7554AA00D67C88 /* lfsqSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lfsqSDK.framework; sourceTree = "<group>"; };
+		74C64AF51F75559700D67C88 /* ZTLoaddingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTLoaddingView.h; sourceTree = "<group>"; };
+		74C64AF61F75559700D67C88 /* ZTLoaddingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTLoaddingView.m; sourceTree = "<group>"; };
+		74C64AF71F75559700D67C88 /* ZTToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTToastView.h; sourceTree = "<group>"; };
+		74C64AF81F75559700D67C88 /* ZTToastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTToastView.m; sourceTree = "<group>"; };
 		74EA9AF21F2B405B006916C3 /* houseStyle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = houseStyle.plist; sourceTree = "<group>"; };
 		75F2B237DE5D05E1292C84DC /* Pods-YCLJ.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YCLJ.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YCLJ/Pods-YCLJ.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,7 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F37A9FD0103E8E1D559D1E4 /* libPods-YCLJ.a in Frameworks */,
-				74C5D8201F73A01800717F3F /* lfsqSDK.framework in Frameworks */,
+				74C64AF41F7554AA00D67C88 /* lfsqSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,7 +177,7 @@
 		74117ADC1F204E7F00911D09 = {
 			isa = PBXGroup;
 			children = (
-				74C5D81F1F73A01800717F3F /* lfsqSDK.framework */,
+				74C64AF31F7554AA00D67C88 /* lfsqSDK.framework */,
 				74302B521F3AFAB70095D3BD /* MapFileParser.sh */,
 				74302B531F3AFAB70095D3BD /* DXFTemplate_shape.dxf */,
 				74302B541F3AFAB70095D3BD /* RoomTypeAndIDList.plist */,
@@ -272,6 +280,10 @@
 		74149B961F34675000671036 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				74C64AF51F75559700D67C88 /* ZTLoaddingView.h */,
+				74C64AF61F75559700D67C88 /* ZTLoaddingView.m */,
+				74C64AF71F75559700D67C88 /* ZTToastView.h */,
+				74C64AF81F75559700D67C88 /* ZTToastView.m */,
 				74149B9B1F34675000671036 /* Nonetwork.h */,
 				74149B9C1F34675000671036 /* Nonetwork.m */,
 				74149B9D1F34675000671036 /* ZTStringCategory.h */,
@@ -344,6 +356,8 @@
 				74563D871F6FA9FE00B3D359 /* YCDrawViewController.h in Headers */,
 				74149BD61F34675000671036 /* ZTStringCategory.h in Headers */,
 				74C5D7E31F7351EB00717F3F /* LFUnityViewController.h in Headers */,
+				74C64AFB1F75559700D67C88 /* ZTToastView.h in Headers */,
+				74C64AF91F75559700D67C88 /* ZTLoaddingView.h in Headers */,
 				741CFED31F2080AD00E6B34C /* LFDrawManager.h in Headers */,
 				74A68C671F220F4200DC37BA /* LFDrawSDKAPI.h in Headers */,
 				74A68C681F220F4200DC37BA /* LFHouseInfoModel.h in Headers */,
@@ -474,6 +488,7 @@
 				74149BE11F34675100671036 /* ZTRootViewController.m in Sources */,
 				743F8DF81F34712200198D20 /* YCHouseListCell.m in Sources */,
 				74149BB11F34675000671036 /* YCAlertViewExtension.m in Sources */,
+				74C64AFC1F75559700D67C88 /* ZTToastView.m in Sources */,
 				743F8DFE1F34712200198D20 /* YCHouseObject.m in Sources */,
 				743F8E071F3471E200198D20 /* YCPopViewExtension.h in Sources */,
 				74149BDB1F34675100671036 /* ZTBaseTableViewController.m in Sources */,
@@ -481,6 +496,7 @@
 				74149BD51F34675000671036 /* Nonetwork.m in Sources */,
 				74302B6B1F3AFBBD0095D3BD /* YCHouseModel.m in Sources */,
 				74302B611F3AFB6D0095D3BD /* YCUserListViewController.m in Sources */,
+				74C64AFA1F75559700D67C88 /* ZTLoaddingView.m in Sources */,
 				74149BB51F34675000671036 /* YCHouseCityChoiceView.m in Sources */,
 				74149BDF1F34675100671036 /* ZTHttpTool.m in Sources */,
 				74149BD71F34675100671036 /* ZTStringCategory.m in Sources */,
