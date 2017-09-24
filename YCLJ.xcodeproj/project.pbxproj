@@ -78,6 +78,8 @@
 		74C64AFA1F75559700D67C88 /* ZTLoaddingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C64AF61F75559700D67C88 /* ZTLoaddingView.m */; };
 		74C64AFB1F75559700D67C88 /* ZTToastView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C64AF71F75559700D67C88 /* ZTToastView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74C64AFC1F75559700D67C88 /* ZTToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C64AF81F75559700D67C88 /* ZTToastView.m */; };
+		74E26A441F77D18F00069B52 /* ZTAsynDownload.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E26A421F77D18F00069B52 /* ZTAsynDownload.h */; };
+		74E26A451F77D18F00069B52 /* ZTAsynDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E26A431F77D18F00069B52 /* ZTAsynDownload.m */; };
 		74EA9AF31F2B405B006916C3 /* houseStyle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74EA9AF21F2B405B006916C3 /* houseStyle.plist */; };
 		8F37A9FD0103E8E1D559D1E4 /* libPods-YCLJ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A31E24CF965375A4118BBA /* libPods-YCLJ.a */; };
 /* End PBXBuildFile section */
@@ -157,6 +159,8 @@
 		74C64AF61F75559700D67C88 /* ZTLoaddingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTLoaddingView.m; sourceTree = "<group>"; };
 		74C64AF71F75559700D67C88 /* ZTToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTToastView.h; sourceTree = "<group>"; };
 		74C64AF81F75559700D67C88 /* ZTToastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTToastView.m; sourceTree = "<group>"; };
+		74E26A421F77D18F00069B52 /* ZTAsynDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTAsynDownload.h; sourceTree = "<group>"; };
+		74E26A431F77D18F00069B52 /* ZTAsynDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTAsynDownload.m; sourceTree = "<group>"; };
 		74EA9AF21F2B405B006916C3 /* houseStyle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = houseStyle.plist; sourceTree = "<group>"; };
 		75F2B237DE5D05E1292C84DC /* Pods-YCLJ.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YCLJ.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YCLJ/Pods-YCLJ.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -280,6 +284,8 @@
 		74149B961F34675000671036 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				74E26A421F77D18F00069B52 /* ZTAsynDownload.h */,
+				74E26A431F77D18F00069B52 /* ZTAsynDownload.m */,
 				74C64AF51F75559700D67C88 /* ZTLoaddingView.h */,
 				74C64AF61F75559700D67C88 /* ZTLoaddingView.m */,
 				74C64AF71F75559700D67C88 /* ZTToastView.h */,
@@ -335,6 +341,7 @@
 				74149BB61F34675000671036 /* YCHouseParmChoiceView.h in Headers */,
 				74149BCE1F34675000671036 /* YCUserListViewController.h in Headers */,
 				74149BB41F34675000671036 /* YCHouseCityChoiceView.h in Headers */,
+				74E26A441F77D18F00069B52 /* ZTAsynDownload.h in Headers */,
 				74149BB81F34675000671036 /* YCPopViewExtension.h in Headers */,
 				743F8E051F34714000198D20 /* YCUserListCell.h in Headers */,
 				743F8DF91F34712200198D20 /* YCHouseListViewController.h in Headers */,
@@ -485,6 +492,7 @@
 				74149BB71F34675000671036 /* YCHouseParmChoiceView.m in Sources */,
 				74149BD91F34675100671036 /* ZTBaseTableViewCell.m in Sources */,
 				74563D881F6FA9FE00B3D359 /* YCDrawViewController.m in Sources */,
+				74E26A451F77D18F00069B52 /* ZTAsynDownload.m in Sources */,
 				74149BE11F34675100671036 /* ZTRootViewController.m in Sources */,
 				743F8DF81F34712200198D20 /* YCHouseListCell.m in Sources */,
 				74149BB11F34675000671036 /* YCAlertViewExtension.m in Sources */,

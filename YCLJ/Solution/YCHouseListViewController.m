@@ -20,9 +20,13 @@
 #import "YCHouseFmdbTool.h"
 #import "YCHouseOwnerView.h"
 
+#import "ZTAsynDownload.h"
+
 @interface YCHouseListViewController () <HouseListCellDelegate,YCAlertviewExtensionDelegate, HouseListOwnerViewDelegate>
 {
     YCAlertViewExtension *alert;
+    
+    long long _sum, _rcv;
 }
 
 @property (nonatomic, strong) YCHouseModel *houseModel;
@@ -292,6 +296,41 @@
     return cell;
 }
 
+- (void)downloadAction1:(NSString *)urlString houseId:(NSString *)houseId
+{
+    ZTAsynDownload *dwn = [ZTAsynDownload initWithURL:[[NSURL alloc] initWithString:@"http://img01.jituwang.com/170503/256967-1F50310411827.jpg"]];
+    
+    dwn.initProgress = ^(long long initValue){
+        _sum = initValue;
+        NSLog(@"%lli",initValue);
+        _rcv = 0;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //            self.pv.progress = 0.0;
+            //            self.pv.hidden = NO;
+            DLog(@"down start");
+        });
+    };
+    
+    dwn.loadedData = ^(long long loadedLength){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            _rcv += loadedLength;
+            
+            if (_rcv == _sum) {
+                //                self.pv.hidden = YES;
+                DLog(@"down success");
+                [self closeLoadingMsg];
+            } else {
+                float rate = (_rcv)/(_sum * 1.0);
+                //                self.pv.progress = rate;
+                DLog(@"down is %0.2f%%", rate*100);
+            }
+        });
+    };
+    
+    [dwn startAsyn];
+}
+
 /**
  *
  *
@@ -301,9 +340,6 @@
 - (void)downloadAction:(NSString *)urlString houseId:(NSString *)houseId
 {
     DLog(@"downloadAction:%@ houseId:%@", urlString, houseId);
-    
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_group_t downloadDispatchGroup = dispatch_group_create();
     
     // KCSOFT/13524010590/062ECECD-FA54-453B-8C40-741919A1BA7B/062ECECD-FA54-453B-8C40-741919A1BA7B.lf
     
@@ -326,6 +362,9 @@
         // Create target path
         [[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:NULL];
         
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_group_t downloadDispatchGroup = dispatch_group_create();
+        
         dispatch_group_async(downloadDispatchGroup, queue, ^{
             DLog(@"Starting file download:%@", dirPath);
             
@@ -339,11 +378,13 @@
             [responseData writeToFile:filePath atomically:YES];
             // 将下载的图片赋值给info
             NSLog(@"file download finish:%@", filePath);
+            
             [self drawWithHouseId:houseId];
+            
+            [self closeLoadingMsg];
         });
     }
     
-    [self closeLoadingMsg];
     
     //    else {
     //
@@ -385,7 +426,6 @@
     //    YCOwnerModel *userModel = [_userArray objectAtIndex:indexPath.section];
     //    [LFDrawManager initDrawVCWithHouseID:houseId];
     
-    //    [self showLoadingMsg:@"加载数据"];
     
     DLog(@"houseModel.lfFile %@", houseModel.lfFile);
     if ([houseModel.lfFile isEqualToString:@""]) {
@@ -393,7 +433,8 @@
         [ZTToastView showToastViewWithText:@"户型文件为空" andDuration:1 andCorner:5 andParentView:self.view];
     } else {
         
-        [ZTToastView showToastViewWithText:houseModel.lfFile andDuration:1 andCorner:5 andParentView:self.view];
+        //        [ZTToastView showToastViewWithText:houseModel.lfFile andDuration:1 andCorner:5 andParentView:self.view];
+        [self showLoadingMsg:@"加载数据"];
         [self downloadAction:houseModel.lfFile houseId:houseModel.houseId];
     }
     

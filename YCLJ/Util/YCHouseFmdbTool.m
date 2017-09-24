@@ -245,7 +245,6 @@ static FMDatabase *_fmdb;
             NSInteger type = [set intForColumn:@"type"];
             NSString *houseId = [set stringForColumn:@"houseId"];
             NSString *lfFile = [set stringForColumn:@"lfFile"];
-            DLog(@"lfFile %@", lfFile);
             NSString *zipFpath = [set stringForColumn:@"filePath"];
             NSString *creatDate = [set stringForColumn:@"creatDate"];
             NSString *updateDate = [set stringForColumn:@"updateDate"];
