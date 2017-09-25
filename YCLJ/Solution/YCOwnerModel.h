@@ -16,9 +16,9 @@
 @property (nonatomic, copy) NSString *address;  //地址
 @property (nonatomic, copy) NSString *area;     //面积
 
-@property (nonatomic, copy) NSString *city;
-@property (nonatomic, copy) NSString *type;
-@property (nonatomic, copy) NSString *style;
+@property (nonatomic, copy) NSString *city; // 城市
+@property (nonatomic, copy) NSString *type; // 房屋类型
+@property (nonatomic, copy) NSString *style;// 房屋属性 is_new
 
 @property (nonatomic, copy) NSString *createTime; //创建时间
 
