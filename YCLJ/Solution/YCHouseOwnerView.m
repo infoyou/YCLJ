@@ -150,15 +150,15 @@
 
 - (void)clickShareOwner
 {
-    if ([self.delegate respondsToSelector:@selector(doShareOwner)]) {
-        [self.delegate doShareOwner];
+    if ([self.delegate respondsToSelector:@selector(doShareOwner:)]) {
+        [self.delegate doShareOwner:_userModel.mobile];
     }
 }
 
 - (void)clickSendOwner
 {
-    if ([self.delegate respondsToSelector:@selector(doSendOwner)]) {
-        [self.delegate doSendOwner];
+    if ([self.delegate respondsToSelector:@selector(doSendOwner:)]) {
+        [self.delegate doSendOwner:_userModel.mobile];
     }
 }
 

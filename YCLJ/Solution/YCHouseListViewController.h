@@ -11,7 +11,8 @@
 
 @interface YCHouseListViewController : ZTBaseTableViewController
 
-@property (nonatomic, copy) void(^shareEventBlock)();
-@property (nonatomic, copy) void(^sendEventBlock)();
+@property (nonatomic, copy) void (^draw3DBlock)(UIViewController * drawVC);
+@property (nonatomic, copy) void (^shareBlock)(NSString *url);
+@property (nonatomic, copy) void (^sendBlock)(NSString *url);
 
 @end

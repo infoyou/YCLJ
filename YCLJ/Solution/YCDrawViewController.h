@@ -12,6 +12,8 @@
 @interface YCDrawViewController : NSObject
 
 @property (nonatomic, copy) void (^draw3DBlock)(UIViewController * drawVC);
+@property (nonatomic, copy) void (^shareBlock)(NSString *url);
+@property (nonatomic, copy) void (^sendBlock)(NSString *url);
 
 + (instancetype)instance;
 

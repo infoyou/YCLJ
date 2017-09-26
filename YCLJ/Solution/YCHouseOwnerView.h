@@ -14,8 +14,8 @@
 
 @protocol HouseListOwnerViewDelegate <NSObject>
 
-- (void)doShareOwner;
-- (void)doSendOwner;
+- (void)doShareOwner:(NSString *)mobile;
+- (void)doSendOwner:(NSString *)mobile;
 
 @end
 

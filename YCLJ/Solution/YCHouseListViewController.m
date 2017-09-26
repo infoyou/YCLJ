@@ -162,6 +162,7 @@
 {
     [self showLoadingMsg:@"加载数据"];
     // 1,删除本地数据 除了未上传的纪录
+    [YCHouseFmdbTool deleteData:@"DELETE FROM Owner"];
     [YCHouseFmdbTool deleteData:@"DELETE FROM Solution where isUpload = 1"];
     
     // 2, 拉去网上数据 & 插入本地数据库
@@ -384,12 +385,6 @@
             [self closeLoadingMsg];
         });
     }
-    
-    
-    //    else {
-    //
-    //        [self drawWithHouseId:houseId];
-    //    }
 }
 
 - (void)drawWithHouseId:(NSString *)houseId
@@ -399,19 +394,28 @@
     
     LFDrawManager *dm = [LFDrawManager sharedInstance];
     
-    [dm setCloseBtnActionBlock:^(NSString* houseID){
+    [dm setCloseBtnActionBlock:^(NSString *houseID){
         
         NSLog(@"\n-------点击了“关闭”按钮-------\n %@", houseID);
         
         [self dismissViewControllerAnimated:NO completion:nil];
-        [self.navigationController popViewControllerAnimated:NO];
+        
+        [[YCAppManager instance] updateTempHouseData:@""];
     }];
     
     // 点击3D
-    //        [dm setJump3DPageBlock:^(UIViewController * drawVC){
-    //            LFUnityViewController * d3VC = [[LFUnityViewController alloc] init];
-    //            [drawVC.navigationController pushViewController:d3VC animated:YES];
-    //        }];
+    [dm setJump3DPageBlock:^(UIViewController *drawVC){
+        
+        NSLog(@"\n-------点击了“3D”按钮-------\n");
+        // [self dismissViewControllerAnimated:YES completion:nil];
+        
+        if (self.draw3DBlock)
+        {
+            [self dismissViewControllerAnimated:NO completion:nil];
+            self.draw3DBlock(drawVC);
+            NSLog(@"绘制3D");
+        }
+    }];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -439,7 +443,6 @@
     }
     
     // 加载网络
-    
     //    [YCAppManager instance].houseId = @"062ECECD-FA54-453B-8C40-741919A1BA7B";
     //    [self downloadAction];
 }
@@ -561,27 +564,27 @@
 }
 
 #pragma mark - HouseListOwnerViewDelegate method
-- (void)doShareOwner
+- (void)doShareOwner:(NSString *)mobile
 {
     //    DLog(@"doShareOwner");
     //    ShowAlertWithOneButton(self, @"", @"分享业主", @"OK");
     
-    if (self.shareEventBlock)
+    if (self.shareBlock)
     {
-        self.shareEventBlock(); // 调用回调函数
+        NSString *shareUrl = [NSString stringWithFormat:@"%@/leju/house/house-summary?chief_id=%@&mobile=%@", YC_HOST_URL, [YCAppManager instance].workId, mobile];
+        self.shareBlock(shareUrl); // 调用回调函数
     }
-    
 }
 
-- (void)doSendOwner
+- (void)doSendOwner:(NSString *)mobile
 {
     YCSendResultViewController *sendResultVC = [[YCSendResultViewController alloc] init];
     sendResultVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:sendResultVC animated:YES];
     
-    if (self.sendEventBlock)
+    if (self.sendBlock)
     {
-        self.sendEventBlock(); // 调用回调函数
+        self.sendBlock(@""); // 调用回调函数
     }
     
 }

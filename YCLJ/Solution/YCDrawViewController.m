@@ -70,27 +70,6 @@ static YCDrawViewController *singleton = nil;
     [self drawHouse];
 }
 
-/*
- - (void)viewWillAppear:(BOOL)animated{
- 
- [super viewWillAppear:animated];
- 
- }
- 
- - (void)viewDidLoad {
- [super viewDidLoad];
- 
- self.view.backgroundColor = [UIColor whiteColor];
- 
- [ZTCommonUtils commonMsg];
- 
- self.tempHouseID = nil;
- 
- // 添加绘图保存成功监听
- [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(houseSaveSucceedAction:) name: @"kSDKSaveHouseDataSucceed_LFSQ" object:nil];
- }
- */
-
 /**
  * houseId 工长Id
  * ownerMobile 业主手机号码
@@ -111,16 +90,7 @@ static YCDrawViewController *singleton = nil;
 
 - (void)drawHouse
 {
-    
     LFDrawManager *dm = [LFDrawManager sharedInstance];
-    // 点击户型列表
-    [dm setHouseListBtnActionBlock:^(NSString *houseID){
-        
-        NSLog(@"点击了户型列表");
-        
-        self.tempHouseID = houseID;
-        [self backView:HOUSE_TO_SOLUTION_TYPE];
-    }];
     
     [dm setCloseBtnActionBlock:^(NSString *houseID){
         
@@ -136,18 +106,13 @@ static YCDrawViewController *singleton = nil;
     [dm setJump3DPageBlock:^(UIViewController *drawVC){
         
         NSLog(@"\n-------点击了“3D”按钮-------\n");
-        
-        //        [self dismissViewControllerAnimated:YES completion:nil];
+        // [self dismissViewControllerAnimated:YES completion:nil];
         
         if (self.draw3DBlock)
         {
             self.draw3DBlock(drawVC);
             NSLog(@"绘制3D");
         }
-        
-        //        LFUnityViewController *d3VC = [[LFUnityViewController alloc] init];
-        //        [drawVC.navigationController pushViewController:d3VC animated:NO];
-        
     }];
 }
 
@@ -236,14 +201,6 @@ static YCDrawViewController *singleton = nil;
     [LFDrawManager initDrawVCWithHouseID:houseId];
     
     LFDrawManager *dm = [LFDrawManager sharedInstance];
-    // 点击户型列表
-    [dm setHouseListBtnActionBlock:^(NSString *houseID){
-        
-        NSLog(@"点击了户型列表");
-        
-        self.tempHouseID = houseID;
-        [self backView:HOUSE_TO_SOLUTION_TYPE];
-    }];
     
     [dm setCloseBtnActionBlock:^(NSString* houseID){
         
@@ -316,20 +273,10 @@ static YCDrawViewController *singleton = nil;
     NSLog(@"\n-------收到户型保存成功的消息---getHouseID----\n%@", getHouseID);
 }
 
-- (void)dealloc {
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"kSDKSaveHouseDataSucceed_LFSQ" object:nil];
-}
-
-//- (void)didReceiveMemoryWarning {
-//    [super didReceiveMemoryWarning];
-//    // Dispose of any resources that can be recreated.
-//}
-
 //添加alertview
 - (void)addAlertView
 {
-    alert = [[YCPopViewExtension alloc] initWithFrame:CGRectMake(0, 0, self.startVC.view.frame.size.width, self.startVC.view.frame.size.height + 80)];
+    alert = [[YCPopViewExtension alloc] initWithFrame:CGRectMake(0, 0, self.startVC.view.frame.size.width, self.startVC.view.frame.size.height + 120)];
     alert.delegate = self;
     [alert setbackviewframeWidth:300 Andheight:150];
     [alert settipeTitleStr:@"" fontSize:14];
@@ -414,7 +361,6 @@ static YCDrawViewController *singleton = nil;
     if ([YCHouseFmdbTool querySolutionData:self.tempHouseID]) {
         
         // 编辑模式
-        //        [self.navigationController popViewControllerAnimated:NO];
         [self btnHouseList];
         
         if (self.tempHouseID != nil) {
@@ -457,8 +403,6 @@ static YCDrawViewController *singleton = nil;
     [self performSelector:@selector(goHouseListVC)
                withObject:nil
                afterDelay:0.4];
-    
-    //    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)goHouseListVC {
@@ -467,14 +411,19 @@ static YCDrawViewController *singleton = nil;
     houseListVC.hidesBottomBarWhenPushed = YES;
     [self.startVC.navigationController pushViewController:houseListVC animated:NO];
     
-    houseListVC.shareEventBlock = ^{
-        NSLog(@"分享数据");
+    houseListVC.shareBlock = ^(NSString *url) {
+        if (self.shareBlock)
+        {
+            self.shareBlock(url);
+            NSLog(@"分享数据");
+        }
     };
     
-    houseListVC.sendEventBlock = ^{
+    houseListVC.sendBlock = ^(NSString *url) {
+        
+        self.sendBlock(url);
         NSLog(@"发送数据");
     };
-    
 }
 
 // --------- 绘制页面中涉及到的逻辑跳转 end ---------
