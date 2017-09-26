@@ -41,13 +41,19 @@
     
     NSNumber *orientationTarget = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight];
     [[UIDevice currentDevice] setValue:orientationTarget forKey:@"orientation"];
-
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(popToRootView)];
+    
+    //    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    //    [self.navigationController.navigationBar
+    //     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 //- (void)viewDidDisappear:(BOOL)animated
 //{
-//    
+//
 //    [super viewDidDisappear:animated];
 
 //
@@ -64,10 +70,10 @@
 
 - (void)hengpingOver1
 {
-
+    
     [[YCAppManager instance] setHengping:NO];
     [self setNewOrientation:NO];
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,14 +82,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - Orientations
 
@@ -101,7 +107,7 @@
 }
 
 //- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
-//    
+//
 //    return UIInterfaceOrientationLandscapeRight;
 //}
 
@@ -123,7 +129,7 @@
 //        return EHZRootNavigationController.topViewController.supportedInterfaceOrientations;;
 //    }
 //    return UIInterfaceOrientationMaskPortrait;
-//    
+//
 //}
 
 - (void)setNewOrientation:(BOOL)fullscreen
@@ -154,7 +160,10 @@
 
 - (void)popToRootView
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    NSNumber *orientationTarget = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+    [[UIDevice currentDevice] setValue:orientationTarget forKey:@"orientation"];
+    
+    [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 #pragma mark - loading msg

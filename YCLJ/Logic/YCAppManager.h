@@ -28,9 +28,9 @@
 
 - (void) setHengping:(BOOL)flag;
 
-- (void)updateHouseData:(NSString *)aHouseId;
+- (void)updateTempHouseData:(NSString *)aHouseId;
 
-- (NSString *)getHouseId;
+- (NSString *)getTempHouseId;
 
 #pragma mark - 获取户型id
 - (void)transWorkId:(NSString *)workId
@@ -62,3 +62,4 @@
 - (void)saveLocalOwnerData:(YCOwnerModel *)userModel;
 
 @end
+

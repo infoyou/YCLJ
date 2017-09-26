@@ -39,18 +39,18 @@ static YCAppManager *singleton = nil;
     _hengping = flag;
 }
 
-- (void)updateHouseData:(NSString *)aHouseId
+- (void)updateTempHouseData:(NSString *)aHouseId
 {
     NSUserDefaults *_def = [NSUserDefaults standardUserDefaults];
     
-    [_def setObject:aHouseId forKey:@"houseId"];
+    [_def setObject:aHouseId forKey:@"kSDKHouseID_LFSQ"];
     
     [_def synchronize];
 }
 
-- (NSString *)getHouseId
+- (NSString *)getTempHouseId
 {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"houseId"];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"kSDKHouseID_LFSQ"];
 }
 
 #pragma mark - 注册工长
@@ -464,3 +464,4 @@ static YCAppManager *singleton = nil;
 }
 
 @end
+

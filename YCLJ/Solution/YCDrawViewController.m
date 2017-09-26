@@ -9,8 +9,10 @@
 #import "YCDrawViewController.h"
 #import "LFDrawManager.h"
 #import "LFDrawSDKAPI.h"
-#import "LFUnityViewController.h"
-#import "YCLJ.h"
+#import "YCPopViewExtension.h"
+#import "YCUserListViewController.h"
+#import "YCHouseListViewController.h"
+#import "YCNewUserViewController.h"
 
 typedef enum {
     
@@ -22,35 +24,72 @@ typedef enum {
 @interface YCDrawViewController () <YCAlertviewExtensionDelegate>
 {
     YCPopViewExtension *alert;
+    
 }
 
 @property (nonatomic, copy) NSString *tempHouseID;
+@property (nonatomic, strong) UIViewController *startVC;
 
 @end
 
 
 @implementation YCDrawViewController
 
-- (void)viewWillAppear:(BOOL)animated{
+static YCDrawViewController *singleton = nil;
+
++ (instancetype)instance {
     
-    [super viewWillAppear:animated];
+    static dispatch_once_t  onceToken;
+    dispatch_once(&onceToken,^{
+        
+        singleton = [[YCDrawViewController alloc] init];
+        
+        // 添加绘图保存成功监听
+        //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(houseSaveSucceedAction:) name: @"kSDKSaveHouseDataSucceed_LFSQ" object:nil];
+    });
     
+    return singleton;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)startDraw:(UIViewController *)vc model:(YCOwnerModel *)model
+{
+    self.startVC = vc;
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    [LFDrawSDKAPI getHouseIDWhenSaveHouse:^(NSString * _Nonnull HouseID) {
+        
+        if (![HouseID isEqualToString:@""]) {
+            // 如果是临时的
+            [LFDrawManager initDrawVCWithHouseID:HouseID];
+        } else {
+            
+            /** 初始化一个绘图界面 */
+            [LFDrawManager initDrawVCWithNewHouse];
+        }
+    }];
     
-    [ZTCommonUtils commonMsg];
-    
-    self.tempHouseID = nil;
-    
-    /**
-     添加绘图保存成功监听
-     */
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(houseSaveSucceedAction:) name: @"kSDKSaveHouseDataSucceed_LFSQ" object:nil];
+    [self drawHouse];
 }
+
+/*
+ - (void)viewWillAppear:(BOOL)animated{
+ 
+ [super viewWillAppear:animated];
+ 
+ }
+ 
+ - (void)viewDidLoad {
+ [super viewDidLoad];
+ 
+ self.view.backgroundColor = [UIColor whiteColor];
+ 
+ [ZTCommonUtils commonMsg];
+ 
+ self.tempHouseID = nil;
+ 
+ // 添加绘图保存成功监听
+ [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(houseSaveSucceedAction:) name: @"kSDKSaveHouseDataSucceed_LFSQ" object:nil];
+ }
+ */
 
 /**
  * houseId 工长Id
@@ -59,7 +98,7 @@ typedef enum {
  */
 - (void)setOwnerMobile:(NSString *)ownerMobile
 {
-//    setHouseId:@"51652" ownerMobile:@"13585869804"
+    //    setHouseId:@"51652" ownerMobile:@"13585869804"
     
     if (![ownerMobile isEqualToString:@""] ) {
         
@@ -72,8 +111,6 @@ typedef enum {
 
 - (void)drawHouse
 {
-    /** 初始化一个绘图界面 */
-    [LFDrawManager initDrawVCWithNewHouse];
     
     LFDrawManager *dm = [LFDrawManager sharedInstance];
     // 点击户型列表
@@ -91,6 +128,8 @@ typedef enum {
         
         self.tempHouseID = houseID;
         [self backView:HOUSE_EXIT_TYPE];
+        
+        [[YCAppManager instance] updateTempHouseData:@""];
     }];
     
     // 点击3D
@@ -98,10 +137,16 @@ typedef enum {
         
         NSLog(@"\n-------点击了“3D”按钮-------\n");
         
-        [self dismissViewControllerAnimated:YES completion:nil];
+        //        [self dismissViewControllerAnimated:YES completion:nil];
         
-        LFUnityViewController *d3VC = [[LFUnityViewController alloc] init];
-        [drawVC.navigationController pushViewController:d3VC animated:NO];
+        if (self.draw3DBlock)
+        {
+            self.draw3DBlock(drawVC);
+            NSLog(@"绘制3D");
+        }
+        
+        //        LFUnityViewController *d3VC = [[LFUnityViewController alloc] init];
+        //        [drawVC.navigationController pushViewController:d3VC animated:NO];
         
     }];
 }
@@ -124,7 +169,7 @@ typedef enum {
         } else {
             [self downloadAction:lfFile houseId:houseId];
         }
-    
+        
     };
 }
 
@@ -148,16 +193,16 @@ typedef enum {
     NSString *dirKCPath = [NSString stringWithFormat:@"KCSOFT/%@/%@/", [YCAppManager instance].workMobile, houseId];
     
     NSString *dirPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:dirKCPath];
-
+    
     // file
     NSString *fileKCPath = [NSString stringWithFormat:@"KCSOFT/%@/%@/%@.lf", [YCAppManager instance].workMobile, houseId, houseId];
     
     NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:fileKCPath];
-
+    
     
     // 如果本地不存在图片，则从网络中下载
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    if (![fileManager fileExistsAtPath:filePath])
+    //    NSFileManager *fileManager = [NSFileManager defaultManager];
+    //    if (![fileManager fileExistsAtPath:filePath])
     { // 不管是否存在都从网上下载，保证内容最新
         
         // Create target path
@@ -179,17 +224,17 @@ typedef enum {
             [self drawWithHouseId:houseId];
         });
     }
-//    else {
-//        
-//        [self drawWithHouseId:houseId];
-//    }
+    //    else {
+    //
+    //        [self drawWithHouseId:houseId];
+    //    }
 }
 
 - (void)drawWithHouseId:(NSString *)houseId
 {
     /** 初始化一个绘图界面 */
     [LFDrawManager initDrawVCWithHouseID:houseId];
-
+    
     LFDrawManager *dm = [LFDrawManager sharedInstance];
     // 点击户型列表
     [dm setHouseListBtnActionBlock:^(NSString *houseID){
@@ -199,7 +244,7 @@ typedef enum {
         self.tempHouseID = houseID;
         [self backView:HOUSE_TO_SOLUTION_TYPE];
     }];
-
+    
     [dm setCloseBtnActionBlock:^(NSString* houseID){
         
         NSLog(@"\n-------点击了“关闭”按钮-------\n %@", houseID);
@@ -207,18 +252,25 @@ typedef enum {
         self.tempHouseID = houseID;
         [self backView:HOUSE_EXIT_TYPE];
     }];
-
+    
     // 点击3D
-    //        [dm setJump3DPageBlock:^(UIViewController * drawVC){
-    //            LFUnityViewController * d3VC = [[LFUnityViewController alloc] init];
-    //            [drawVC.navigationController pushViewController:d3VC animated:YES];
-    //        }];
+    [dm setJump3DPageBlock:^(UIViewController * drawVC){
+        
+        if (self.draw3DBlock)
+        {
+            self.draw3DBlock(drawVC);
+            NSLog(@"绘制3D");
+        }
+        
+        //        LFUnityViewController * d3VC = [[LFUnityViewController alloc] init];
+        //        [drawVC.navigationController pushViewController:d3VC animated:YES];
+    }];
 }
 
 - (IBAction)btnAreaList:(id)sender {
     
     YCUserListViewController *solutionListVC = [[YCUserListViewController alloc] init];
-    [self.navigationController pushViewController:solutionListVC animated:NO];
+    [self.startVC.navigationController pushViewController:solutionListVC animated:NO];
 }
 
 - (IBAction)getJsonPath:(id)sender {
@@ -269,20 +321,20 @@ typedef enum {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"kSDKSaveHouseDataSucceed_LFSQ" object:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+//- (void)didReceiveMemoryWarning {
+//    [super didReceiveMemoryWarning];
+//    // Dispose of any resources that can be recreated.
+//}
 
 //添加alertview
 - (void)addAlertView
 {
-    alert = [[YCPopViewExtension alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    alert = [[YCPopViewExtension alloc] initWithFrame:CGRectMake(0, 0, self.startVC.view.frame.size.width, self.startVC.view.frame.size.height + 80)];
     alert.delegate = self;
     [alert setbackviewframeWidth:300 Andheight:150];
     [alert settipeTitleStr:@"" fontSize:14];
     [[UIApplication sharedApplication].keyWindow addSubview:alert];
-    [self.view bringSubviewToFront:alert];
+    [self.startVC.view bringSubviewToFront:alert];
 }
 
 - (void)addNewHouse
@@ -309,27 +361,29 @@ typedef enum {
     switch (btnTag) {
         case 1000:
         {
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self.startVC dismissViewControllerAnimated:YES completion:nil];
             [alert removeFromSuperview];
             
             [self addNewHouse];
             
             // 选择已有业主信息
-            YCUserListViewController *solutionListVC = [[YCUserListViewController alloc] init];
-            [self.navigationController pushViewController:solutionListVC animated:NO];
+            YCUserListViewController *userListVC = [[YCUserListViewController alloc] init];
+            userListVC.hidesBottomBarWhenPushed = YES;
+            [self.startVC.navigationController pushViewController:userListVC animated:NO];
         }
             break;
             
         case 2000:
         {
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self.startVC dismissViewControllerAnimated:YES completion:nil];
             [alert removeFromSuperview];
             
             [self addNewHouse];
             
             // 新建业主信息[姓名，手机号，小区名称，建筑面积]
             YCNewUserViewController *newUserVC = [[YCNewUserViewController alloc] init];
-            [self.navigationController pushViewController:newUserVC animated:NO];
+            newUserVC.hidesBottomBarWhenPushed = YES;
+            [self.startVC.navigationController pushViewController:newUserVC animated:NO];
         }
             break;
             
@@ -360,7 +414,7 @@ typedef enum {
     if ([YCHouseFmdbTool querySolutionData:self.tempHouseID]) {
         
         // 编辑模式
-        //        [self.navigationController popViewControllerAnimated:YES];
+        //        [self.navigationController popViewControllerAnimated:NO];
         [self btnHouseList];
         
         if (self.tempHouseID != nil) {
@@ -398,25 +452,26 @@ typedef enum {
 
 - (void)btnHouseList {
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.startVC dismissViewControllerAnimated:YES completion:nil];
     
     [self performSelector:@selector(goHouseListVC)
                withObject:nil
                afterDelay:0.4];
     
-//    [self.navigationController popViewControllerAnimated:YES];
+    //    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)goHouseListVC {
     /** 户型列表 */
-    YCHouseListViewController *solutionListVC = [[YCHouseListViewController alloc] init];
-    [self.navigationController pushViewController:solutionListVC animated:NO];
+    YCHouseListViewController *houseListVC = [[YCHouseListViewController alloc] init];
+    houseListVC.hidesBottomBarWhenPushed = YES;
+    [self.startVC.navigationController pushViewController:houseListVC animated:NO];
     
-    solutionListVC.shareEventBlock = ^{
+    houseListVC.shareEventBlock = ^{
         NSLog(@"分享数据");
     };
     
-    solutionListVC.sendEventBlock = ^{
+    houseListVC.sendEventBlock = ^{
         NSLog(@"发送数据");
     };
     
@@ -425,3 +480,4 @@ typedef enum {
 // --------- 绘制页面中涉及到的逻辑跳转 end ---------
 
 @end
+

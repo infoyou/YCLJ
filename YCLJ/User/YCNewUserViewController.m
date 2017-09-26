@@ -106,7 +106,7 @@
         [userDict setObject:_txtName.text forKey:@"owner_name"];
         [userDict setObject:_txtMobile.text forKey:@"owner_mobile"];
         [userDict setObject:_txtAddress.text forKey:@"address"];
-//        [userDict setObject:[_txtAddress.text stringByAddingPercentEscapes] forKey:@"address"];
+        //        [userDict setObject:[_txtAddress.text stringByAddingPercentEscapes] forKey:@"address"];
         [userDict setObject:_txtArea.text forKey:@"area"];
         
         [userDict setObject:_strStyleValue forKey:@"is_new"];
@@ -125,11 +125,10 @@
     // 存储本地数据库
     [[YCAppManager instance] saveLocalOwnerData:userModel];
     
-    [self.navigationController popViewControllerAnimated:YES];
     /** 户型列表 */
     YCHouseListViewController *houseListVC = [[YCHouseListViewController alloc] init];
     houseListVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:houseListVC animated:YES];
+    [self.navigationController pushViewController:houseListVC animated:NO];
 }
 
 - (void)selectCity {

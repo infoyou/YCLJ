@@ -20,9 +20,9 @@
 @property (nonatomic, copy) NSString *type; // 房屋类型
 @property (nonatomic, copy) NSString *style;// 房屋属性 is_new
 
-@property (nonatomic, copy) NSString *createTime; //创建时间
+@property (nonatomic, copy) NSString *workOrderId; // 工单
 
-@property (nonatomic, copy) NSString *workOrderId;
+@property (nonatomic, copy) NSString *createTime; //创建时间
 
 @property (nonatomic, strong) NSArray *houseArray;
 

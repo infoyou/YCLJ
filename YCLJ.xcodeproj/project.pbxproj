@@ -14,7 +14,6 @@
 		74149BB51F34675000671036 /* YCHouseCityChoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B791F34675000671036 /* YCHouseCityChoiceView.m */; };
 		74149BB61F34675000671036 /* YCHouseParmChoiceView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B7A1F34675000671036 /* YCHouseParmChoiceView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74149BB71F34675000671036 /* YCHouseParmChoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B7B1F34675000671036 /* YCHouseParmChoiceView.m */; };
-		74149BB81F34675000671036 /* YCPopViewExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B7C1F34675000671036 /* YCPopViewExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74149BB91F34675000671036 /* YCPopViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149B7D1F34675000671036 /* YCPopViewExtension.m */; };
 		74149BCE1F34675000671036 /* YCUserListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B941F34675000671036 /* YCUserListViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74149BD41F34675000671036 /* Nonetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B9B1F34675000671036 /* Nonetwork.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -25,7 +24,6 @@
 		74149BD91F34675100671036 /* ZTBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149BA01F34675000671036 /* ZTBaseTableViewCell.m */; };
 		74149BDA1F34675100671036 /* ZTBaseTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149BA11F34675000671036 /* ZTBaseTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74149BDB1F34675100671036 /* ZTBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149BA21F34675000671036 /* ZTBaseTableViewController.m */; };
-		74149BDC1F34675100671036 /* ZTCommonUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149BA31F34675000671036 /* ZTCommonUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74149BDD1F34675100671036 /* ZTCommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149BA41F34675000671036 /* ZTCommonUtils.m */; };
 		74149BDE1F34675100671036 /* ZTHttpTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149BA51F34675000671036 /* ZTHttpTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74149BDF1F34675100671036 /* ZTHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 74149BA61F34675000671036 /* ZTHttpTool.m */; };
@@ -40,7 +38,6 @@
 		74302B561F3AFAB70095D3BD /* MapFileParser.sh in Resources */ = {isa = PBXBuildFile; fileRef = 74302B521F3AFAB70095D3BD /* MapFileParser.sh */; };
 		74302B571F3AFAB70095D3BD /* DXFTemplate_shape.dxf in Resources */ = {isa = PBXBuildFile; fileRef = 74302B531F3AFAB70095D3BD /* DXFTemplate_shape.dxf */; };
 		74302B581F3AFAB70095D3BD /* RoomTypeAndIDList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74302B541F3AFAB70095D3BD /* RoomTypeAndIDList.plist */; };
-		74302B5C1F3AFB160095D3BD /* YCHouseFmdbTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 74302B5A1F3AFB160095D3BD /* YCHouseFmdbTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74302B5D1F3AFB160095D3BD /* YCHouseFmdbTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 74302B5B1F3AFB160095D3BD /* YCHouseFmdbTool.m */; };
 		74302B601F3AFB6D0095D3BD /* YCNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74302B5E1F3AFB6D0095D3BD /* YCNewUserViewController.m */; };
 		74302B611F3AFB6D0095D3BD /* YCUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74302B5F1F3AFB6D0095D3BD /* YCUserListViewController.m */; };
@@ -49,12 +46,9 @@
 		74302B691F3AFBBD0095D3BD /* YCOwnerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 74302B651F3AFBBD0095D3BD /* YCOwnerModel.m */; };
 		74302B6A1F3AFBBD0095D3BD /* YCHouseModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 74302B661F3AFBBD0095D3BD /* YCHouseModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74302B6B1F3AFBBD0095D3BD /* YCHouseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 74302B671F3AFBBD0095D3BD /* YCHouseModel.m */; };
-		74302B6E1F3AFBE10095D3BD /* YCAppManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 74302B6C1F3AFBE10095D3BD /* YCAppManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74302B6F1F3AFBE10095D3BD /* YCAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 74302B6D1F3AFBE10095D3BD /* YCAppManager.m */; };
-		743F8DE91F34709900198D20 /* YCNewUserViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F8DE71F34709900198D20 /* YCNewUserViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		743F8DF71F34712200198D20 /* YCHouseListCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F8DEB1F34712200198D20 /* YCHouseListCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		743F8DF81F34712200198D20 /* YCHouseListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F8DEC1F34712200198D20 /* YCHouseListCell.m */; };
-		743F8DF91F34712200198D20 /* YCHouseListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F8DED1F34712200198D20 /* YCHouseListViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		743F8DFD1F34712200198D20 /* YCHouseObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F8DF11F34712200198D20 /* YCHouseObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		743F8DFE1F34712200198D20 /* YCHouseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F8DF21F34712200198D20 /* YCHouseObject.m */; };
 		743F8DFF1F34712200198D20 /* YCHouseOwnerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F8DF31F34712200198D20 /* YCHouseOwnerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -66,14 +60,17 @@
 		7441A80A1F4187630079DDD0 /* YCSendResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7441A8081F4187630079DDD0 /* YCSendResultViewController.m */; };
 		74545A521F29F805002EE1CE /* houseCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74545A4E1F29F805002EE1CE /* houseCity.plist */; };
 		74545A531F29F805002EE1CE /* houseType.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74545A4F1F29F805002EE1CE /* houseType.plist */; };
-		746663A21F78FD1E00088BE9 /* YCDrawViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 746663A01F78FD1E00088BE9 /* YCDrawViewController.h */; };
-		746663A31F78FD1E00088BE9 /* YCDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 746663A11F78FD1E00088BE9 /* YCDrawViewController.m */; };
+		746663A61F78FD8900088BE9 /* YCDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 746663A41F78FD8900088BE9 /* YCDrawViewController.m */; };
 		74A68C671F220F4200DC37BA /* LFDrawSDKAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A68C631F220F4200DC37BA /* LFDrawSDKAPI.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		74A68C681F220F4200DC37BA /* LFHouseInfoModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A68C641F220F4200DC37BA /* LFHouseInfoModel.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		74A68C691F220F4200DC37BA /* lfsqSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A68C651F220F4200DC37BA /* lfsqSDK.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		74C5D7E31F7351EB00717F3F /* LFUnityViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C5D7E11F7351EB00717F3F /* LFUnityViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74C5D7E41F7351EB00717F3F /* LFUnityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C5D7E21F7351EB00717F3F /* LFUnityViewController.m */; };
-		74C64AF41F7554AA00D67C88 /* lfsqSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C64AF31F7554AA00D67C88 /* lfsqSDK.framework */; };
+		74B146931F79F20000865076 /* ZTCommonUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149BA31F34675000671036 /* ZTCommonUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74B146941F79F22500865076 /* YCAppManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 74302B6C1F3AFBE10095D3BD /* YCAppManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74B146951F79F22F00865076 /* YCHouseListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F8DED1F34712200198D20 /* YCHouseListViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74B146961F79F23A00865076 /* YCPopViewExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B7C1F34675000671036 /* YCPopViewExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74B146971F79F24200865076 /* YCHouseFmdbTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 74302B5A1F3AFB160095D3BD /* YCHouseFmdbTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74B146981F79F24D00865076 /* YCNewUserViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F8DE71F34709900198D20 /* YCNewUserViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74B146991F79F25800865076 /* YCDrawViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 746663A51F78FD8900088BE9 /* YCDrawViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74C64AF91F75559700D67C88 /* ZTLoaddingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C64AF51F75559700D67C88 /* ZTLoaddingView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74C64AFA1F75559700D67C88 /* ZTLoaddingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C64AF61F75559700D67C88 /* ZTLoaddingView.m */; };
 		74C64AFB1F75559700D67C88 /* ZTToastView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C64AF71F75559700D67C88 /* ZTToastView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -81,7 +78,6 @@
 		74E26A441F77D18F00069B52 /* ZTAsynDownload.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E26A421F77D18F00069B52 /* ZTAsynDownload.h */; };
 		74E26A451F77D18F00069B52 /* ZTAsynDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E26A431F77D18F00069B52 /* ZTAsynDownload.m */; };
 		74EA9AF31F2B405B006916C3 /* houseStyle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74EA9AF21F2B405B006916C3 /* houseStyle.plist */; };
-		8F37A9FD0103E8E1D559D1E4 /* libPods-YCLJ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A31E24CF965375A4118BBA /* libPods-YCLJ.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -146,15 +142,13 @@
 		7441A8081F4187630079DDD0 /* YCSendResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCSendResultViewController.m; sourceTree = "<group>"; };
 		74545A4E1F29F805002EE1CE /* houseCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = houseCity.plist; sourceTree = "<group>"; };
 		74545A4F1F29F805002EE1CE /* houseType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = houseType.plist; sourceTree = "<group>"; };
-		746663A01F78FD1E00088BE9 /* YCDrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCDrawViewController.h; sourceTree = "<group>"; };
-		746663A11F78FD1E00088BE9 /* YCDrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCDrawViewController.m; sourceTree = "<group>"; };
+		746663A41F78FD8900088BE9 /* YCDrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCDrawViewController.m; sourceTree = "<group>"; };
+		746663A51F78FD8900088BE9 /* YCDrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCDrawViewController.h; sourceTree = "<group>"; };
 		74A68C621F220F4200DC37BA /* LFDrawManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LFDrawManager.h; path = lfsqSDK.framework/Headers/LFDrawManager.h; sourceTree = "<group>"; };
 		74A68C631F220F4200DC37BA /* LFDrawSDKAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LFDrawSDKAPI.h; path = lfsqSDK.framework/Headers/LFDrawSDKAPI.h; sourceTree = "<group>"; };
 		74A68C641F220F4200DC37BA /* LFHouseInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LFHouseInfoModel.h; path = lfsqSDK.framework/Headers/LFHouseInfoModel.h; sourceTree = "<group>"; };
 		74A68C651F220F4200DC37BA /* lfsqSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = lfsqSDK.h; path = lfsqSDK.framework/Headers/lfsqSDK.h; sourceTree = "<group>"; };
-		74C5D7E11F7351EB00717F3F /* LFUnityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFUnityViewController.h; sourceTree = "<group>"; };
-		74C5D7E21F7351EB00717F3F /* LFUnityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFUnityViewController.m; sourceTree = "<group>"; };
-		74C64AF31F7554AA00D67C88 /* lfsqSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lfsqSDK.framework; sourceTree = "<group>"; };
+		74B1468E1F79EEAC00865076 /* lfsqSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lfsqSDK.framework; sourceTree = "<group>"; };
 		74C64AF51F75559700D67C88 /* ZTLoaddingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTLoaddingView.h; sourceTree = "<group>"; };
 		74C64AF61F75559700D67C88 /* ZTLoaddingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTLoaddingView.m; sourceTree = "<group>"; };
 		74C64AF71F75559700D67C88 /* ZTToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTToastView.h; sourceTree = "<group>"; };
@@ -170,8 +164,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F37A9FD0103E8E1D559D1E4 /* libPods-YCLJ.a in Frameworks */,
-				74C64AF41F7554AA00D67C88 /* lfsqSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,7 +173,7 @@
 		74117ADC1F204E7F00911D09 = {
 			isa = PBXGroup;
 			children = (
-				74C64AF31F7554AA00D67C88 /* lfsqSDK.framework */,
+				74B1468E1F79EEAC00865076 /* lfsqSDK.framework */,
 				74302B521F3AFAB70095D3BD /* MapFileParser.sh */,
 				74302B531F3AFAB70095D3BD /* DXFTemplate_shape.dxf */,
 				74302B541F3AFAB70095D3BD /* RoomTypeAndIDList.plist */,
@@ -212,8 +204,6 @@
 			isa = PBXGroup;
 			children = (
 				74149B721F34675000671036 /* Info.plist */,
-				74C5D7E11F7351EB00717F3F /* LFUnityViewController.h */,
-				74C5D7E21F7351EB00717F3F /* LFUnityViewController.m */,
 				74149B731F34675000671036 /* Logic */,
 				74149B821F34675000671036 /* Solution */,
 				74149B8F1F34675000671036 /* User */,
@@ -248,8 +238,8 @@
 		74149B821F34675000671036 /* Solution */ = {
 			isa = PBXGroup;
 			children = (
-				746663A01F78FD1E00088BE9 /* YCDrawViewController.h */,
-				746663A11F78FD1E00088BE9 /* YCDrawViewController.m */,
+				746663A51F78FD8900088BE9 /* YCDrawViewController.h */,
+				746663A41F78FD8900088BE9 /* YCDrawViewController.m */,
 				743F8DEB1F34712200198D20 /* YCHouseListCell.h */,
 				743F8DEC1F34712200198D20 /* YCHouseListCell.m */,
 				7441A8071F4187630079DDD0 /* YCSendResultViewController.h */,
@@ -335,34 +325,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				74149BE61F34675100671036 /* YCLJ.h in Headers */,
-				74302B6E1F3AFBE10095D3BD /* YCAppManager.h in Headers */,
-				74302B5C1F3AFB160095D3BD /* YCHouseFmdbTool.h in Headers */,
+				74B146961F79F23A00865076 /* YCPopViewExtension.h in Headers */,
+				74B146991F79F25800865076 /* YCDrawViewController.h in Headers */,
+				74B146941F79F22500865076 /* YCAppManager.h in Headers */,
+				74B146971F79F24200865076 /* YCHouseFmdbTool.h in Headers */,
 				74149BE41F34675100671036 /* YCHeader.h in Headers */,
+				74B146981F79F24D00865076 /* YCNewUserViewController.h in Headers */,
 				74149BB61F34675000671036 /* YCHouseParmChoiceView.h in Headers */,
 				74149BCE1F34675000671036 /* YCUserListViewController.h in Headers */,
+				74B146951F79F22F00865076 /* YCHouseListViewController.h in Headers */,
 				74149BB41F34675000671036 /* YCHouseCityChoiceView.h in Headers */,
 				74E26A441F77D18F00069B52 /* ZTAsynDownload.h in Headers */,
-				74149BB81F34675000671036 /* YCPopViewExtension.h in Headers */,
 				743F8E051F34714000198D20 /* YCUserListCell.h in Headers */,
-				743F8DF91F34712200198D20 /* YCHouseListViewController.h in Headers */,
+				74B146931F79F20000865076 /* ZTCommonUtils.h in Headers */,
 				743F8DFF1F34712200198D20 /* YCHouseOwnerView.h in Headers */,
 				74149BB01F34675000671036 /* YCAlertViewExtension.h in Headers */,
 				743F8DF71F34712200198D20 /* YCHouseListCell.h in Headers */,
 				743F8DFD1F34712200198D20 /* YCHouseObject.h in Headers */,
-				746663A21F78FD1E00088BE9 /* YCDrawViewController.h in Headers */,
-				743F8DE91F34709900198D20 /* YCNewUserViewController.h in Headers */,
 				74149BE51F34675100671036 /* YCLJ-Prefix.pch in Headers */,
 				74302B681F3AFBBD0095D3BD /* YCOwnerModel.h in Headers */,
 				74302B6A1F3AFBBD0095D3BD /* YCHouseModel.h in Headers */,
 				7441A8091F4187630079DDD0 /* YCSendResultViewController.h in Headers */,
 				74149BD81F34675100671036 /* ZTBaseTableViewCell.h in Headers */,
-				74149BDC1F34675100671036 /* ZTCommonUtils.h in Headers */,
 				74149BDA1F34675100671036 /* ZTBaseTableViewController.h in Headers */,
 				74149BE21F34675100671036 /* ZTUploadParamModel.h in Headers */,
 				74149BE01F34675100671036 /* ZTRootViewController.h in Headers */,
 				74149BDE1F34675100671036 /* ZTHttpTool.h in Headers */,
 				74149BD61F34675000671036 /* ZTStringCategory.h in Headers */,
-				74C5D7E31F7351EB00717F3F /* LFUnityViewController.h in Headers */,
 				74C64AFB1F75559700D67C88 /* ZTToastView.h in Headers */,
 				74C64AF91F75559700D67C88 /* ZTLoaddingView.h in Headers */,
 				741CFED31F2080AD00E6B34C /* LFDrawManager.h in Headers */,
@@ -487,10 +476,8 @@
 				74149BB91F34675000671036 /* YCPopViewExtension.m in Sources */,
 				74302B601F3AFB6D0095D3BD /* YCNewUserViewController.m in Sources */,
 				74149BDD1F34675100671036 /* ZTCommonUtils.m in Sources */,
-				74C5D7E41F7351EB00717F3F /* LFUnityViewController.m in Sources */,
 				74302B691F3AFBBD0095D3BD /* YCOwnerModel.m in Sources */,
 				74149BB71F34675000671036 /* YCHouseParmChoiceView.m in Sources */,
-				746663A31F78FD1E00088BE9 /* YCDrawViewController.m in Sources */,
 				74149BD91F34675100671036 /* ZTBaseTableViewCell.m in Sources */,
 				74E26A451F77D18F00069B52 /* ZTAsynDownload.m in Sources */,
 				74149BE11F34675100671036 /* ZTRootViewController.m in Sources */,
@@ -505,6 +492,7 @@
 				74302B6B1F3AFBBD0095D3BD /* YCHouseModel.m in Sources */,
 				74302B611F3AFB6D0095D3BD /* YCUserListViewController.m in Sources */,
 				74C64AFA1F75559700D67C88 /* ZTLoaddingView.m in Sources */,
+				746663A61F78FD8900088BE9 /* YCDrawViewController.m in Sources */,
 				74149BB51F34675000671036 /* YCHouseCityChoiceView.m in Sources */,
 				74149BDF1F34675100671036 /* ZTHttpTool.m in Sources */,
 				74149BD71F34675100671036 /* ZTStringCategory.m in Sources */,
