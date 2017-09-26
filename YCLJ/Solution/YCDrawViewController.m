@@ -57,7 +57,12 @@ static YCDrawViewController *singleton = nil;
     
     [LFDrawSDKAPI getHouseIDWhenSaveHouse:^(NSString * _Nonnull HouseID) {
         
-        if (![HouseID isEqualToString:@""]) {
+        if (HouseID == nil) {
+            
+            /** 初始化一个绘图界面 */
+            [LFDrawManager initDrawVCWithNewHouse];
+        } else if (![HouseID isEqualToString:@""]) {
+            
             // 如果是临时的
             [LFDrawManager initDrawVCWithHouseID:HouseID];
         } else {
@@ -208,6 +213,8 @@ static YCDrawViewController *singleton = nil;
         
         self.tempHouseID = houseID;
         [self backView:HOUSE_EXIT_TYPE];
+        
+        [[YCAppManager instance] updateTempHouseData:@""];
     }];
     
     // 点击3D
@@ -361,7 +368,7 @@ static YCDrawViewController *singleton = nil;
     if ([YCHouseFmdbTool querySolutionData:self.tempHouseID]) {
         
         // 编辑模式
-        [self btnHouseList];
+        [self goHouseList];
         
         if (self.tempHouseID != nil) {
             
@@ -386,7 +393,7 @@ static YCDrawViewController *singleton = nil;
             case HOUSE_TO_SOLUTION_TYPE:
             {
                 // 进入户型列表
-                [self btnHouseList];
+                [self goHouseList];
             }
                 break;
                 
@@ -396,16 +403,18 @@ static YCDrawViewController *singleton = nil;
     }
 }
 
-- (void)btnHouseList {
+- (void)goHouseList
+{
     
     [self.startVC dismissViewControllerAnimated:YES completion:nil];
     
-    [self performSelector:@selector(goHouseListVC)
-               withObject:nil
-               afterDelay:0.4];
+    [self startHouseList:self.startVC];
 }
 
-- (void)goHouseListVC {
+- (void)startHouseList:(UIViewController *)vc
+{
+    self.startVC = vc;
+    
     /** 户型列表 */
     YCHouseListViewController *houseListVC = [[YCHouseListViewController alloc] init];
     houseListVC.hidesBottomBarWhenPushed = YES;

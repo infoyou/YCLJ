@@ -62,4 +62,3 @@
 - (void)saveLocalOwnerData:(YCOwnerModel *)userModel;
 
 @end
-

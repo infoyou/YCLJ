@@ -35,6 +35,7 @@
             
             self.createTime = (NSString *)dict[@"create_time"] ? (NSString *)dict[@"create_time"]:@"";
             self.workOrderId = (NSString *)dict[@"work_order_id"] ? (NSString *)dict[@"work_order_id"]:@"";
+            self.houseId = (NSString *)dict[@"houseId"] ? (NSString *)dict[@"houseId"]:@"";
         }
     }
     

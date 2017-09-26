@@ -160,10 +160,5 @@
              }];
 }
 
-- (void)loadSolutionFromDB
-{
-    
-    cellDataArray = [YCHouseFmdbTool queryOwnerData:nil];
-}
-
 @end
+

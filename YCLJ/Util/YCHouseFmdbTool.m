@@ -72,7 +72,7 @@ static FMDatabase *_fmdb;
     
     NSString *currentTime = [ZTCommonUtils currentTimeInterval];
     
-    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Owner(id, name, mobile, address, area, city, type, style, workOrderId, createTime) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');", model.mobile, model.name, model.mobile, model.address, model.area, model.city, model.type, model.style, model.workOrderId, currentTime];
+    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Owner(id, name, mobile, address, area, city, type, style, workOrderId, createTime) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');", model.workOrderId, model.name, model.mobile, model.address, model.area, model.city, model.type, model.style, model.workOrderId, currentTime];
     
     if ([_fmdb executeUpdate:insertSql]) {
         return currentTime;
@@ -90,7 +90,7 @@ static FMDatabase *_fmdb;
     for (NSInteger i=0; i<count; i++) {
         
         YCOwnerModel *model = modelArray[i];
-        NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Owner(id, name, mobile, address, area, city, type, style, workOrderId, createTime) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');", model.mobile, model.name, model.mobile, model.address, model.area, model.city, model.type, model.style, model.workOrderId, [ZTCommonUtils currentTimeInterval]];
+        NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO Owner(id, name, mobile, address, area, city, type, style, workOrderId, createTime) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');", model.workOrderId, model.name, model.mobile, model.address, model.area, model.city, model.type, model.style, model.workOrderId, [ZTCommonUtils currentTimeInterval]];
         
         [_fmdb executeUpdate:insertSql];
     }
@@ -121,7 +121,7 @@ static FMDatabase *_fmdb;
 + (NSArray *)queryOwnerData:(NSString *)querySql {
     
     if (querySql == nil) {
-        querySql = @"SELECT id, name, mobile, address, area, workOrderId FROM Owner order by createTime desc;";
+        querySql = @"SELECT id, name, mobile, address, area FROM Owner";
     }
     
     NSMutableArray *array = [NSMutableArray array];
@@ -129,21 +129,20 @@ static FMDatabase *_fmdb;
     
     while ([set next]) {
         
-        NSString *ownerId = [set stringForColumn:@"id"];
+        NSString *workOrderId = [set stringForColumn:@"id"];
         NSString *name = [set stringForColumn:@"name"];
         NSString *mobile = [set stringForColumn:@"mobile"];
         NSString *address = [set stringForColumn:@"address"];
         NSString *area = [set stringForColumn:@"area"];
-        NSString *workOrderId = [set stringForColumn:@"workOrderId"];
         
         // 解析json 参数
         NSMutableDictionary *userDict = [NSMutableDictionary dictionary];
-        [userDict setObject:mobile forKey:@"ownerId"];
+        [userDict setObject:workOrderId forKey:@"ownerId"];
         [userDict setObject:name forKey:@"name"];
         [userDict setObject:mobile forKey:@"mobile"];
         [userDict setObject:address forKey:@"address"];
         [userDict setObject:area forKey:@"building_area"];
-        [userDict setObject:workOrderId forKey:@"workOrderId"];
+        [userDict setObject:workOrderId forKey:@"work_order_id"];
         
         YCOwnerModel *modal = [YCOwnerModel newWithDict:userDict];
         [array addObject:modal];
@@ -253,7 +252,7 @@ static FMDatabase *_fmdb;
             
             // 解析json 参数
             NSMutableDictionary *houseDict = [NSMutableDictionary dictionary];
-            [houseDict setObject:ownerId forKey:@"owner_mobile"];
+            [houseDict setObject:ownerId forKey:@"work_order_id"];
             [houseDict setObject:houseId forKey:@"house_num"];
             [houseDict setObject:lfFile forKey:@"lf_file"];
             [houseDict setObject:zipFpath forKey:@"pkg"];
@@ -263,7 +262,7 @@ static FMDatabase *_fmdb;
             [houseDict setObject:creatDate forKey:@"create_time"];
             [houseDict setObject:updateDate forKey:@"modify_time"];
             
-            NSString *key = [NSString stringWithFormat:@"%@%ld", ownerId, type];
+            NSString *key = [NSString stringWithFormat:@"%@#%ld", ownerId, type];
             YCHouseModel *modal = [YCHouseModel newWithDict:houseDict];
             
             [dict setObject:modal forKey:key];
@@ -278,7 +277,7 @@ static FMDatabase *_fmdb;
     
     NSMutableDictionary *paramDict = [NSMutableDictionary dictionary];
     
-    NSString *querySql = [NSString stringWithFormat:@"SELECT o.mobile, o.workOrderId, s.type FROM Solution s, Owner o where o.mobile = s.ownerId and isDelete != 1 and houseId = '%@';", houseId];
+    NSString *querySql = [NSString stringWithFormat:@"SELECT o.mobile, s.ownerId, s.type FROM Solution s, Owner o where o.id = s.ownerId and isDelete != 1 and houseId = '%@';", houseId];
     
     FMResultSet *set = [_fmdb executeQuery:querySql];
     
@@ -286,7 +285,7 @@ static FMDatabase *_fmdb;
         
         NSString *mobile = [set stringForColumn:@"mobile"];
         NSInteger type = [set intForColumn:@"type"];
-        NSString *workOrderId = [set stringForColumn:@"workOrderId"];
+        NSString *workOrderId = [set stringForColumn:@"ownerId"];
         
         [paramDict setObject:mobile forKey:@"owner_mobile"];
         [paramDict setObject:[NSNumber numberWithInteger:type] forKey:@"is_copy"];
@@ -357,3 +356,4 @@ static FMDatabase *_fmdb;
 }
 
 @end
+

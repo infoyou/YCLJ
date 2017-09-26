@@ -16,3 +16,4 @@
 @property (nonatomic, copy) void (^sendBlock)(NSString *url);
 
 @end
+

@@ -34,7 +34,7 @@
             self.isUpload = [(NSNumber *)dict[@"isUpload"] intValue];
             self.isDelete = [(NSNumber *)dict[@"isDelete"] intValue];
             
-            self.ownerId = (NSString *)dict[@"owner_mobile"] ? (NSString *)dict[@"owner_mobile"]:@"";
+            self.ownerId = (NSString *)dict[@"work_order_id"] ? (NSString *)dict[@"work_order_id"]:@"";
             
             self.creatDate = (NSString *)dict[@"create_time"] ? (NSString *)dict[@"create_time"]:@"";
             self.updateDate = (NSString *)dict[@"modify_time"] ? (NSString *)dict[@"modify_time"]:@"";
@@ -45,3 +45,4 @@
 }
 
 @end
+

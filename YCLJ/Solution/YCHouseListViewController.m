@@ -163,7 +163,7 @@
     [self showLoadingMsg:@"加载数据"];
     // 1,删除本地数据 除了未上传的纪录
     [YCHouseFmdbTool deleteData:@"DELETE FROM Owner"];
-    [YCHouseFmdbTool deleteData:@"DELETE FROM Solution where isUpload = 1"];
+    //    [YCHouseFmdbTool deleteData:@"DELETE FROM Solution where isUpload = 1"];
     
     // 2, 拉去网上数据 & 插入本地数据库
     [self loadSolutionFromWeb];
@@ -226,7 +226,7 @@
     if (_userCount > 0) {
         
         YCOwnerModel *userModel = (YCOwnerModel *)[_userArray objectAtIndex:section];
-        NSString *mobile = userModel.mobile;
+        NSString *mobile = userModel.ownerId;
         if ([_userSolutionCountDict objectForKey:mobile]) {
             // todo 为什么会调用3次
             sectionCount = [(NSNumber *)_userSolutionCountDict[mobile] intValue];
@@ -262,7 +262,7 @@
     YCOwnerModel *userModel = (YCOwnerModel *)[_userArray objectAtIndex:section];
     NSString *ownerId = userModel.ownerId;
     
-    NSString *key = [NSString stringWithFormat:@"%@%ld", ownerId, row];
+    NSString *key = [NSString stringWithFormat:@"%@#%ld", ownerId, row];
     
     YCHouseObject *houseObject = nil;
     
@@ -398,9 +398,8 @@
         
         NSLog(@"\n-------点击了“关闭”按钮-------\n %@", houseID);
         
-        [self dismissViewControllerAnimated:NO completion:nil];
-        
         [[YCAppManager instance] updateTempHouseData:@""];
+        [self dismissViewControllerAnimated:NO completion:nil];
     }];
     
     // 点击3D
@@ -429,7 +428,6 @@
     //    [YCAppManager instance].houseId = houseId; //缓存当前绘制的houseId
     //    YCOwnerModel *userModel = [_userArray objectAtIndex:indexPath.section];
     //    [LFDrawManager initDrawVCWithHouseID:houseId];
-    
     
     DLog(@"houseModel.lfFile %@", houseModel.lfFile);
     if ([houseModel.lfFile isEqualToString:@""]) {
@@ -590,3 +588,4 @@
 }
 
 @end
+

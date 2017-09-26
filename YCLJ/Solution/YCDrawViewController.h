@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZTRootViewController.h"
 
 @interface YCDrawViewController : NSObject
 
@@ -20,5 +19,6 @@
 - (void)setOwnerMobile:(NSString *)ownerMobile;
 
 - (void)startDraw:(UIViewController *)vc model:(YCOwnerModel *)model;
+- (void)startHouseList:(UIViewController *)vc;
 
 @end

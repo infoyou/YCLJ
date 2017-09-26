@@ -64,6 +64,7 @@ static YCAppManager *singleton = nil;
         [YCHouseFmdbTool insertWorker:strMobile
                                workId:workId
                              workName:workName];
+        [[YCAppManager instance] updateTempHouseData:@""];
     }
     
 }
@@ -175,7 +176,7 @@ static YCAppManager *singleton = nil;
     [YCHouseFmdbTool insertOwnerModel:userModel];
     
     // 更改本地数据
-    NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET ownerId = '%@' where houseId = '%@'", userModel.mobile, _houseId];
+    NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET ownerId = '%@' where houseId = '%@'", userModel.ownerId, _houseId];
     [YCHouseFmdbTool modifyData:modifySql];
     
     // 上传户型数据到服务端
@@ -199,13 +200,11 @@ static YCAppManager *singleton = nil;
     
     YCHouseModel *houseModel = [YCHouseModel newWithDict:houseDict];
     [YCHouseFmdbTool insertSolutionModel:houseModel];
-    
 }
 
 #pragma mark - 新增户型数据
 - (void)transHouseData:(NSString *)houseId
 {
-    
     NSMutableDictionary *paramDict = [YCHouseFmdbTool queryOwnerSolutionData:houseId];
     [paramDict setValue:_workId forKey:@"chief_id"];
     [paramDict setValue:_workName forKey:@"chief_name"];
@@ -224,8 +223,7 @@ static YCAppManager *singleton = nil;
                      
                      NSString *errCodeStr = (NSString *)[backDic valueForKey:@"code"];
                      
-                     if ( [errCodeStr integerValue] == SUCCESS_DATA ||
-                         [errCodeStr integerValue] == 10001 ) {
+                     if ( [errCodeStr integerValue] == SUCCESS_DATA ) {
                          
                          NSDictionary *resultDict = [backDic valueForKey:@"data"];
                          
@@ -242,6 +240,9 @@ static YCAppManager *singleton = nil;
                          NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET lfFile = '%@' where houseId = '%@'", strLFfile, strHouseId];
                          [YCHouseFmdbTool modifyData:modifySql];
                          
+                     } else if ([errCodeStr integerValue] == 10001) {
+                         
+                         [self transUpdateHouse];
                      } else {
                          
                          NSLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
@@ -464,4 +465,3 @@ static YCAppManager *singleton = nil;
 }
 
 @end
-
