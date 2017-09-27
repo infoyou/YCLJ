@@ -20,13 +20,7 @@
 @property (nonatomic, strong) YCOwnerModel *userModel;
 @property (nonatomic, copy) void(^GetOwnerHouseId)(NSString *houseId, NSString *lfFile, NSString *msg);
 
-@property (nonatomic, assign) BOOL hengping;
-
 + (instancetype)instance;
-
-- (BOOL) isHengping;
-
-- (void) setHengping:(BOOL)flag;
 
 - (void)updateTempHouseData:(NSString *)aHouseId;
 
@@ -58,7 +52,6 @@
 - (void)uploadFileMehtod:(NSString *)filePath
                  houseId:(NSString *)houseId;
 
-- (void)transLoginData:(NSString *)userName passWord:(NSString *)passWord;
 - (void)saveLocalOwnerData:(YCOwnerModel *)userModel;
 
 @end

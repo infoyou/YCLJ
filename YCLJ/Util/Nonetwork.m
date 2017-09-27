@@ -49,7 +49,8 @@
 //弹出视图
 -(void)popupWarningview
 {
-    self.Contentext.text=self.Prompt;
+    self.Contentext.text = self.Prompt;
+    
     UIWindow *rootWindow = [UIApplication sharedApplication].keyWindow;
     [rootWindow addSubview:self];
 }

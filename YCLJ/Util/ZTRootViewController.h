@@ -24,7 +24,8 @@
 
 #pragma mark - loading msg
 - (void)showLoadingMsg:(NSString *)msg;
-
 - (void)closeLoadingMsg;
+
+- (void)showWithText:(NSString *)msg;
 
 @end

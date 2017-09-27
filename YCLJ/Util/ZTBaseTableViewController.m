@@ -21,7 +21,7 @@
     
     [super viewDidLoad];
     
-    self.mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, YC_SCREEN_WIDTH, YC_SCREEN_HEIGHT) style:UITableViewStylePlain];
+    self.mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, YC_SCREEN_WIDTH, YC_SCREEN_HEIGHT - SCREEN_HEIGHT_OFFSET) style:UITableViewStylePlain];
     
     self.mTableView.delegate = self;
     self.mTableView.dataSource = self;

@@ -106,7 +106,7 @@
         [userDict setObject:_txtName.text forKey:@"owner_name"];
         [userDict setObject:_txtMobile.text forKey:@"owner_mobile"];
         [userDict setObject:_txtAddress.text forKey:@"address"];
-        //        [userDict setObject:[_txtAddress.text stringByAddingPercentEscapes] forKey:@"address"];
+//        [userDict setObject:[_txtAddress.text stringByAddingPercentEscapes] forKey:@"address"];
         [userDict setObject:_txtArea.text forKey:@"area"];
         
         [userDict setObject:_strStyleValue forKey:@"is_new"];
@@ -119,12 +119,13 @@
 
 - (void)changeVC:(NSMutableDictionary *)userDict
 {
+    [userDict setObject:[_txtName.text stringByAddingPercentEscapes] forKey:@"owner_name"];
     [userDict setObject:[_txtAddress.text stringByAddingPercentEscapes] forKey:@"address"];
     YCOwnerModel *userModel = [YCOwnerModel newWithUserDict:userDict];
     
     // 存储本地数据库
     [[YCAppManager instance] saveLocalOwnerData:userModel];
-    
+
     /** 户型列表 */
     YCHouseListViewController *houseListVC = [[YCHouseListViewController alloc] init];
     houseListVC.hidesBottomBarWhenPushed = YES;
@@ -413,4 +414,3 @@
 }
 
 @end
-

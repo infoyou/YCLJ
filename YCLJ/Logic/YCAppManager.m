@@ -29,16 +29,6 @@ static YCAppManager *singleton = nil;
     return singleton;
 }
 
-- (BOOL) isHengping
-{
-    return _hengping;
-}
-
-- (void) setHengping:(BOOL)flag
-{
-    _hengping = flag;
-}
-
 - (void)updateTempHouseData:(NSString *)aHouseId
 {
     NSUserDefaults *_def = [NSUserDefaults standardUserDefaults];
@@ -66,7 +56,6 @@ static YCAppManager *singleton = nil;
                              workName:workName];
         [[YCAppManager instance] updateTempHouseData:@""];
     }
-    
 }
 
 #pragma mark - 获取户型id
@@ -97,7 +86,7 @@ static YCAppManager *singleton = nil;
                          NSString *house_num = resultDict[@"house_num"];
                          NSString *lf_file = resultDict[@"lf_file"];
                          
-                         NSLog(@"house_num %@", house_num);
+                         DLog(@"house_num %@", house_num);
                          
                          if (self.GetOwnerHouseId)
                          {
@@ -106,7 +95,7 @@ static YCAppManager *singleton = nil;
                          }
                          
                      } else {
-                         //[self showHUDWithText:[backDic valueForKey:@"msg"]];
+                         [self showWithText:[backDic valueForKey:@"msg"]];
                          
                          if (self.GetOwnerHouseId)
                          {
@@ -117,55 +106,10 @@ static YCAppManager *singleton = nil;
                  
              } failure:^(NSError *error) {
                  
-                 NSLog(@"请求失败-%@", error);
+                 DLog(@"请求失败-%@", error);
              }];
     
-    NSLog(@"transHouseId %@", @"结束");
-}
-
-#pragma mark - 用户登录
-- (void)transLoginData:(NSString *)userName passWord:(NSString *)passWord
-{
-    NSMutableDictionary *dataDict = [NSMutableDictionary dictionary];
-    [dataDict setObject:userName forKey:@"username"];
-    [dataDict setObject:passWord forKey:@"password"];
-    
-    NSMutableDictionary *paramDict = [ZTCommonUtils getParamDict:dataDict];
-    
-    NSString *urlStr = [NSString stringWithFormat:@"%@/leju/signin/", YC_HOST_URL];
-    [ZTHttpTool post:urlStr
-              params:paramDict
-             success:^(id json) {
-                 
-                 NSDictionary *backDic = json;
-                 
-                 if (backDic != nil) {
-                     
-                     NSString *errCodeStr = (NSString *)[backDic valueForKey:@"code"];
-                     
-                     if ( [errCodeStr integerValue] == SUCCESS_DATA ) {
-                         
-                         NSDictionary *resultDict = [backDic valueForKey:@"data"];
-                         
-                         NSString *ownerId = resultDict[@"user_id"];
-                         NSString *mobile = resultDict[@"mobile"];
-                         NSString *userName = resultDict[@"username"];
-                         
-                         NSLog(@"ownerId %@", ownerId);
-                         NSLog(@"mobile %@", mobile);
-                         NSLog(@"userName %@", userName);
-                         
-                     } else {
-                         
-                         NSLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
-                         //[self showHUDWithText:[backDic valueForKey:@"msg"]];
-                     }
-                 }
-                 
-             } failure:^(NSError *error) {
-                 
-                 NSLog(@"请求失败-%@", error);
-             }];
+    DLog(@"transHouseId %@", @"结束");
 }
 
 #pragma mark - 保存用户数据
@@ -205,6 +149,9 @@ static YCAppManager *singleton = nil;
 #pragma mark - 新增户型数据
 - (void)transHouseData:(NSString *)houseId
 {
+    
+    DLog(@"===== save =====");
+    
     NSMutableDictionary *paramDict = [YCHouseFmdbTool queryOwnerSolutionData:houseId];
     [paramDict setValue:_workId forKey:@"chief_id"];
     [paramDict setValue:_workName forKey:@"chief_name"];
@@ -231,34 +178,37 @@ static YCAppManager *singleton = nil;
                          NSString *strLFfile = resultDict[@"lf_file"];
                          
                          // 如果上传过zip文件，直接更新
-                         if ([YCHouseFmdbTool queryOwnerSolutionZipFile:strHouseId]) {
+//                         if (![YCHouseFmdbTool queryOwnerSolutionZipFile:strHouseId]) {
                              // 检查Solution是否有zipURL，如果有更新
-                             [self transUpdateHouse];
-                         }
+                             // [self transUpdateHouse];
+//                         }
                          
                          // 更改本地数据
                          NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET lfFile = '%@' where houseId = '%@'", strLFfile, strHouseId];
                          [YCHouseFmdbTool modifyData:modifySql];
                          
+                         // 更新服务端
+                         [self transUpdateHouse];
                      } else if ([errCodeStr integerValue] == 10001) {
                          
                          [self transUpdateHouse];
                      } else {
                          
-                         NSLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
-                         //[self showHUDWithText:[backDic valueForKey:@"msg"]];
+                         DLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
+                         [self showWithText:[backDic valueForKey:@"msg"]];
                      }
                  }
                  
              } failure:^(NSError *error) {
                  
-                 NSLog(@"请求失败-%@", error);
+                 DLog(@"请求失败-%@", error);
              }];
 }
 
 #pragma mark - copy户型数据
 - (void)transCopyHouseData:(NSString *)houseId
 {
+    DLog(@"===== copy house data =====");
     
     NSMutableDictionary *paramDict = [NSMutableDictionary dictionary];
     [paramDict setValue:houseId forKey:@"house_num"];
@@ -280,14 +230,14 @@ static YCAppManager *singleton = nil;
                          DLog(@"copy success");
                      } else {
                          
-                         NSLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
-                         //[self showHUDWithText:[backDic valueForKey:@"msg"]];
+                         DLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
+                         [self showWithText:[backDic valueForKey:@"msg"]];
                      }
                  }
                  
              } failure:^(NSError *error) {
                  
-                 NSLog(@"请求失败-%@", error);
+                 DLog(@"请求失败-%@", error);
              }];
 }
 
@@ -295,6 +245,7 @@ static YCAppManager *singleton = nil;
 - (void)transUpdateHouse
 {
     
+    DLog(@"===== update =====");
     NSMutableDictionary *paramDict = [YCHouseFmdbTool queryOwnerSolutionData:_houseId];
     [paramDict setValue:_houseId forKey:@"house_num"];
     
@@ -321,16 +272,18 @@ static YCAppManager *singleton = nil;
                          NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET lfFile = '%@' where houseId = '%@'", strLFfile, strHouseId];
                          [YCHouseFmdbTool modifyData:modifySql];
                          
+                         // 清除临时图
+                         [[YCAppManager instance] updateTempHouseData:@""];
                      } else {
                          
-                         NSLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
-                         //[self showHUDWithText:[backDic valueForKey:@"msg"]];
+                         DLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
+                         [self showWithText:[backDic valueForKey:@"msg"]];
                      }
                  }
                  
              } failure:^(NSError *error) {
                  
-                 NSLog(@"请求失败-%@", error);
+                 DLog(@"请求失败-%@", error);
              }];
 }
 
@@ -354,17 +307,17 @@ static YCAppManager *singleton = nil;
                      NSString *errCodeStr = (NSString *)[backDic valueForKey:@"code"];
                      
                      if ( [errCodeStr integerValue] == SUCCESS_DATA ) {
-                         NSLog(@"删除拆改图成功");
+                         DLog(@"删除拆改图成功");
                      } else {
                          
-                         NSLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
-                         //[self showHUDWithText:[backDic valueForKey:@"msg"]];
+                         DLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
+                         [self showWithText:[backDic valueForKey:@"msg"]];
                      }
                  }
                  
              } failure:^(NSError *error) {
                  
-                 NSLog(@"请求失败-%@", error);
+                 DLog(@"请求失败-%@", error);
              }];
 }
 
@@ -390,6 +343,8 @@ static YCAppManager *singleton = nil;
     uploadP.fileName = @".zip";
     uploadP.mimeType = @"application/zip";
     
+    DLog(@"===== zipfile upload =====");
+    
     NSString *urlStr = [NSString stringWithFormat:@"%@/leju/zipfile/upload/", YC_HOST_URL];
     // 注意：以后如果一个方法，要传很多参数，就把参数包装成一个模型
     [ZTHttpTool upload:urlStr parameters:parameters uploadParam:uploadP success:^(id json) {
@@ -405,15 +360,15 @@ static YCAppManager *singleton = nil;
                 NSDictionary *resultDict = [backDic valueForKey:@"data"];
                 NSString *zipFileUrl = resultDict[@"file_url"];
                 
-                NSLog(@"zipFileUrl %@", zipFileUrl);
+                DLog(@"zipFileUrl %@", zipFileUrl);
                 
                 // 拆改图直接上传 || 原始图需要有zipUrl地址直接通知
-                if ([_houseId hasSuffix:@"_1"] ||
-                    [YCHouseFmdbTool queryOwnerSolutionZipFile:houseId])
-                {
+//                if ([_houseId hasSuffix:@"_1"] ||
+//                    [YCHouseFmdbTool queryOwnerSolutionZipFile:houseId])
+//                {
                     // save过 直接通知
                     [self transUpdateHouse];
-                }
+//                }
                 
                 // 更新Solution zipUrl 字段
                 NSString *modifySql = [NSString stringWithFormat:@"UPDATE Solution SET zipUrl = '%@', updateDate = '%@', isUpload = 1 where houseId = '%@'", zipFileUrl, [ZTCommonUtils getCurrentTime], _houseId];
@@ -421,14 +376,13 @@ static YCAppManager *singleton = nil;
                 
             } else {
                 
-                NSLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
+                DLog(@"back msg is %@", [backDic valueForKey:@"msg"]);
             }
         }
         
     } failure:^(NSError *error) {
-        //        if (failure) {
-        //            failure(error);
-        //        }
+        
+        DLog(@"请求失败-%@", error);
     }];
 }
 
@@ -444,16 +398,16 @@ static YCAppManager *singleton = nil;
     NSString *zipFpath = array[0];
     NSString *u3dDir = [NSString stringWithFormat:@"%@_obj", zipFpath];
     
-    //    NSLog(@"u3dDir is dir %@", u3dDir);
+//    DLog(@"u3dDir is dir %@", u3dDir);
     if ([ZTCommonUtils isExistDirName:u3dDir]) {
         
-        //        NSLog(@"u3dDir is exist");
-        //        NSMutableArray *pathArray = [ZTCommonUtils allFilesAtPath:u3dDir];
-        //        NSInteger count = pathArray.count;
-        //
-        //        for (NSInteger i=0; i<count; i++) {
-        //            NSLog(@"u3dDir pathArray[%d] = %@", i, pathArray[i]);
-        //        }
+//        DLog(@"u3dDir is exist");
+//        NSMutableArray *pathArray = [ZTCommonUtils allFilesAtPath:u3dDir];
+//        NSInteger count = pathArray.count;
+//        
+//        for (NSInteger i=0; i<count; i++) {
+//            DLog(@"u3dDir pathArray[%d] = %@", i, pathArray[i]);
+//        }
         
         NSString *u3dZipFpath = [NSString stringWithFormat:@"%@.zip", u3dDir];
         [ZTCommonUtils zipFileDir:u3dZipFpath sourcePath:u3dDir];
@@ -461,7 +415,44 @@ static YCAppManager *singleton = nil;
         // 存在3d文件，上传
         [self transZipData:u3dZipFpath houseId:houseId type:@"1"];
     }
+}
+
+- (void)showWithText:(NSString *)msg
+{
+    [ZTToastView showToastViewWithText:msg
+                           andDuration:1
+                             andCorner:5
+                         andParentView:[self getCurrentVC].view];
+}
+
+//获取当前屏幕显示的viewcontroller
+- (UIViewController *)getCurrentVC
+{
+    UIViewController *result = nil;
     
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal)
+    {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows)
+        {
+            if (tmpWin.windowLevel == UIWindowLevelNormal)
+            {
+                window = tmpWin;
+                break;
+            }
+        }
+    }
+    
+    UIView *frontView = [[window subviews] objectAtIndex:0];
+    id nextResponder = [frontView nextResponder];
+    
+    if ([nextResponder isKindOfClass:[UIViewController class]])
+        result = nextResponder;
+    else
+        result = window.rootViewController;
+    
+    return result;
 }
 
 @end

@@ -1,12 +1,12 @@
 //
-//  YCDrawViewController.m
+//  YCDrawManager.m
 //  YCLJSDK
 //
 //  Created by Adam on 2017/6/19.
 //  Copyright © 2017年 Adam. All rights reserved.
 //
 
-#import "YCDrawViewController.h"
+#import "YCDrawManager.h"
 #import "LFDrawManager.h"
 #import "LFDrawSDKAPI.h"
 #import "YCPopViewExtension.h"
@@ -14,17 +14,10 @@
 #import "YCHouseListViewController.h"
 #import "YCNewUserViewController.h"
 
-typedef enum {
-    
-    HOUSE_EXIT_TYPE = 0,
-    HOUSE_TO_SOLUTION_TYPE,
-    
-} BACK_VIEW_TYPE;
-
-@interface YCDrawViewController () <YCAlertviewExtensionDelegate>
+@interface YCDrawManager () <YCAlertviewExtensionDelegate>
 {
     YCPopViewExtension *alert;
-    
+    NSInteger fromType;
 }
 
 @property (nonatomic, copy) NSString *tempHouseID;
@@ -33,19 +26,19 @@ typedef enum {
 @end
 
 
-@implementation YCDrawViewController
+@implementation YCDrawManager
 
-static YCDrawViewController *singleton = nil;
+static YCDrawManager *singleton = nil;
 
 + (instancetype)instance {
     
     static dispatch_once_t  onceToken;
     dispatch_once(&onceToken,^{
         
-        singleton = [[YCDrawViewController alloc] init];
+        singleton = [[YCDrawManager alloc] init];
         
         // 添加绘图保存成功监听
-        //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(houseSaveSucceedAction:) name: @"kSDKSaveHouseDataSucceed_LFSQ" object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(houseSaveSucceedAction:) name: @"kSDKSaveHouseDataSucceed_LFSQ" object:nil];
     });
     
     return singleton;
@@ -60,19 +53,17 @@ static YCDrawViewController *singleton = nil;
         if (HouseID == nil) {
             
             /** 初始化一个绘图界面 */
-            [LFDrawManager initDrawVCWithNewHouse];
+            [self drawHouse:nil type:0];
         } else if (![HouseID isEqualToString:@""]) {
             
             // 如果是临时的
-            [LFDrawManager initDrawVCWithHouseID:HouseID];
+            [self drawHouse:HouseID type:0];
         } else {
             
             /** 初始化一个绘图界面 */
-            [LFDrawManager initDrawVCWithNewHouse];
+            [self drawHouse:nil type:0];
         }
     }];
-    
-    [self drawHouse];
 }
 
 /**
@@ -82,19 +73,29 @@ static YCDrawViewController *singleton = nil;
  */
 - (void)setOwnerMobile:(NSString *)ownerMobile
 {
-    //    setHouseId:@"51652" ownerMobile:@"13585869804"
+//    setHouseId:@"51652" ownerMobile:@"13585869804"
     
     if (![ownerMobile isEqualToString:@""] ) {
         
         [self drawHouseWithOwnerMobile:ownerMobile];
     } else {
         
-        [self drawHouse];
+        [self drawHouse:nil type:0];
     }
 }
 
-- (void)drawHouse
+- (void)drawHouse:(NSString *)houseId type:(NSInteger)type
 {
+    fromType = type;
+    
+    if (houseId != nil) {
+    
+        [LFDrawManager initDrawVCWithHouseID:houseId];
+    } else {
+        
+        [LFDrawManager initDrawVCWithNewHouse];
+    }
+    
     LFDrawManager *dm = [LFDrawManager sharedInstance];
     
     [dm setCloseBtnActionBlock:^(NSString *houseID){
@@ -102,9 +103,7 @@ static YCDrawViewController *singleton = nil;
         NSLog(@"\n-------点击了“关闭”按钮-------\n %@", houseID);
         
         self.tempHouseID = houseID;
-        [self backView:HOUSE_EXIT_TYPE];
-        
-        [[YCAppManager instance] updateTempHouseData:@""];
+        [self backView];
     }];
     
     // 点击3D
@@ -112,7 +111,7 @@ static YCDrawViewController *singleton = nil;
         
         NSLog(@"\n-------点击了“3D”按钮-------\n");
         // [self dismissViewControllerAnimated:YES completion:nil];
-        
+    
         if (self.draw3DBlock)
         {
             self.draw3DBlock(drawVC);
@@ -139,7 +138,7 @@ static YCDrawViewController *singleton = nil;
         } else {
             [self downloadAction:lfFile houseId:houseId];
         }
-        
+    
     };
 }
 
@@ -163,16 +162,16 @@ static YCDrawViewController *singleton = nil;
     NSString *dirKCPath = [NSString stringWithFormat:@"KCSOFT/%@/%@/", [YCAppManager instance].workMobile, houseId];
     
     NSString *dirPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:dirKCPath];
-    
+
     // file
     NSString *fileKCPath = [NSString stringWithFormat:@"KCSOFT/%@/%@/%@.lf", [YCAppManager instance].workMobile, houseId, houseId];
     
     NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:fileKCPath];
-    
+
     
     // 如果本地不存在图片，则从网络中下载
-    //    NSFileManager *fileManager = [NSFileManager defaultManager];
-    //    if (![fileManager fileExistsAtPath:filePath])
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    if (![fileManager fileExistsAtPath:filePath])
     { // 不管是否存在都从网上下载，保证内容最新
         
         // Create target path
@@ -191,83 +190,9 @@ static YCDrawViewController *singleton = nil;
             [responseData writeToFile:filePath atomically:YES];
             // 将下载的图片赋值给info
             NSLog(@"file download finish:%@", filePath);
-            [self drawWithHouseId:houseId];
+            [self drawHouse:houseId type:1];
         });
     }
-    //    else {
-    //
-    //        [self drawWithHouseId:houseId];
-    //    }
-}
-
-- (void)drawWithHouseId:(NSString *)houseId
-{
-    /** 初始化一个绘图界面 */
-    [LFDrawManager initDrawVCWithHouseID:houseId];
-    
-    LFDrawManager *dm = [LFDrawManager sharedInstance];
-    
-    [dm setCloseBtnActionBlock:^(NSString* houseID){
-        
-        NSLog(@"\n-------点击了“关闭”按钮-------\n %@", houseID);
-        
-        self.tempHouseID = houseID;
-        [self backView:HOUSE_EXIT_TYPE];
-        
-        [[YCAppManager instance] updateTempHouseData:@""];
-    }];
-    
-    // 点击3D
-    [dm setJump3DPageBlock:^(UIViewController * drawVC){
-        
-        if (self.draw3DBlock)
-        {
-            self.draw3DBlock(drawVC);
-            NSLog(@"绘制3D");
-        }
-        
-        //        LFUnityViewController * d3VC = [[LFUnityViewController alloc] init];
-        //        [drawVC.navigationController pushViewController:d3VC animated:YES];
-    }];
-}
-
-- (IBAction)btnAreaList:(id)sender {
-    
-    YCUserListViewController *solutionListVC = [[YCUserListViewController alloc] init];
-    [self.startVC.navigationController pushViewController:solutionListVC animated:NO];
-}
-
-- (IBAction)getJsonPath:(id)sender {
-    
-    NSLog(@"\n-------HouseJson-------\n%@",[LFDrawSDKAPI getHouseJsonDataPathWithHouseID:self.tempHouseID]);
-}
-
-- (IBAction)getPicPath:(id)sender {
-    
-    NSLog(@"\n-------Pic-------\n%@",[LFDrawSDKAPI getHousePicPathWithHouseID:self.tempHouseID]);
-}
-
-- (IBAction)getDxfPath:(id)sender {
-    
-    NSLog(@"\n-------DXF-------\n%@",[LFDrawSDKAPI getHouseDXFDataPathWithHouseID:self.tempHouseID]);
-}
-
-- (IBAction)getAreaPath:(id)sender {
-    
-    NSLog(@"\n-------暂未提供-------\n");
-}
-
-- (IBAction)get3DDataPath:(id)sender {
-    
-    NSLog(@"\n-------U3D-------\n%@",[LFDrawSDKAPI getHouseU3DDataPathWithHouseID:self.tempHouseID]);
-}
-
-
-- (IBAction)getZIPDataPath:(id)sender {
-    
-    NSString *zipPath = [LFDrawSDKAPI getHouseZIPDataPathWithHouseID:self.tempHouseID];
-    
-    NSLog(@"\n-------ZIP-------\n%@", zipPath);
 }
 
 /**
@@ -287,6 +212,7 @@ static YCDrawViewController *singleton = nil;
     alert.delegate = self;
     [alert setbackviewframeWidth:300 Andheight:150];
     [alert settipeTitleStr:@"" fontSize:14];
+    
     [[UIApplication sharedApplication].keyWindow addSubview:alert];
     [self.startVC.view bringSubviewToFront:alert];
 }
@@ -362,11 +288,11 @@ static YCDrawViewController *singleton = nil;
  0, 退出
  1, 进入户型列表
  **/
-- (void)backView:(BACK_VIEW_TYPE)type
+- (void)backView
 {
+    // 户型列表点击进来的
+    if (fromType == 1) {
     
-    if ([YCHouseFmdbTool querySolutionData:self.tempHouseID]) {
-        
         // 编辑模式
         [self goHouseList];
         
@@ -379,27 +305,9 @@ static YCDrawViewController *singleton = nil;
             [[YCAppManager instance] uploadFileMehtod:zipPath
                                               houseId:self.tempHouseID];
         }
-        
     } else {
-        switch (type) {
-                
-            case HOUSE_EXIT_TYPE:
-            {
-                // 新建业主信息[姓名，手机号，小区名称，建筑面积] 或 选择业主信息
-                [self addAlertView];
-            }
-                break;
-                
-            case HOUSE_TO_SOLUTION_TYPE:
-            {
-                // 进入户型列表
-                [self goHouseList];
-            }
-                break;
-                
-            default:
-                break;
-        }
+        // 新建业主信息[姓名，手机号，小区名称，建筑面积] 或 选择业主信息
+        [self addAlertView];
     }
 }
 
@@ -424,18 +332,17 @@ static YCDrawViewController *singleton = nil;
         if (self.shareBlock)
         {
             self.shareBlock(url);
-            NSLog(@"分享数据");
+            NSLog(@"分享数据 %@", url);
         }
     };
     
-    houseListVC.sendBlock = ^(NSString *url) {
+    houseListVC.sendBlock = ^(NSString *flag) {
         
-        self.sendBlock(url);
-        NSLog(@"发送数据");
+        self.sendBlock(flag);
+        NSLog(@"发送数据 %@", flag);
     };
 }
 
 // --------- 绘制页面中涉及到的逻辑跳转 end ---------
 
 @end
-

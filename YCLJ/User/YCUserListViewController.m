@@ -40,7 +40,7 @@
 {
     [self loadSolutionFromWeb];
     
-    //    [super loadCellDataDone];
+//    [super loadCellDataDone];
 }
 
 - (void)loadCellDataDone
@@ -48,9 +48,9 @@
     
     [super loadCellDataDone];
     
-    //    if (pageIndex == 1) {
-    //        [self scrollingToTopPosition];
-    //    }
+//    if (pageIndex == 1) {
+//        [self scrollingToTopPosition];
+//    }
 }
 
 #pragma mark - Table view data source
@@ -75,7 +75,7 @@
         cell = [[YCUserListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[YCUserListCell cellID]];
     }
     
-    //    cell.contentView.backgroundColor = HEX_COLOR(VIEW_BG_COLOR);
+//    cell.contentView.backgroundColor = HEX_COLOR(VIEW_BG_COLOR);
     
     if ([cellDataArray count] > 0) {
         
@@ -112,7 +112,7 @@
     [paramDict setObject:@"20" forKey:@"page_size"];
     
     NSString *urlStr = [NSString stringWithFormat:@"%@/leju/owner/list/", YC_HOST_URL];
-    
+
     [ZTHttpTool post:urlStr
               params:paramDict
              success:^(id json) {
@@ -161,4 +161,3 @@
 }
 
 @end
-

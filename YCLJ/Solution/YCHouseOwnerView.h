@@ -14,7 +14,7 @@
 
 @protocol HouseListOwnerViewDelegate <NSObject>
 
-- (void)doShareOwner:(NSString *)mobile;
+- (void)doShareOwner:(NSString *)workOrderId;
 - (void)doSendOwner:(NSString *)mobile;
 
 @end
@@ -39,3 +39,4 @@
 @property(nonatomic,strong) YCOwnerModel *userModel;
 
 @end
+

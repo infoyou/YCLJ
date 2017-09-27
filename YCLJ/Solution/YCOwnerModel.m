@@ -14,7 +14,7 @@
     return [[self alloc] initWithDictFromUserList:dict];
 }
 
-/*
+/**
  * 工长下面的业主列表接口
  */
 - (instancetype)initWithDict:(NSDictionary *)dict
@@ -35,14 +35,14 @@
             
             self.createTime = (NSString *)dict[@"create_time"] ? (NSString *)dict[@"create_time"]:@"";
             self.workOrderId = (NSString *)dict[@"work_order_id"] ? (NSString *)dict[@"work_order_id"]:@"";
-            self.houseId = (NSString *)dict[@"houseId"] ? (NSString *)dict[@"houseId"]:@"";
+            self.houseId = (NSString *)dict[@"house_num"] ? (NSString *)dict[@"house_num"]:@"";
         }
     }
     
     return self;
 }
 
-/*
+/**
  * 用户列表接口
  */
 - (instancetype)initWithDictFromUserList:(NSDictionary *)dict
@@ -52,7 +52,7 @@
     {
         if (dict != nil) {
             
-            self.ownerId = (NSString *)dict[@"owner_mobile"] ? (NSString *)dict[@"owner_mobile"]:@"";
+            self.ownerId = (NSString *)dict[@"work_order_id"] ? (NSString *)dict[@"work_order_id"]:@"";
             self.name = (NSString *)dict[@"owner_name"] ? (NSString *)dict[@"owner_name"]:@"";
             self.mobile = (NSString *)dict[@"owner_mobile"] ? (NSString *)dict[@"owner_mobile"]:@"";
             self.address = (NSString *)dict[@"address"] ? (NSString *)dict[@"address"]:@"";
@@ -63,6 +63,7 @@
             
             self.createTime = (NSString *)dict[@"create_time"] ? (NSString *)dict[@"create_time"]:@"";
             self.workOrderId = (NSString *)dict[@"work_order_id"] ? (NSString *)dict[@"work_order_id"]:@"";
+            self.houseId = (NSString *)dict[@"house_num"] ? (NSString *)dict[@"house_num"]:@"";
         }
     }
     
@@ -70,3 +71,4 @@
 }
 
 @end
+

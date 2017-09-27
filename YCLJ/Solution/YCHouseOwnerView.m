@@ -100,10 +100,10 @@
 
     // name
     _labName.frame = CGRectMake(17, nameY, YC_SCREEN_WIDTH/6, 20);
-    _labName.text = userModel.name;
+    _labName.text = [userModel.name stringByReplacingPercentEscapes];
     
     // mobile
-    CGFloat mobileX = YC_SCREEN_WIDTH/6;
+    CGFloat mobileX = YC_SCREEN_WIDTH/4;
     _imgMobile.frame = CGRectMake(mobileX - 20 - offsetW, nameY, 20, 20);
 
     _labMobile.frame = CGRectMake(mobileX, nameY, YC_SCREEN_WIDTH/5, 20);
@@ -151,14 +151,14 @@
 - (void)clickShareOwner
 {
     if ([self.delegate respondsToSelector:@selector(doShareOwner:)]) {
-        [self.delegate doShareOwner:_userModel.mobile];
+        [self.delegate doShareOwner:_userModel.workOrderId];
     }
 }
 
 - (void)clickSendOwner
 {
     if ([self.delegate respondsToSelector:@selector(doSendOwner:)]) {
-        [self.delegate doSendOwner:_userModel.mobile];
+        [self.delegate doSendOwner:_userModel.houseId];
     }
 }
 
