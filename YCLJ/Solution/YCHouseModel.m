@@ -28,6 +28,7 @@
             self.huxingFpath = (NSString *)dict[@"huxing_fpath"] ? (NSString *)dict[@"huxing_fpath"]:@"";
             self.areaFpath = (NSString *)dict[@"area_file"] ? (NSString *)dict[@"area_file"]:@"";
             self.cadFpath = (NSString *)dict[@"cad_file"] ? (NSString *)dict[@"cad_file"]:@"";
+            self.state = (NSString *)dict[@"state"] ? (NSString *)dict[@"state"]:@"";
             
             self.zipFpath = (NSString *)dict[@"pkg"] ? (NSString *)dict[@"pkg"]:@"";
             self.type = [(NSNumber *)dict[@"is_copy"] intValue];

@@ -20,3 +20,4 @@ FOUNDATION_EXPORT const unsigned char lfsqSDKVersionString[];
 #import <lfsqSDK/LFDrawManager.h>
 #import <lfsqSDK/LFDrawSDKAPI.h>
 #import <lfsqSDK/LFPhotoManager.h>
+#import <lfsqSDK/LFSDKViewController.h>

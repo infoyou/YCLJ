@@ -8,6 +8,7 @@
 
 #import "YCHouseOwnerView.h"
 #import "YCOwnerModel.h"
+#import "YCAppManager.h"
 
 @implementation YCHouseOwnerView
 
@@ -150,15 +151,43 @@
 
 - (void)clickShareOwner
 {
-    if ([self.delegate respondsToSelector:@selector(doShareOwner:)]) {
-        [self.delegate doShareOwner:_userModel.workOrderId];
+    NSInteger state = [_userModel.state integerValue];
+    if (state == 1)
+    {
+        [[YCAppManager instance] showWithText:AFW_Data_Txt];
+        return;
+    }
+    
+    if (_userModel.houseId != nil &&
+        _userModel.houseId.length > 0) {
+    
+        if ([self.delegate respondsToSelector:@selector(doShareOwner:)]) {
+            [self.delegate doShareOwner:_userModel.workOrderId];
+        }
+    } else {
+        
+        [[YCAppManager instance] showWithText:Uploading_Data_Txt];
     }
 }
 
 - (void)clickSendOwner
 {
-    if ([self.delegate respondsToSelector:@selector(doSendOwner:)]) {
-        [self.delegate doSendOwner:_userModel.houseId];
+    NSInteger state = [_userModel.state integerValue];
+    if (state == 1)
+    {
+        [[YCAppManager instance] showWithText:AFW_Data_Txt];
+        return;
+    }
+    
+    if (_userModel.houseId != nil &&
+        _userModel.houseId.length > 0) {
+
+        if ([self.delegate respondsToSelector:@selector(doSendOwner:)]) {
+            [self.delegate doSendOwner:_userModel.houseId];
+        }
+    } else {
+        
+        [[YCAppManager instance] showWithText:Uploading_Data_Txt];
     }
 }
 

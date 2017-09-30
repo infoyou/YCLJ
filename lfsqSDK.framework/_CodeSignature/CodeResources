@@ -10,7 +10,7 @@
 		</data>
 		<key>Headers/LFDrawManager.h</key>
 		<data>
-		+GpTvh7+Saui+gqRQ25YxJv+LC0=
+		wvjy874mnDmXvt0mrdpmEQDkxzU=
 		</data>
 		<key>Headers/LFDrawSDKAPI.h</key>
 		<data>
@@ -24,9 +24,13 @@
 		<data>
 		kjIeiE74EX/Nlmkbv8QMPQ3uMyQ=
 		</data>
+		<key>Headers/LFSDKViewController.h</key>
+		<data>
+		MhIdwBJl2QJRJ6D9vhkK4hawzMY=
+		</data>
 		<key>Headers/lfsqSDK.h</key>
 		<data>
-		kKDe+Wu+CkWXJ+Eb4Njk8PxqAHU=
+		OzCCX1rY9/MsG2nOtfxP+XuL5YM=
 		</data>
 		<key>IQKeyboardManager.bundle/IQButtonBarArrowLeft.png</key>
 		<data>
@@ -98,7 +102,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		jf8fxwyOrd9bcXOVjHDrkIT3zT8=
+		VRGVLsQ3oB8BuEdcgXfpV57k2wQ=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -156,11 +160,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			+GpTvh7+Saui+gqRQ25YxJv+LC0=
+			wvjy874mnDmXvt0mrdpmEQDkxzU=
 			</data>
 			<key>hash2</key>
 			<data>
-			LGhOI7z5T5FUdkOl05IIlK9+5it1vXqXICnvSOlhTbA=
+			tqrEBRt1gcltOokpRRSvp9mibyoWC245fIdWYhMStn4=
 			</data>
 		</dict>
 		<key>Headers/LFDrawSDKAPI.h</key>
@@ -196,15 +200,26 @@
 			hXDpL6G650t42GrBLljKv7ntXuqS38woJRjQps6z5Os=
 			</data>
 		</dict>
+		<key>Headers/LFSDKViewController.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			MhIdwBJl2QJRJ6D9vhkK4hawzMY=
+			</data>
+			<key>hash2</key>
+			<data>
+			zG6j3iA6tLzsBo9G3IF5pEWJ+iZ0iP+0de7CMgXPhyU=
+			</data>
+		</dict>
 		<key>Headers/lfsqSDK.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			kKDe+Wu+CkWXJ+Eb4Njk8PxqAHU=
+			OzCCX1rY9/MsG2nOtfxP+XuL5YM=
 			</data>
 			<key>hash2</key>
 			<data>
-			XAuAbIKSXBktVAL78o3NRJ+WJqyq8KQ+IZKDs9JMqd8=
+			ibwVu5KJoFVcHCupe8QYihp9v9gQ5NE/xKVueOmeQ5Y=
 			</data>
 		</dict>
 		<key>IQKeyboardManager.bundle/IQButtonBarArrowLeft.png</key>

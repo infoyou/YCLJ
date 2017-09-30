@@ -13,6 +13,8 @@
 #import "YCOwnerModel.h"
 #import "LFDrawSDKAPI.h"
 #import "YCHouseListViewController.h"
+#import "ZTLoaddingView.h"
+#import "ZTToastView.h"
 
 @implementation YCAppManager
 
@@ -29,6 +31,7 @@ static YCAppManager *singleton = nil;
     return singleton;
 }
 
+#pragma mark - 更改临时图户型Id
 - (void)updateTempHouseData:(NSString *)aHouseId
 {
     NSUserDefaults *_def = [NSUserDefaults standardUserDefaults];
@@ -38,6 +41,7 @@ static YCAppManager *singleton = nil;
     [_def synchronize];
 }
 
+#pragma mark - 获取临时图户型Id
 - (NSString *)getTempHouseId
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"kSDKHouseID_LFSQ"];
@@ -58,13 +62,58 @@ static YCAppManager *singleton = nil;
     }
 }
 
+#pragma mark - 获取户型lf.file 通过houseId
+- (void)transHouseFileById:(NSString *)houseId
+{
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@/leju/house/detail/%@/", YC_HOST_URL, houseId];
+    
+    [ZTHttpTool get:urlStr
+             params:nil
+            success:^(id json) {
+                
+                NSDictionary *backDic = json;
+                
+                if (backDic != nil) {
+                    
+                    NSString *errCodeStr = (NSString *)[backDic valueForKey:@"code"];
+                    
+                    if ( [errCodeStr integerValue] == SUCCESS_DATA ) {
+                        
+                        NSDictionary *resultDict = [backDic valueForKey:@"data"];
+                        NSString *lf_file = resultDict[@"lf_file"];
+                        
+                        if (self.GetHouseFile)
+                        {
+                            // 调用回调函数
+                            self.GetHouseFile(lf_file, @"");
+                        }
+                    } else {
+                        
+                        NSString *msg = [backDic valueForKey:@"msg"];
+                        if (self.GetHouseFile)
+                        {
+                            // 调用回调函数
+                            self.GetHouseFile(nil, msg);
+                        }
+                        DLog(@"back msg is %@", msg);
+                        [self showWithText:msg];
+                    }
+                }
+                
+            } failure:^(NSError *error) {
+                
+                NSLog(@"请求失败-%@", error);
+            }];
+}
+
 #pragma mark - 获取户型id
 - (void)transWorkId:(NSString *)workId
-        ownerMobile:(NSString *)ownerMobile
+        workOrderId:(NSString *)workOrderId
 {
     NSMutableDictionary *dataDict = [NSMutableDictionary dictionary];
     [dataDict setObject:workId forKey:@"chief_id"];
-    [dataDict setObject:ownerMobile forKey:@"owner_mobile"];
+    [dataDict setObject:workOrderId forKey:@"work_order_id"];
     
     NSMutableDictionary *paramDict = [ZTCommonUtils getParamDict:dataDict];
     
@@ -417,12 +466,25 @@ static YCAppManager *singleton = nil;
     }
 }
 
+#pragma mark - show msg
 - (void)showWithText:(NSString *)msg
 {
     [ZTToastView showToastViewWithText:msg
                            andDuration:1
                              andCorner:5
                          andParentView:[self getCurrentVC].view];
+}
+
+#pragma mark - loading msg
+- (void)showLoadingMsg:(NSString *)msg
+{
+    Loadding = [ZTLoaddingView initWithParentView:[self getCurrentVC].view];
+    [Loadding showLoaddingViewWithText:msg andStyle:0];
+}
+
+- (void)closeLoadingMsg
+{
+    [Loadding dismissLoaddingView];
 }
 
 //获取当前屏幕显示的viewcontroller

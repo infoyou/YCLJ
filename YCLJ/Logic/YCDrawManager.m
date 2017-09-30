@@ -14,6 +14,9 @@
 #import "YCHouseListViewController.h"
 #import "YCNewUserViewController.h"
 
+#import "YCHouseModel.h"
+#import "YCOwnerModel.h"
+
 @interface YCDrawManager () <YCAlertviewExtensionDelegate>
 {
     YCPopViewExtension *alert;
@@ -22,6 +25,7 @@
 
 @property (nonatomic, copy) NSString *tempHouseID;
 @property (nonatomic, strong) UIViewController *startVC;
+@property (nonatomic, strong) YCOwnerModel *model;
 
 @end
 
@@ -44,52 +48,77 @@ static YCDrawManager *singleton = nil;
     return singleton;
 }
 
-- (void)startDraw:(UIViewController *)vc model:(YCOwnerModel *)model
+- (void)startDraw:(UIViewController *)vc houseModel:(YCHouseModel *)houseModel
 {
     self.startVC = vc;
     
+    [[YCAppManager instance] showLoadingMsg:@"加载数据"];
+    
+    NSInteger houseDrawState = [houseModel.state integerValue];
+    if (houseDrawState == 1) {
+        
+        [self downloadAction:houseModel.areaFpath
+                     houseId:houseModel.houseId
+                       state:houseDrawState];
+    } else {
+        
+        [self downloadAction:houseModel.lfFile
+                     houseId:houseModel.houseId
+                       state:houseDrawState];
+    }
+}
+
+- (void)startDraw:(UIViewController *)vc model:(YCOwnerModel *)model
+{
+    self.startVC = vc;
+    self.model = model;
+    self.model.ownerId = self.model.workOrderId;
+    
+    if (model != nil) {
+        
+        if (model.workOrderId != nil && model.workOrderId.length > 1) {
+            if (model.houseId != nil && model.houseId.length > 1) {
+                
+                // 有工单，有图
+                [self drawWithHouseId:model.houseId];
+            } else {
+                
+                // 有工单，无图
+                [self drawFirstViewPath:2];
+            }
+        }
+    } else {
+        
+        [self drawFirstViewPath:0];
+    }
+}
+
+#pragma mark - 第一次画， type [不同的来源]
+- (void)drawFirstViewPath:(NSInteger)type
+{
     [LFDrawSDKAPI getHouseIDWhenSaveHouse:^(NSString * _Nonnull HouseID) {
         
         if (HouseID == nil) {
-            
             /** 初始化一个绘图界面 */
-            [self drawHouse:nil type:0];
+            [self drawHouse:nil type:type];
         } else if (![HouseID isEqualToString:@""]) {
-            
             // 如果是临时的
-            [self drawHouse:HouseID type:0];
+            [self drawHouse:HouseID type:type];
         } else {
-            
             /** 初始化一个绘图界面 */
-            [self drawHouse:nil type:0];
+            [self drawHouse:nil type:type];
         }
     }];
 }
 
-/**
- * houseId 工长Id
- * ownerMobile 业主手机号码
- *
- */
-- (void)setOwnerMobile:(NSString *)ownerMobile
-{
-//    setHouseId:@"51652" ownerMobile:@"13585869804"
-    
-    if (![ownerMobile isEqualToString:@""] ) {
-        
-        [self drawHouseWithOwnerMobile:ownerMobile];
-    } else {
-        
-        [self drawHouse:nil type:0];
-    }
-}
-
-- (void)drawHouse:(NSString *)houseId type:(NSInteger)type
+- (void)drawHouse:(NSString *)houseId
+             type:(NSInteger)type
 {
     fromType = type;
     
+    //新图
     if (houseId != nil) {
-    
+        
         [LFDrawManager initDrawVCWithHouseID:houseId];
     } else {
         
@@ -111,7 +140,7 @@ static YCDrawManager *singleton = nil;
         
         NSLog(@"\n-------点击了“3D”按钮-------\n");
         // [self dismissViewControllerAnimated:YES completion:nil];
-    
+        
         if (self.draw3DBlock)
         {
             self.draw3DBlock(drawVC);
@@ -120,13 +149,33 @@ static YCDrawManager *singleton = nil;
     }];
 }
 
+// 通过户型Id 绘制户型
+- (void)drawWithHouseId:(NSString *)houseId
+{
+    
+    [[YCAppManager instance] transHouseFileById:houseId];
+    
+    [YCAppManager instance].GetHouseFile = ^(NSString *lfFile, NSString *msg){
+        
+        if(lfFile != nil)
+        {
+            [self downloadAction:lfFile
+                         houseId:houseId
+                           state:0];
+        } else {
+            ShowAlertWithOneButton(self, @"", msg, @"Ok");
+        }
+    };
+}
+
+// 废弃
 // 原有基础上修改
-- (void)drawHouseWithOwnerMobile:(NSString *)ownerMobile
+- (void)drawHouseWithWorkOrder:(NSString *)workOrderId
 {
     
     // 工长下面业主的户型，如果有拆改的返回拆改图ID，如果没有就返回原始图ID
     [[YCAppManager instance] transWorkId:[YCAppManager instance].workId
-                             ownerMobile:ownerMobile];
+                             workOrderId:workOrderId];
     
     [YCAppManager instance].GetOwnerHouseId = ^(NSString *houseId, NSString *lfFile, NSString *msg){
         
@@ -136,63 +185,79 @@ static YCDrawManager *singleton = nil;
         {
             ShowAlertWithOneButton(self, @"", msg, @"Ok");
         } else {
-            [self downloadAction:lfFile houseId:houseId];
+            [self downloadAction:lfFile
+                         houseId:houseId
+                           state:0];
         }
-    
     };
 }
 
-/**
- *
- *
- NSString *urlString = @"http://zhuangxiu-img.img-cn-shanghai.aliyuncs.com/leju/1708/03/37294516782411e780e900163e0e98a7.lf";
- *
- */
-- (void)downloadAction:(NSString *)urlString houseId:(NSString *)houseId
+- (void)downloadAction:(NSString *)urlString
+               houseId:(NSString *)houseId
+                 state:(NSInteger)state
 {
     DLog(@"downloadAction:%@ houseId:%@", urlString, houseId);
-    
-    //    self.status.text = @"正在下载";
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_group_t downloadDispatchGroup = dispatch_group_create();
-    
-    // KCSOFT/13524010590/062ECECD-FA54-453B-8C40-741919A1BA7B/062ECECD-FA54-453B-8C40-741919A1BA7B.lf
     
     // dir
     NSString *dirKCPath = [NSString stringWithFormat:@"KCSOFT/%@/%@/", [YCAppManager instance].workMobile, houseId];
     
     NSString *dirPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:dirKCPath];
-
+    
     // file
-    NSString *fileKCPath = [NSString stringWithFormat:@"KCSOFT/%@/%@/%@.lf", [YCAppManager instance].workMobile, houseId, houseId];
+    NSString *fileKCPath = @"";
+    if (state == 0) {
+        
+        fileKCPath = [NSString stringWithFormat:@"KCSOFT/%@/%@/%@.lf", [YCAppManager instance].workMobile, houseId, houseId];
+    } else {
+        
+        fileKCPath = [NSString stringWithFormat:@"KCSOFT/%@/%@/%@.json", [YCAppManager instance].workMobile, houseId, houseId];
+    }
     
     NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:fileKCPath];
-
     
-    // 如果本地不存在图片，则从网络中下载
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    if (![fileManager fileExistsAtPath:filePath])
-    { // 不管是否存在都从网上下载，保证内容最新
+    // 不管是否存在都从网上下载，保证内容最新
+    [[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:NULL];
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_group_t downloadDispatchGroup = dispatch_group_create();
+    
+    dispatch_group_async(downloadDispatchGroup, queue, ^{
+        DLog(@"Starting file download:%@", dirPath);
         
-        // Create target path
-        [[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:NULL];
+        // URL组装和编码
+        NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        NSLog(@"file download from url: %@", urlString);
         
-        dispatch_group_async(downloadDispatchGroup, queue, ^{
-            DLog(@"Starting file download:%@", dirPath);
-            
-            // URL组装和编码
-            NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            NSLog(@"file download from url: %@", urlString);
-            
-            // 开始下载图片
-            NSData *responseData = [NSData dataWithContentsOfURL:url];
-            // 将图片保存到指定路径中
-            [responseData writeToFile:filePath atomically:YES];
-            // 将下载的图片赋值给info
-            NSLog(@"file download finish:%@", filePath);
+        // 开始下载图片
+        NSData *responseData = [NSData dataWithContentsOfURL:url];
+        // 将图片保存到指定路径中
+        [responseData writeToFile:filePath atomically:YES];
+        // 将下载的图片赋值给info
+        NSLog(@"file download finish:%@", filePath);
+        
+        if (state == 0) {
+            // 科创绘制
             [self drawHouse:houseId type:1];
-        });
-    }
+        } else {
+            // 爱福窝绘制
+            [self drawAfwData:filePath];
+        }
+        
+        [[YCAppManager instance] closeLoadingMsg];
+    });
+}
+
+- (void)drawAfwData:(NSString *)filePath
+{
+    // 爱福窝老图
+    //加载JSON文件
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+    NSError *error = nil;
+    NSLog(@"%@", [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error]);
+    NSLog(@"%@",error);
+    
+    [LFDrawManager initAFWDrawVCWithHouseDict:dict];
 }
 
 /**
@@ -279,44 +344,47 @@ static YCDrawManager *singleton = nil;
     }
 }
 
-// --------- 绘制页面中涉及到的逻辑跳转 start ---------
-
-/**
- *
- * 从绘制页面返回App
- *  type
- 0, 退出
- 1, 进入户型列表
- **/
 - (void)backView
 {
-    // 户型列表点击进来的
-    if (fromType == 1) {
     
-        // 编辑模式
-        [self goHouseList];
-        
-        if (self.tempHouseID != nil) {
-            
-            // 保存本地文件
-            NSString *zipPath = [LFDrawSDKAPI getHouseZIPDataPathWithHouseID:self.tempHouseID];
-            
-            // 上传户型zip文件到服务端
-            [[YCAppManager instance] uploadFileMehtod:zipPath
-                                              houseId:self.tempHouseID];
+    switch (fromType) {
+        case 0:
+        {
+            // 新建业主信息[姓名，手机号，小区名称，建筑面积] 或 选择业主信息
+            [self addAlertView];
         }
-    } else {
-        // 新建业主信息[姓名，手机号，小区名称，建筑面积] 或 选择业主信息
-        [self addAlertView];
-    }
-}
+            break;
+            
+        case 1:
+        {
+            if (self.tempHouseID != nil) {
+                
+                // 保存本地文件
+                NSString *zipPath = [LFDrawSDKAPI getHouseZIPDataPathWithHouseID:self.tempHouseID];
+                
+                // 上传户型zip文件到服务端
+                [[YCAppManager instance] uploadFileMehtod:zipPath
+                                                  houseId:self.tempHouseID];
+            }
+            
+            [self.startVC dismissViewControllerAnimated:YES completion:nil];
+        }
+            break;
 
-- (void)goHouseList
-{
-    
-    [self.startVC dismissViewControllerAnimated:YES completion:nil];
-    
-    [self startHouseList:self.startVC];
+        case 2:
+        {
+            // 存储本地数据库
+            [[YCAppManager instance] saveLocalOwnerData:self.model];
+            
+            [self.startVC dismissViewControllerAnimated:YES completion:nil];
+            
+            [self startHouseList:self.startVC];
+        }
+            break;
+
+        default:
+            break;
+    }
 }
 
 - (void)startHouseList:(UIViewController *)vc
@@ -338,11 +406,12 @@ static YCDrawManager *singleton = nil;
     
     houseListVC.sendBlock = ^(NSString *flag) {
         
-        self.sendBlock(flag);
-        NSLog(@"发送数据 %@", flag);
+        if (self.sendBlock) {
+    
+            self.sendBlock(flag);
+            NSLog(@"发送数据 %@", flag);
+        }
     };
 }
-
-// --------- 绘制页面中涉及到的逻辑跳转 end ---------
 
 @end

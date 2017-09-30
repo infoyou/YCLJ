@@ -108,11 +108,7 @@
     YCHouseModel *houseModel = _houseObject.houseModel;
     
     // 0, warning
-    if (houseModel.isUpload > 0) {
-        imgUpload.hidden = YES;
-    } else {
-        imgUpload.hidden = NO;
-    }
+    imgUpload.hidden = YES;
     
     // 1, title
     if (houseModel.type > 0) {
@@ -128,6 +124,9 @@
         labCopySolution.hidden = NO;
         btnDel.hidden = YES;
     }
+    
+    // todo 颜色 处理
+//    labTitle
     
     // 2, date
     if (![houseModel.updateDate isEqualToString:@""]) {

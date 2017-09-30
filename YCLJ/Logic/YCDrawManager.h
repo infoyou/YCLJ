@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class YCOwnerModel;
+@class YCHouseModel;
 
 @interface YCDrawManager : NSObject
 
@@ -18,10 +19,11 @@
 
 + (instancetype)instance;
 
-- (void)setOwnerMobile:(NSString *)ownerMobile;
 - (void)drawHouse:(NSString *)houseId type:(NSInteger)type;
 
 - (void)startDraw:(UIViewController *)vc model:(YCOwnerModel *)model;
+
 - (void)startHouseList:(UIViewController *)vc;
+- (void)startDraw:(UIViewController *)vc houseModel:(YCHouseModel *)houseModel;
 
 @end

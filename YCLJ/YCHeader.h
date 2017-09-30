@@ -78,4 +78,7 @@ typedef enum {
     HOUSE_SOLUTION_ALTER_TYPE, // 拆改图
 } House_Solution_TYPE;
 
+#define Uploading_Data_Txt  @"数据正在上传，请耐心等待!"
+#define AFW_Data_Txt        @"爱福窝数据不支持此项功能!"
+
 #endif /* YCLJ_Header_h */

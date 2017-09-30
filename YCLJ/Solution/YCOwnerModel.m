@@ -32,6 +32,7 @@
             self.city = (NSString *)dict[@"district"] ? (NSString *)dict[@"district"]:@"";
             self.style = (NSString *)dict[@"is_new"] ? (NSString *)dict[@"is_new"]:@"";
             self.type = (NSString *)dict[@"house_type"] ? (NSString *)dict[@"house_type"]:@"";
+            self.state = (NSString *)dict[@"state"] ? (NSString *)dict[@"state"]:@"";
             
             self.createTime = (NSString *)dict[@"create_time"] ? (NSString *)dict[@"create_time"]:@"";
             self.workOrderId = (NSString *)dict[@"work_order_id"] ? (NSString *)dict[@"work_order_id"]:@"";
@@ -71,4 +72,3 @@
 }
 
 @end
-

@@ -7,10 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZTLoaddingView.h"
 
 @class YCOwnerModel;
 
 @interface YCAppManager : NSObject
+{
+    ZTLoaddingView * Loadding;
+}
 
 @property (nonatomic, copy) NSString *workId;
 @property (nonatomic, copy) NSString *workName;
@@ -18,6 +22,9 @@
 @property (nonatomic, copy) NSString *ownerId;
 @property (nonatomic, copy) NSString *houseId;
 @property (nonatomic, strong) YCOwnerModel *userModel;
+
+@property (nonatomic, copy) void(^GetHouseFile)(NSString *lfFile, NSString *msg);
+
 @property (nonatomic, copy) void(^GetOwnerHouseId)(NSString *houseId, NSString *lfFile, NSString *msg);
 
 + (instancetype)instance;
@@ -26,9 +33,12 @@
 
 - (NSString *)getTempHouseId;
 
+#pragma mark - 获取户型lf.file 通过houseId
+- (void)transHouseFileById:(NSString *)houseId;
+
 #pragma mark - 获取户型id
 - (void)transWorkId:(NSString *)workId
-        ownerMobile:(NSString *)ownerMobile;
+        workOrderId:(NSString *)workOrderId;
 
 #pragma mark - 注册工长
 - (void)registerWorkerData:(NSString *)strMobile
@@ -38,9 +48,6 @@
 #pragma mark - 上传户型数据文件
 - (void)saveLocalHouseData:(NSString *)zipPath
                    houseId:(NSString *)houseId;
-
-#pragma mark - 新增户型数据
-- (void)transHouseData:(NSString *)houseId;
 
 #pragma mark - copy户型数据
 - (void)transCopyHouseData:(NSString *)houseId;
@@ -53,5 +60,13 @@
                  houseId:(NSString *)houseId;
 
 - (void)saveLocalOwnerData:(YCOwnerModel *)userModel;
+
+#pragma mark - show msg
+- (void)showWithText:(NSString *)msg;
+
+#pragma mark - loading msg
+- (void)showLoadingMsg:(NSString *)msg;
+
+- (void)closeLoadingMsg;
 
 @end

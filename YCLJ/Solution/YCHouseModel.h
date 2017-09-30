@@ -17,6 +17,7 @@
 @property (nonatomic, copy) NSString *huxingFpath;
 @property (nonatomic, copy) NSString *cadFpath;
 @property (nonatomic, copy) NSString *zipFpath;
+@property (nonatomic, copy) NSString *state; // 0,新图；1,爱福窝老图
 
 @property (nonatomic, copy) NSString *creatDate; //1497520802,
 @property (nonatomic, copy) NSString *updateDate; //1497520802

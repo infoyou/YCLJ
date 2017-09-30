@@ -25,10 +25,12 @@
 @property (nonatomic, copy) NSString *workOrderId; //工单
 @property (nonatomic, copy) NSString *houseId; //绘制户型Id
 
-@property (nonatomic, strong) NSArray *houseArray;
+@property (nonatomic, strong) NSMutableArray *houseArray;
+@property (nonatomic, strong) NSMutableDictionary *houseObjectDict;
+
+@property (nonatomic, copy) NSString *state; //是否是爱福窝数据
 
 + (instancetype)newWithDict:(NSDictionary *)dict;
 + (instancetype)newWithUserDict:(NSDictionary *)dict;
 
 @end
-

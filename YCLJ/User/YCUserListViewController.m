@@ -38,7 +38,7 @@
 
 - (void)transTableDataInfo
 {
-    [self loadSolutionFromWeb];
+    [self transOwerList];
     
 //    [super loadCellDataDone];
 }
@@ -103,7 +103,7 @@
 }
 
 #pragma mark - 业主列表
-- (void)loadSolutionFromWeb
+- (void)transOwerList
 {
     
     NSMutableDictionary *paramDict = [NSMutableDictionary dictionary];
