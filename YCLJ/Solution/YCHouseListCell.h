@@ -10,11 +10,14 @@
 
 @class YCHouseModel;
 @class YCHouseObject;
+@class YCOwnerModel;
+
 @protocol HouseListCellDelegate;
 
 @interface YCHouseListCell : ZTBaseTableViewCell
 
 @property (nonatomic, strong) YCHouseObject *houseObject;
+@property (nonatomic, strong) YCOwnerModel *ownerModel;
 @property (nonatomic, weak) id <HouseListCellDelegate> delegate;
 
 + (NSString *)cellID;

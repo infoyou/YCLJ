@@ -206,45 +206,60 @@ static YCDrawManager *singleton = nil;
     // file
     NSString *fileKCPath = @"";
     if (state == 0) {
-        
+        // 科创
         fileKCPath = [NSString stringWithFormat:@"KCSOFT/%@/%@/%@.lf", [YCAppManager instance].workMobile, houseId, houseId];
     } else {
-        
+        // 爱福窝
         fileKCPath = [NSString stringWithFormat:@"KCSOFT/%@/%@/%@.json", [YCAppManager instance].workMobile, houseId, houseId];
     }
     
     NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:fileKCPath];
     
-    // 不管是否存在都从网上下载，保证内容最新
-    [[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:NULL];
+    // 判断本地是否存在
+     if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
     
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_group_t downloadDispatchGroup = dispatch_group_create();
-    
-    dispatch_group_async(downloadDispatchGroup, queue, ^{
-        DLog(@"Starting file download:%@", dirPath);
-        
-        // URL组装和编码
-        NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        NSLog(@"file download from url: %@", urlString);
-        
-        // 开始下载图片
-        NSData *responseData = [NSData dataWithContentsOfURL:url];
-        // 将图片保存到指定路径中
-        [responseData writeToFile:filePath atomically:YES];
-        // 将下载的图片赋值给info
-        NSLog(@"file download finish:%@", filePath);
-        
-        if (state == 0) {
-            // 科创绘制
-            [self drawHouse:houseId type:1];
-        } else {
-            // 爱福窝绘制
-            [self drawAfwData:filePath];
-        }
-        
-        [[YCAppManager instance] closeLoadingMsg];
-    });
+         // 从网上下载，保证内容最新
+         [[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:NULL];
+         
+         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+         dispatch_group_t downloadDispatchGroup = dispatch_group_create();
+         
+         dispatch_group_async(downloadDispatchGroup, queue, ^{
+             DLog(@"Starting file download:%@", dirPath);
+             
+             // URL组装和编码
+             NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+             NSLog(@"file download from url: %@", urlString);
+             
+             // 开始下载图片
+             NSData *responseData = [NSData dataWithContentsOfURL:url];
+             // 将图片保存到指定路径中
+             [responseData writeToFile:filePath atomically:YES];
+             // 将下载的图片赋值给info
+             NSLog(@"file download finish:%@", filePath);
+             
+             if (state == 0) {
+                 // 科创绘制
+                 [self drawHouse:houseId type:1];
+             } else {
+                 // 爱福窝绘制
+                 [self drawAfwData:filePath];
+             }
+             
+             [[YCAppManager instance] closeLoadingMsg];
+         });
+     } else {
+
+         if (state == 0) {
+             // 科创绘制
+             [self drawHouse:houseId type:1];
+         } else {
+             // 爱福窝绘制
+             [self drawAfwData:filePath];
+         }
+
+         [[YCAppManager instance] closeLoadingMsg];
+     }
 }
 
 - (void)drawAfwData:(NSString *)filePath
@@ -289,13 +304,11 @@ static YCDrawManager *singleton = nil;
         // 保存本地文件
         NSString *zipPath = [LFDrawSDKAPI getHouseZIPDataPathWithHouseID:self.tempHouseID];
         
-        // 保存户型
-        [[YCAppManager instance] saveLocalHouseData:zipPath
-                                            houseId:self.tempHouseID];
+        [LFDrawSDKAPI getHouseU3DPathWithHouseID:self.tempHouseID];
         
-        // 上传户型zip文件到服务端
-        [[YCAppManager instance] uploadFileMehtod:zipPath
-                                          houseId:self.tempHouseID];
+        // 保存户型
+        [[YCAppManager instance] saveHouseParam:zipPath
+                                        houseId:self.tempHouseID];
     }
 }
 
@@ -362,9 +375,13 @@ static YCDrawManager *singleton = nil;
                 // 保存本地文件
                 NSString *zipPath = [LFDrawSDKAPI getHouseZIPDataPathWithHouseID:self.tempHouseID];
                 
-                // 上传户型zip文件到服务端
-                [[YCAppManager instance] uploadFileMehtod:zipPath
-                                                  houseId:self.tempHouseID];
+                [LFDrawSDKAPI getHouseU3DPathWithHouseID:self.tempHouseID];
+                
+                // 保存户型
+                [[YCAppManager instance] saveHouseParam:zipPath
+                                                houseId:self.tempHouseID];
+                // Upload
+                [[YCAppManager instance] uploadFileMehtod];
             }
             
             [self.startVC dismissViewControllerAnimated:YES completion:nil];

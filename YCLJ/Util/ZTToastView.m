@@ -15,7 +15,8 @@
  *  @param corner     角度
  *  @param parentView 父控件
  */
--(void)showToastViewWithText:(NSString *)text andDuration:(int)duration andCorner:(int)corner andParentView:(UIView *)parentView{
+-(void)showToastViewWithText:(NSString *)text andDuration:(int)duration andCorner:(int)corner andParentView:(UIView *)parentView
+{
     _duration=duration;
     _corner=corner;
     [self caculateSize];
@@ -44,9 +45,11 @@
  *  @param duration   时间
  *  @param parentView 父控件
  */
--(void)showToastViewWithText:(NSString *)text andDuration:(int)duration andParentView:(UIView *)parentView{
+-(void)showToastViewWithText:(NSString *)text andDuration:(int)duration andParentView:(UIView *)parentView
+{
     _duration=duration;
     _corner=5;
+    
     [self caculateSize];
     [self createUIByText:text];
     [self showToastByParentView:parentView];
@@ -60,15 +63,15 @@
  *  @param corner     圆角
  *  @param parentView 父控件
  */
-+(void)showToastViewWithText:(NSString *)text andDuration:(int)duration andCorner:(int)corner andParentView:(UIView *)parentView{
++(void)showToastViewWithText:(NSString *)text andDuration:(int)duration andCorner:(int)corner andParentView:(UIView *)parentView
+{
     
-    ZTToastView * toast=[[ZTToastView alloc]init];
+    ZTToastView * toast = [[ZTToastView alloc]init];
     toast.duration=duration;
     toast.corner=corner;
     [toast caculateSize];
     [toast createUIByText:text];
     [toast showToastByParentView:parentView];
-    
 }
 
 /**
@@ -77,8 +80,9 @@
  *  @param text       文本
  *  @param parentView 父控件容器
  */
-+(void)showToastViewWithText:(NSString *)text andParentView:(UIView *)parentView{
-   ZTToastView * toast=[[ZTToastView alloc]init];
++(void)showToastViewWithText:(NSString *)text andParentView:(UIView *)parentView
+{
+	ZTToastView * toast = [[ZTToastView alloc]init];
     toast.duration=1.0;
     toast.corner=5;
     [toast caculateSize];
@@ -107,16 +111,18 @@
  *
  *  @param str 要显示的文本
  */
--(void)createUIByText:(NSString *)str{
+-(void)createUIByText:(NSString *)str
+{
     self.textAlignment = NSTextAlignmentCenter;
     self.backgroundColor = [UIColor colorWithRed:00 green:00 blue:00 alpha:0.5];
     self.alpha = 0.8;
-    self.text=str;
+    self.text = str;
+    self.numberOfLines = 0;
     self.font = [UIFont systemFontOfSize:14];
     self.textColor=[UIColor whiteColor];
     NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:self.font.pointSize],};
     CGSize textSize = [self.text boundingRectWithSize:CGSizeMake(100, 100) options:NSStringDrawingTruncatesLastVisibleLine attributes:attributes context:nil].size;;
-    self.frame=CGRectMake(screenWidth/2-(textSize.width*1.7)/2, screenHeight*0.5,textSize.width*1.7,
+    self.frame = CGRectMake(screenWidth/2-(textSize.width*1.7)/2, screenHeight*0.5,textSize.width*1.7,
                                textSize.height*2);
     self.layer.cornerRadius = _corner;
     self.clipsToBounds = YES;

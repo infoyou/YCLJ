@@ -21,6 +21,7 @@
 @interface YCHouseListViewController () <HouseListCellDelegate,YCAlertviewExtensionDelegate, HouseListOwnerViewDelegate>
 {
     YCAlertViewExtension *alert;
+    NSInteger selDelTableSection;
 }
 
 @property (nonatomic, strong) YCHouseModel *houseModel;
@@ -35,6 +36,10 @@
 {
     [super viewWillAppear:animated];
     
+    [self closeLoadingMsg];
+    
+    [self showLoadingMsg:@"加载数据"];
+
     [self loadFirstSolution];
 }
 
@@ -47,6 +52,17 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     //    [self checkNetAvailable];
+    
+    [YCAppManager instance].GetUpdateResult = ^(NSString *msg){
+
+        if(![msg isEqualToString:@""])
+        {
+            ShowAlertWithOneButton(self, @"", msg, @"Ok");
+        } else {
+
+            [self loadFirstSolution];
+        }
+    };
 }
 
 - (void)checkNetAvailable
@@ -77,7 +93,6 @@
 
 - (void)loadFirstSolution
 {
-    [self showLoadingMsg:@"加载数据"];
     
     // 拉去网上数据
     [self loadSolutionFromWeb];
@@ -240,6 +255,7 @@
     
     cell.contentView.backgroundColor = HEX_COLOR(CELL_BG_COLOR);
     cell.delegate = self;
+    cell.ownerModel = _userArray[indexPath.section];
     cell.houseObject = [self getCellHouseObject:indexPath.section
                                             row:indexPath.row];
     
@@ -287,8 +303,16 @@
     // 同步后台
     [[YCAppManager instance] transCopyHouseData:houseModel.houseId];
     
-    // 刷新table view
-    [self.mTableView reloadData];
+    [YCAppManager instance].GetCopyResult = ^(NSString *msg){
+        
+        if(![msg isEqualToString:@""])
+        {
+            ShowAlertWithOneButton(self, @"", msg, @"Ok");
+        } else {
+            // 刷新table view
+            [self loadFirstSolution];
+        }
+    };
 }
 
 //添加 alertview
@@ -330,15 +354,27 @@
 - (void)deleteCell
 {
     // 同步服务器
-    [[YCAppManager instance] transDeleteHouse:_houseModel.houseId];
+    YCOwnerModel *ownerModel = _userArray[selDelTableSection];
+    [[YCAppManager instance] transDeleteHouse:_houseModel.houseId
+                                   ownerModel:ownerModel];
     
-    // 刷新table view
-    [self.mTableView reloadData];
+    [YCAppManager instance].GetDelResult = ^(NSString *msg){
+        
+        if(![msg isEqualToString:@""])
+        {
+            ShowAlertWithOneButton(self, @"", msg, @"Ok");
+        } else {
+            // 刷新table view
+            [self loadFirstSolution];
+        }
+    };
 }
 
 - (void)handleDel:(YCHouseListCell *)cell houseModel:(YCHouseModel *)houseModel
 {
     _houseModel = houseModel;
+    NSIndexPath *indexPath = [self.mTableView indexPathForCell:cell];
+    selDelTableSection = indexPath.section;
     [self addAlertView];
 }
 
@@ -383,7 +419,6 @@
                              self.sendBlock(@"0"); // 调用回调函数
                              DLog(@"发送业主成功");
                          }
-                         
                      } else {
                          
                          NSString *msg = [backDic valueForKey:@"msg"];

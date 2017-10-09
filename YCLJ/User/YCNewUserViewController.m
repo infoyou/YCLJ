@@ -11,9 +11,8 @@
 #import "YCHouseCityChoiceView.h"
 #import "YCHouseParmChoiceView.h"
 #import "YCOwnerModel.h"
-#import "YCHouseFmdbTool.h"
 #import "YCAppManager.h"
-#import "YCHouseListViewController.h"
+#import "YCDrawManager.h"
 
 #define YCLJ_BTN_CITY           @"所在地区 (必填)"
 #define YCLJ_BTN_TYPE           @"房屋类型 (必填)"
@@ -123,13 +122,21 @@
     [userDict setObject:[_txtAddress.text stringByAddingPercentEscapes] forKey:@"address"];
     YCOwnerModel *userModel = [YCOwnerModel newWithUserDict:userDict];
     
-    // 存储本地数据库
-    [[YCAppManager instance] saveLocalOwnerData:userModel];
-
-    /** 户型列表 */
-    YCHouseListViewController *houseListVC = [[YCHouseListViewController alloc] init];
-    houseListVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:houseListVC animated:NO];
+    // Save
+    [[YCAppManager instance] transHouseData:userModel];
+    [YCAppManager instance].GetSaveResult = ^(NSString *msg){
+        
+        if(![msg isEqualToString:@""])
+        {
+            ShowAlertWithOneButton(self, @"", msg, @"Ok");
+        } else {
+            // go to solution list
+            [[YCDrawManager instance] startHouseList:self];
+            
+            // Upload
+            [[YCAppManager instance] uploadFileMehtod];
+        }
+    };
 }
 
 - (void)selectCity {

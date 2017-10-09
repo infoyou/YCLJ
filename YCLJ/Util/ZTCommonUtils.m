@@ -34,7 +34,7 @@
 + (NSString *)getCurrentTime {
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *dateTime = [formatter stringFromDate:[NSDate date]];
     
     return dateTime;
@@ -189,6 +189,27 @@
     }
     
     return pathArray;
+}
+
++ (BOOL)deleteFile:(NSString *)fileName
+{
+    if (fileName == nil) {
+        return false;
+    }
+    
+    NSError *error = nil;
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    if (fileManager != nil) {
+        
+        BOOL result = [fileManager removeItemAtPath:fileName error:&error];
+        
+        if (result != YES) {
+            return false;
+        }
+        return true;
+    }
+    
+    return false;
 }
 
 + (void)doCopyFile:(NSString *)sourcePath targetPath:(NSString *)targetPath houseId:(NSString *)houseId

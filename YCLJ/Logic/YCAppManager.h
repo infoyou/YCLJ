@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ZTLoaddingView.h"
 
 @class YCOwnerModel;
+@class ZTLoaddingView;
 
 @interface YCAppManager : NSObject
 {
@@ -21,20 +21,32 @@
 @property (nonatomic, copy) NSString *workMobile;
 @property (nonatomic, copy) NSString *ownerId;
 @property (nonatomic, copy) NSString *houseId;
-@property (nonatomic, strong) YCOwnerModel *userModel;
+@property (nonatomic, copy) NSString *zipPath;
+
+@property (nonatomic, strong) YCOwnerModel *ownerModel;
 
 @property (nonatomic, copy) void(^GetHouseFile)(NSString *lfFile, NSString *msg);
 
+@property (nonatomic, copy) void(^GetSaveResult)(NSString *msg);
+@property (nonatomic, copy) void(^GetUploadResult)(NSString *msg);
+@property (nonatomic, copy) void(^GetUpdateResult)(NSString *msg);
+
+@property (nonatomic, copy) void(^GetCopyResult)(NSString *msg);
+@property (nonatomic, copy) void(^GetDelResult)(NSString *msg);
 @property (nonatomic, copy) void(^GetOwnerHouseId)(NSString *houseId, NSString *lfFile, NSString *msg);
 
 + (instancetype)instance;
 
+#pragma mark - 更改临时图户型Id
 - (void)updateTempHouseData:(NSString *)aHouseId;
 
 - (NSString *)getTempHouseId;
 
 #pragma mark - 获取户型lf.file 通过houseId
 - (void)transHouseFileById:(NSString *)houseId;
+
+- (void)transHouseData:(YCOwnerModel *)ownerModel;
+- (void)transUpdateHouse;
 
 #pragma mark - 获取户型id
 - (void)transWorkId:(NSString *)workId
@@ -46,20 +58,20 @@
                   workName:(NSString *)workName;
 
 #pragma mark - 上传户型数据文件
-- (void)saveLocalHouseData:(NSString *)zipPath
-                   houseId:(NSString *)houseId;
+- (void)saveHouseParam:(NSString *)zipPath
+               houseId:(NSString *)houseId;
 
 #pragma mark - copy户型数据
 - (void)transCopyHouseData:(NSString *)houseId;
 
 #pragma mark - 删除户型数据
-- (void)transDeleteHouse:(NSString *)houseId;
+- (void)transDeleteHouse:(NSString *)houseId
+              ownerModel:(YCOwnerModel *)ownerModel;
 
 #pragma mark - 上传户型数据文件
-- (void)uploadFileMehtod:(NSString *)filePath
-                 houseId:(NSString *)houseId;
+- (void)uploadFileMehtod;
 
-- (void)saveLocalOwnerData:(YCOwnerModel *)userModel;
+- (void)saveLocalOwnerData:(YCOwnerModel *)ownerModel;
 
 #pragma mark - show msg
 - (void)showWithText:(NSString *)msg;

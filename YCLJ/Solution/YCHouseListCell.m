@@ -9,7 +9,9 @@
 #import "YCHouseListCell.h"
 #import "YCHouseObject.h"
 #import "YCHouseModel.h"
+#import "YCOwnerModel.h"
 #import "ZTCommonUtils.h"
+#import "YCAppManager.h"
 
 @interface YCHouseListCell()
 {
@@ -26,6 +28,11 @@
 @end
 
 @implementation YCHouseListCell
+
+- (void)setOwnerModel:(YCOwnerModel *)ownerModel
+{
+    _ownerModel = ownerModel;
+}
 
 - (void)setHouseObject:(YCHouseObject *)houseObject
 {
@@ -88,7 +95,7 @@
         labCopySolution.textColor = HEX_COLOR(@"0x5E91E5");
         labCopySolution.text = @"生成拆改图";
         
-        // 6, delete btn
+        // 6, copy btn
         btnCopySolution = [UIButton buttonWithType:UIButtonTypeCustom];
         [btnCopySolution addTarget:self action:@selector(doCopySolution) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:btnCopySolution];
@@ -125,8 +132,23 @@
         btnDel.hidden = YES;
     }
     
-    // todo 颜色 处理
-//    labTitle
+    // 拆改图 颜色 处理
+    labCopySolution.textColor = HEX_COLOR(@"0x5E91E5");
+    
+    NSInteger state = [_ownerModel.state integerValue];
+    if (state == 1) {
+        // 爱福窝
+        labCopySolution.textColor = [UIColor grayColor];
+    } else {
+        // 科创绘制
+        if (_ownerModel.houseArray.count > 1) {
+            
+            if (_houseObject.houseModel.type == 0) {
+                
+                labCopySolution.textColor = [UIColor grayColor];
+            }
+        }
+    }
     
     // 2, date
     if (![houseModel.updateDate isEqualToString:@""]) {
@@ -169,6 +191,13 @@
 
 - (void)doCopySolution
 {
+    NSInteger state = [_houseObject.houseModel.state integerValue];
+    if (state == 1)
+    {
+        [[YCAppManager instance] showWithText:AFW_Data_Txt];
+        return;
+    }
+    
     if (_delegate != nil) {
         
         [_delegate handleCopy:_houseObject.houseModel];

@@ -2,9 +2,8 @@
 #import "YCUserListViewController.h"
 #import "YCUserListCell.h"
 #import "YCOwnerModel.h"
-#import "YCHouseFmdbTool.h"
 #import "YCAppManager.h"
-#import "YCHouseListViewController.h"
+#import "YCDrawManager.h"
 
 @interface YCUserListViewController ()
 
@@ -93,13 +92,21 @@
     
     YCOwnerModel *userModel = (YCOwnerModel *)cellDataArray[indexPath.row];
     
-    // 存储本地数据库
-    [[YCAppManager instance] saveLocalOwnerData:userModel];
-    
-    /** 户型列表 */
-    YCHouseListViewController *houseListVC = [[YCHouseListViewController alloc] init];
-    houseListVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:houseListVC animated:NO];
+    // Save
+    [[YCAppManager instance] transHouseData:userModel];
+    [YCAppManager instance].GetSaveResult = ^(NSString *msg){
+        
+        if(![msg isEqualToString:@""])
+        {
+            ShowAlertWithOneButton(self, @"", msg, @"Ok");
+        } else {
+            // go to solution list
+            [[YCDrawManager instance] startHouseList:self];
+            
+            // Upload
+            [[YCAppManager instance] uploadFileMehtod];
+        }
+    };
 }
 
 #pragma mark - 业主列表

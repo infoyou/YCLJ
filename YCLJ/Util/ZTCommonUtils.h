@@ -40,4 +40,6 @@
 
 + (BOOL)isMobileNumber:(NSString *)mobileNum;
 
++ (BOOL)deleteFile:(NSString *)fileName;
+
 @end

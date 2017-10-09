@@ -38,7 +38,6 @@
 		74302B561F3AFAB70095D3BD /* MapFileParser.sh in Resources */ = {isa = PBXBuildFile; fileRef = 74302B521F3AFAB70095D3BD /* MapFileParser.sh */; };
 		74302B571F3AFAB70095D3BD /* DXFTemplate_shape.dxf in Resources */ = {isa = PBXBuildFile; fileRef = 74302B531F3AFAB70095D3BD /* DXFTemplate_shape.dxf */; };
 		74302B581F3AFAB70095D3BD /* RoomTypeAndIDList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74302B541F3AFAB70095D3BD /* RoomTypeAndIDList.plist */; };
-		74302B5D1F3AFB160095D3BD /* YCHouseFmdbTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 74302B5B1F3AFB160095D3BD /* YCHouseFmdbTool.m */; };
 		74302B601F3AFB6D0095D3BD /* YCNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74302B5E1F3AFB6D0095D3BD /* YCNewUserViewController.m */; };
 		74302B611F3AFB6D0095D3BD /* YCUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74302B5F1F3AFB6D0095D3BD /* YCUserListViewController.m */; };
 		74302B681F3AFBBD0095D3BD /* YCOwnerModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 74302B641F3AFBBD0095D3BD /* YCOwnerModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -69,7 +68,6 @@
 		74B146931F79F20000865076 /* ZTCommonUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149BA31F34675000671036 /* ZTCommonUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B146941F79F22500865076 /* YCAppManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 74302B6C1F3AFBE10095D3BD /* YCAppManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B146961F79F23A00865076 /* YCPopViewExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 74149B7C1F34675000671036 /* YCPopViewExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74B146971F79F24200865076 /* YCHouseFmdbTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 74302B5A1F3AFB160095D3BD /* YCHouseFmdbTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B146981F79F24D00865076 /* YCNewUserViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F8DE71F34709900198D20 /* YCNewUserViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74C64AF91F75559700D67C88 /* ZTLoaddingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C64AF51F75559700D67C88 /* ZTLoaddingView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74C64AFA1F75559700D67C88 /* ZTLoaddingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C64AF61F75559700D67C88 /* ZTLoaddingView.m */; };
@@ -78,6 +76,7 @@
 		74E26A441F77D18F00069B52 /* ZTAsynDownload.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E26A421F77D18F00069B52 /* ZTAsynDownload.h */; };
 		74E26A451F77D18F00069B52 /* ZTAsynDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E26A431F77D18F00069B52 /* ZTAsynDownload.m */; };
 		74EA9AF31F2B405B006916C3 /* houseStyle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74EA9AF21F2B405B006916C3 /* houseStyle.plist */; };
+		DB0D6EAAFCA73C0A9D0F0BE2 /* libPods-YCLJ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A31E24CF965375A4118BBA /* libPods-YCLJ.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,8 +116,6 @@
 		74302B521F3AFAB70095D3BD /* MapFileParser.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = MapFileParser.sh; sourceTree = "<group>"; };
 		74302B531F3AFAB70095D3BD /* DXFTemplate_shape.dxf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DXFTemplate_shape.dxf; sourceTree = "<group>"; };
 		74302B541F3AFAB70095D3BD /* RoomTypeAndIDList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RoomTypeAndIDList.plist; sourceTree = "<group>"; };
-		74302B5A1F3AFB160095D3BD /* YCHouseFmdbTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YCHouseFmdbTool.h; path = ../Util/YCHouseFmdbTool.h; sourceTree = "<group>"; };
-		74302B5B1F3AFB160095D3BD /* YCHouseFmdbTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YCHouseFmdbTool.m; path = ../Util/YCHouseFmdbTool.m; sourceTree = "<group>"; };
 		74302B5E1F3AFB6D0095D3BD /* YCNewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCNewUserViewController.m; sourceTree = "<group>"; };
 		74302B5F1F3AFB6D0095D3BD /* YCUserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCUserListViewController.m; sourceTree = "<group>"; };
 		74302B641F3AFBBD0095D3BD /* YCOwnerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCOwnerModel.h; sourceTree = "<group>"; };
@@ -164,6 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB0D6EAAFCA73C0A9D0F0BE2 /* libPods-YCLJ.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,8 +229,6 @@
 				74149B7B1F34675000671036 /* YCHouseParmChoiceView.m */,
 				74149B7C1F34675000671036 /* YCPopViewExtension.h */,
 				74149B7D1F34675000671036 /* YCPopViewExtension.m */,
-				74302B5A1F3AFB160095D3BD /* YCHouseFmdbTool.h */,
-				74302B5B1F3AFB160095D3BD /* YCHouseFmdbTool.m */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -328,7 +324,6 @@
 				74B146961F79F23A00865076 /* YCPopViewExtension.h in Headers */,
 				749CE0BB1F7F868C00D0FB03 /* YCDrawManager.h in Headers */,
 				74B146941F79F22500865076 /* YCAppManager.h in Headers */,
-				74B146971F79F24200865076 /* YCHouseFmdbTool.h in Headers */,
 				74149BE41F34675100671036 /* YCHeader.h in Headers */,
 				74B146981F79F24D00865076 /* YCNewUserViewController.h in Headers */,
 				74149BB61F34675000671036 /* YCHouseParmChoiceView.h in Headers */,
@@ -501,7 +496,6 @@
 				749CE0B91F7F861C00D0FB03 /* YCHouseListViewController.m in Sources */,
 				74149BE31F34675100671036 /* ZTUploadParamModel.m in Sources */,
 				74302B6F1F3AFBE10095D3BD /* YCAppManager.m in Sources */,
-				74302B5D1F3AFB160095D3BD /* YCHouseFmdbTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

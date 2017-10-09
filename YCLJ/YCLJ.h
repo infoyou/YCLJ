@@ -16,7 +16,6 @@
 #import <YCHouseModel.h>
 #import <YCOwnerModel.h>
 #import <YCAppManager.h>
-#import <YCHouseFmdbTool.h>
 #import <YCPopViewExtension.h>
 #import <YCNewUserViewController.h>
 #import <YCUserListViewController.h>
