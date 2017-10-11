@@ -68,8 +68,8 @@
 - (void)checkNetAvailable
 {
     Nonetwork *Nonet = [[Nonetwork alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    Nonet.Prompt=@"无法连接服务器，请检查你的网络设置";
-    Nonet.typeDisappear=1;
+    Nonet.Prompt = @"无法连接服务器，请检查你的网络设置";
+    Nonet.typeDisappear = 1;
     [Nonet popupWarningview];
     Nonet.returnsAnEventBlock = ^{
         NSLog(@"重新加载数据");
@@ -181,7 +181,6 @@
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
     if (_userCount > 0) {

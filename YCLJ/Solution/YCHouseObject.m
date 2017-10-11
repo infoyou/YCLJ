@@ -31,7 +31,7 @@
     _labTitleF = CGRectMake(titleX, titleY, titleW, titleH);
 
     // 2, date
-    CGFloat authorX = 111;
+    CGFloat authorX = 105;
     CGFloat authorY = titleY;
     CGFloat authorW = 184;
     CGFloat authorH = 22;

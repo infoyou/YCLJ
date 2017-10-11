@@ -8,6 +8,7 @@
 -(void)clickBtnSelector:(UIButton *)btn;
 
 @end
+
 @interface YCPopViewExtension : UIView
 
 @property(nonatomic,strong) UIImageView *closeImg;
@@ -23,7 +24,6 @@
 //提示view
 @property(nonatomic,strong) UIView *tipebackView;
 @property(nonatomic,assign) id<YCAlertviewExtensionDelegate>delegate;
-
 
 //设置提示view的宽高
 -(void)setbackviewframeWidth:(CGFloat)width Andheight:(CGFloat)height;

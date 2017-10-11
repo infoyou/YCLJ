@@ -141,7 +141,8 @@
 
 - (void)selectCity {
     
-    YCHouseCityChoiceView * view = [[YCHouseCityChoiceView alloc] initWithFrame:self.view.frame];
+    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    YCHouseCityChoiceView *view = [[YCHouseCityChoiceView alloc] initWithFrame:frame];
     view.selectedBlock = ^(NSString * province, NSString * city, NSString * area){
         NSString *strCity = [NSString stringWithFormat:@"%@%@%@",province,city,area];
         [_btnCity setTitle:strCity forState:UIControlStateNormal];
@@ -153,7 +154,8 @@
 
 - (void)selectStyle
 {
-    YCHouseParmChoiceView * view = [[YCHouseParmChoiceView alloc] initWithFrame:self.view.frame];
+    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    YCHouseParmChoiceView *view = [[YCHouseParmChoiceView alloc] initWithFrame:frame];
     [view loadData:@"houseStyle" strTitle:@"请选择房屋属性"];
     
     view.selectedBlock = ^(NSString * type, NSString * typeValue){
@@ -180,7 +182,8 @@
     
     [self closeTxtKeyboard];
     
-    YCHouseParmChoiceView * view = [[YCHouseParmChoiceView alloc] initWithFrame:self.view.frame];
+    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    YCHouseParmChoiceView *view = [[YCHouseParmChoiceView alloc] initWithFrame:frame];
     [view loadData:@"houseType" strTitle:@"请选择房屋类型"];
     
     view.selectedBlock = ^(NSString * type, NSString * typeValue){
