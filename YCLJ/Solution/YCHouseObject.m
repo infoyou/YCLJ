@@ -22,7 +22,9 @@
     NSInteger imgUploadW = 20;
     NSInteger imgUploadH = 20;
     _imgUploadF = CGRectMake(imgUploadX, imgUploadY + 1, imgUploadW, imgUploadH);
-
+    
+    CGFloat offsetX = 30;
+    
     // 1, title
     CGFloat titleX = 40;
     CGFloat titleY = imgUploadY;
@@ -31,14 +33,14 @@
     _labTitleF = CGRectMake(titleX, titleY, titleW, titleH);
 
     // 2, date
-    CGFloat authorX = 105;
+    CGFloat authorX = CGRectGetMaxX(_labTitleF) + offsetX;
     CGFloat authorY = titleY;
     CGFloat authorW = 184;
     CGFloat authorH = 22;
     _labDateF = CGRectMake(authorX, authorY, authorW, authorH);
 
     // 3, delete
-    CGFloat imgDelX = YC_SCREEN_WIDTH/2;
+    CGFloat imgDelX = CGRectGetMaxX(_labDateF) + offsetX * 2;
     CGFloat imgDelY = titleY;
     NSInteger imgDelW = 20;
     NSInteger imgDelH = 20;

@@ -15,7 +15,7 @@
 }
 
 /**
- * 工长下面的业主列表接口
+ * 工单下面的业主列表接口
  */
 - (instancetype)initWithDict:(NSDictionary *)dict
 {
@@ -27,9 +27,11 @@
             self.ownerId = (NSString *)dict[@"ownerId"] ? (NSString *)dict[@"ownerId"]:@"";
             self.name = (NSString *)dict[@"name"] ? (NSString *)dict[@"name"]:@"";
             self.mobile = (NSString *)dict[@"mobile"] ? (NSString *)dict[@"mobile"]:@"";
-            self.address = (NSString *)dict[@"address"] ? (NSString *)dict[@"address"]:@"";
             self.area = (NSString *)dict[@"building_area"] ? (NSString *)dict[@"building_area"]:@"";
             self.city = (NSString *)dict[@"district"] ? (NSString *)dict[@"district"]:@"";
+            self.address = (NSString *)dict[@"address"] ? (NSString *)dict[@"address"]:@"";
+            
+            self.address = [NSString stringWithFormat:@"%@ %@", self.city, self.address];
             self.style = (NSString *)dict[@"is_new"] ? (NSString *)dict[@"is_new"]:@"";
             self.type = (NSString *)dict[@"house_type"] ? (NSString *)dict[@"house_type"]:@"";
             self.state = (NSString *)dict[@"state"] ? (NSString *)dict[@"state"]:@"";

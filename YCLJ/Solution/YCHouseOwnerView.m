@@ -97,8 +97,22 @@
     _userModel = userModel;
     
     NSInteger offsetW = 3;
-    CGFloat nameY = 20;
+    CGFloat nameY = 18;
 
+    // share btn
+    CGFloat shareX = YC_SCREEN_WIDTH - 40;
+    CGFloat shareY = 40;
+    CGFloat shareW = 20;
+    CGFloat shareH = 20;
+    _imgShare.frame = CGRectMake(shareX, shareY, shareW, shareH);
+    _btnShare.frame = CGRectMake(shareX-10, shareY-10, shareW + 20, shareH + 20);
+    
+    // send btn
+    CGFloat sendW = 90;
+    CGFloat sendX = YC_SCREEN_WIDTH - sendW - 72;
+    CGFloat sendY = 37;
+    _btnSend.frame = CGRectMake(sendX, sendY, 90, 28);
+    
     // name
     _labName.frame = CGRectMake(17, nameY, YC_SCREEN_WIDTH/6, 20);
     _labName.text = [userModel.name stringByReplacingPercentEscapes];
@@ -110,17 +124,11 @@
     _labMobile.frame = CGRectMake(mobileX, nameY, YC_SCREEN_WIDTH/5, 20);
     _labMobile.text = userModel.mobile;
 
-    // address
-    CGFloat addressX = 40;
-    CGFloat addressY = 50;
-    _imgAddress.frame = CGRectMake(addressX - 20 - offsetW, addressY, 20, 20);
-    _labAddress.frame = CGRectMake(addressX, addressY, YC_SCREEN_WIDTH/2-40, 20);
-    _labAddress.text = [userModel.address stringByReplacingPercentEscapes];
-
     // area
-    CGFloat areaX = YC_SCREEN_WIDTH/2 + 20;
-    _imgArea.frame = CGRectMake(areaX - 20 - offsetW, addressY, 20, 20);
-
+    CGFloat areaX = CGRectGetMaxX(_labMobile.frame) + 10;
+    CGFloat areaWH = 20;
+    _imgArea.frame = CGRectMake(areaX, nameY, areaWH, areaWH);
+    
     NSString *strArea = userModel.area;
     if (![userModel.area hasSuffix:@"㎡"])
     {
@@ -131,22 +139,15 @@
     
     _labArea.text = strArea;
     CGFloat labAreaW = [ZTCommonUtils calcuViewWidth:_labArea.text font:_labArea.font];
-    _labArea.frame = CGRectMake(areaX, addressY, labAreaW, 20);
-
-    // share
-    CGFloat shareX = YC_SCREEN_WIDTH - 40;
-    CGFloat shareY = 40;
-    CGFloat shareW = 20;
-    CGFloat shareH = 20;
-    _imgShare.frame = CGRectMake(shareX, shareY, shareW, shareH);
-
-    _btnShare.frame = CGRectMake(shareX-10, shareY-10, shareW + 20, shareH + 20);
+    _labArea.frame = CGRectMake(areaX + areaWH + offsetW, nameY, labAreaW, 20);
     
-    // 发送业主
-    CGFloat sendW = 90;
-    CGFloat sendX = YC_SCREEN_WIDTH - sendW - 72;
-    CGFloat sendY = 37;
-    _btnSend.frame = CGRectMake(sendX, sendY, 90, 28);
+    // address
+    CGFloat addressX = 40;
+    CGFloat addressY = 50;
+    _imgAddress.frame = CGRectMake(addressX - 20 - offsetW, addressY, 20, 20);
+    _labAddress.frame = CGRectMake(addressX, addressY, sendX - addressX - 5, 20);
+    _labAddress.text = [userModel.address stringByReplacingPercentEscapes];
+
 }
 
 - (void)clickShareOwner

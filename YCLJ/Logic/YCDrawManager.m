@@ -10,9 +10,10 @@
 #import "LFDrawManager.h"
 #import "LFDrawSDKAPI.h"
 #import "YCPopViewExtension.h"
+
+#import "YCNewUserViewController.h"
 #import "YCUserListViewController.h"
 #import "YCHouseListViewController.h"
-#import "YCNewUserViewController.h"
 
 #import "YCHouseModel.h"
 #import "YCOwnerModel.h"
@@ -301,10 +302,12 @@ static YCDrawManager *singleton = nil;
 {
     // 新建模式
     if (self.tempHouseID != nil) {
+        
         // 保存本地文件
         NSString *zipPath = [LFDrawSDKAPI getHouseZIPDataPathWithHouseID:self.tempHouseID];
         
-        [LFDrawSDKAPI getHouseU3DPathWithHouseID:self.tempHouseID];
+        // 3D
+        // [LFDrawSDKAPI getHouseU3DPathWithHouseID:self.tempHouseID];
         
         // 保存户型
         [[YCAppManager instance] saveHouseParam:zipPath
@@ -319,9 +322,9 @@ static YCDrawManager *singleton = nil;
     switch (btnTag) {
         case 1000:
         {
-            [self.startVC dismissViewControllerAnimated:YES completion:nil];
             [alert removeFromSuperview];
-            
+            [self.startVC dismissViewControllerAnimated:YES completion:nil];
+
             [self addNewHouse];
             
             // 选择已有业主信息
@@ -333,8 +336,8 @@ static YCDrawManager *singleton = nil;
             
         case 2000:
         {
-            [self.startVC dismissViewControllerAnimated:YES completion:nil];
             [alert removeFromSuperview];
+            [self.startVC dismissViewControllerAnimated:YES completion:nil];
             
             [self addNewHouse];
             
@@ -390,7 +393,7 @@ static YCDrawManager *singleton = nil;
 
         case 2:
         {
-            // 存储本地数据库
+            // 存储数据
             [[YCAppManager instance] saveLocalOwnerData:self.model];
             
             [self.startVC dismissViewControllerAnimated:YES completion:nil];

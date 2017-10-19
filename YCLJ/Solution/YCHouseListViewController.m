@@ -47,7 +47,7 @@
     
     [super viewDidLoad];
     
-    self.title = @"方案列表";
+    self.title = @"户型列表";
     
     self.view.backgroundColor = [UIColor whiteColor];
     
