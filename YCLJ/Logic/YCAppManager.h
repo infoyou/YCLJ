@@ -46,7 +46,6 @@
 - (void)transHouseFileById:(NSString *)houseId;
 
 - (void)transHouseData:(YCOwnerModel *)ownerModel;
-- (void)transUpdateHouse;
 
 #pragma mark - 获取户型id
 - (void)transWorkId:(NSString *)workId

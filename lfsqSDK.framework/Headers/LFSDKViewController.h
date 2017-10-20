@@ -22,19 +22,6 @@ typedef void(^closeBtnActionBlock)(NSString* houseID);
  */
 - (void)registerLfsqSDKWithUserID:(NSString*)UserID;
 
-
-/**
- 初始化绘图控制器，创建一个新户型
- */
-- (void)initDrawVCWithNewHouseWithHouseListBtnActionBlock:(houseListBtnActionBlock)houseListBtnActionBlock jump3DPageBlock:(jump3DPageBlock)jump3DPageBlock closeBtnActionBlock:(closeBtnActionBlock)closeBtnActionBlock;
-
-
-/**
- 初始化控制器，根据户型ID，打开一个新户型
- */
--(void)initDrawVCWithHouseID:(NSString*)houseID houseListBtnActionBlock:(houseListBtnActionBlock)houseListBtnActionBlock jump3DPageBlock:(jump3DPageBlock)jump3DPageBlock closeBtnActionBlock:(closeBtnActionBlock)closeBtnActionBlock;
-
-
 /**
  初始化控制器，打开爱福窝户型数据
  */
@@ -51,6 +38,21 @@ typedef void(^closeBtnActionBlock)(NSString* houseID);
  注销
  */
 - (void)loginOut;
+
+
+///**
+// 初始化绘图控制器，创建一个新户型
+// */
+//- (void)initDrawVCWithNewHouseWithHouseListBtnActionBlock:(houseListBtnActionBlock)houseListBtnActionBlock jump3DPageBlock:(jump3DPageBlock)jump3DPageBlock closeBtnActionBlock:(closeBtnActionBlock)closeBtnActionBlock;
+//
+//
+///**
+// 初始化控制器，根据户型ID，打开一个新户型
+// */
+//-(void)initDrawVCWithHouseID:(NSString*)houseID houseListBtnActionBlock:(houseListBtnActionBlock)houseListBtnActionBlock jump3DPageBlock:(jump3DPageBlock)jump3DPageBlock closeBtnActionBlock:(closeBtnActionBlock)closeBtnActionBlock;
+//
+
+
 
 
 @end

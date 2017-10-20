@@ -58,6 +58,7 @@
 		7441A80A1F4187630079DDD0 /* YCSendResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7441A8081F4187630079DDD0 /* YCSendResultViewController.m */; };
 		74545A521F29F805002EE1CE /* houseCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74545A4E1F29F805002EE1CE /* houseCity.plist */; };
 		74545A531F29F805002EE1CE /* houseType.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74545A4F1F29F805002EE1CE /* houseType.plist */; };
+		747AE0C11F99C43500F60C6E /* lfsqSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 747AE0C01F99C43400F60C6E /* lfsqSDK.framework */; };
 		749CE0B21F7F827200D0FB03 /* YCDrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 749CE0B11F7F827100D0FB03 /* YCDrawManager.m */; };
 		749CE0B81F7F861C00D0FB03 /* YCHouseListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 749CE0B61F7F861B00D0FB03 /* YCHouseListViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		749CE0B91F7F861C00D0FB03 /* YCHouseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 749CE0B71F7F861C00D0FB03 /* YCHouseListViewController.m */; };
@@ -137,7 +138,7 @@
 		7441A8081F4187630079DDD0 /* YCSendResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCSendResultViewController.m; sourceTree = "<group>"; };
 		74545A4E1F29F805002EE1CE /* houseCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = houseCity.plist; sourceTree = "<group>"; };
 		74545A4F1F29F805002EE1CE /* houseType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = houseType.plist; sourceTree = "<group>"; };
-		749CE0A51F7CD21400D0FB03 /* lfsqSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lfsqSDK.framework; sourceTree = "<group>"; };
+		747AE0C01F99C43400F60C6E /* lfsqSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lfsqSDK.framework; sourceTree = "<group>"; };
 		749CE0B01F7F827100D0FB03 /* YCDrawManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCDrawManager.h; sourceTree = "<group>"; };
 		749CE0B11F7F827100D0FB03 /* YCDrawManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCDrawManager.m; sourceTree = "<group>"; };
 		749CE0B61F7F861B00D0FB03 /* YCHouseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCHouseListViewController.h; sourceTree = "<group>"; };
@@ -162,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB0D6EAAFCA73C0A9D0F0BE2 /* libPods-YCLJ.a in Frameworks */,
+				747AE0C11F99C43500F60C6E /* lfsqSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,7 +173,7 @@
 		74117ADC1F204E7F00911D09 = {
 			isa = PBXGroup;
 			children = (
-				749CE0A51F7CD21400D0FB03 /* lfsqSDK.framework */,
+				747AE0C01F99C43400F60C6E /* lfsqSDK.framework */,
 				74302B521F3AFAB70095D3BD /* MapFileParser.sh */,
 				74302B531F3AFAB70095D3BD /* DXFTemplate_shape.dxf */,
 				74302B541F3AFAB70095D3BD /* RoomTypeAndIDList.plist */,

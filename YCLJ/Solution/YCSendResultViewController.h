@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZTRootViewController.h"
 
-@interface YCSendResultViewController : UIViewController
+@interface YCSendResultViewController : ZTRootViewController
 
 @end

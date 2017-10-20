@@ -44,14 +44,13 @@
 /** 
  “户型列表”点击事件block 
  */
-@property (nonatomic, copy) void (^houseListBtnActionBlock)(NSString *houseID ,UIViewController * drawVC);
+@property (nonatomic, copy) void (^houseListBtnActionBlock)(NSString *houseID);
 
 
 /**
  跳转到u3d界面
  */
 @property (nonatomic, copy) void (^jump3DPageBlock)(UIViewController * drawVC);
-
 
 /**
  *  关闭 按钮 block
